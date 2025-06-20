@@ -65,6 +65,43 @@
             font-size: 0.95em;
             color: #666;
         }
+        .toc-section {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .toc-section h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        .toc-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .toc-item {
+            background: #f8f9fa;
+            padding: 12px 15px;
+            border-radius: 6px;
+            border-left: 4px solid #28a745;
+            transition: all 0.2s ease;
+        }
+        .toc-item:hover {
+            background: #e9ecef;
+            transform: translateX(2px);
+        }
+        .toc-item a {
+            color: #28a745;
+            text-decoration: none;
+            font-weight: 500;
+            display: block;
+        }
+        .toc-item a:hover {
+            color: #1e7e34;
+        }
         .faq-section {
             background: white;
             border-radius: 8px;
@@ -206,6 +243,26 @@
             color: #666;
             font-size: 14px;
         }
+        .map-section {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .map-section h2 {
+            margin-top: 0;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .map-container {
+            text-align: center;
+        }
+        .map-container iframe {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
         @media (max-width: 600px) {
             body {
                 padding: 10px;
@@ -246,13 +303,35 @@
             <div class="fact-item">
                 <strong>Fire Risk:</strong>
                 1996 foothills fire started at shooting range<br>
-                Burned 14,000 acres, destroyed homes
+                <span class="fact-note">Burned 14,000 acres, destroyed homes</span>
             </div>
         </div>
     </div>
 
-    <div class="faq-section">
-        <h2>❓ Frequently Asked Questions</h2>
+    <div class="toc-section">
+        <h2>📋 Table of Contents</h2>
+        <div class="toc-grid">
+            <div class="toc-item">
+                <a href="#faq">🧠 Frequently Asked Questions</a>
+            </div>
+            <div class="toc-item">
+                <a href="#map">📍 Location Map</a>
+            </div>
+            <div class="toc-item">
+                <a href="#timeline">📅 Timeline of Events</a>
+            </div>
+            <div class="toc-item">
+                <a href="#action">🎯 Take Action</a>
+            </div>
+            <div class="toc-item">
+                <a href="#resources">📚 Resources & Documents</a>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="faq-section" id="faq">
+        <h2>🧠 Frequently Asked Questions</h2>
         
         <div class="faq-item">
             <div class="faq-question">What's happening?</div>
@@ -305,7 +384,14 @@
         </div>
     </div>
 
-    <div class="timeline-section">
+    <div class="map-section" id="map">
+        <h2>📍 Location Map</h2>
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1221.543684712778!2d-116.22181341444598!3d43.735448359601826!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2sus!4v1750438514607!5m2!1sen!2sus" width="800" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+
+    <div class="timeline-section" id="timeline">
         <h2>📅 Timeline of Events</h2>
         <div class="timeline">
             <div class="timeline-item">
@@ -339,7 +425,7 @@
         </div>
     </div>
 
-    <div class="action-section">
+    <div class="action-section" id="action">
         <h2>🎯 Take Action</h2>
         <p><strong>Your voice matters in this process!</strong></p>
         
@@ -362,7 +448,7 @@
         </div>
     </div>
 
-    <div class="resources-section">
+    <div class="resources-section" id="resources">
         <h2>📚 Resources & Documents</h2>
         <div class="resources-grid">
             <div class="resource-category">
