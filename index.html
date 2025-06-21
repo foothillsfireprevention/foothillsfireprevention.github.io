@@ -349,7 +349,7 @@
         }
         .signup-cta {
             text-align: center;
-            padding: 40px;
+            padding: 40px 20px;
             background: white;
             border-radius: 8px;
             margin: 30px 0;
@@ -367,13 +367,17 @@
             display: inline-block;
             background: #c9302c;
             color: white;
-            padding: 15px 40px;
+            padding: 15px 30px;
             border-radius: 6px;
             text-decoration: none;
             font-weight: 600;
             font-size: var(--font-size-lg);
             transition: all 0.2s ease;
             box-shadow: 0 2px 4px rgba(201, 48, 44, 0.2);
+            white-space: nowrap;
+            max-width: 90%;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         .signup-button:hover {
             background: #a02622;
@@ -654,11 +658,12 @@
             /* Mobile CTA button */
             .signup-button {
                 display: block;
-                width: 100%;
-                max-width: 300px;
+                width: auto;
+                max-width: calc(100% - 40px);
                 margin: 0 auto;
-                padding: 16px 30px;
+                padding: 16px 24px;
                 font-size: var(--font-size-base);
+                white-space: normal;
             }
             
             /* Mobile contact items */
