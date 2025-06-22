@@ -718,9 +718,9 @@ Key Facts about the Shooting Range:
 - Location: 15401 N. Cartwright Rd, Boise (Foothills area)
 - Type: Commercial shooting range with paid memberships and training courses
 - Status: Operating WITHOUT permits since 2024, now seeking approval
-- Legal: Ada County Sheriff and Prosecutor have issued enforcement orders to cease operations
+- Legal: They've been told to stop and they're not
 - Defiance: Continues daily operations despite enforcement orders
-- Fire Risk: 1996 Boise foothills fire (14,000 acres) started at a shooting range
+- Fire Risk: It's ever present every summer and obviously gunfire makes things worse
 - Proximity: Less than 1 mile from residential areas and popular recreation trails
 - Precedent Concern: Rewarding illegal operation with permits`;
 
@@ -778,6 +778,8 @@ For the BODY: Write a compelling email that:
 3. References the inherent risks, public safety concerns, and impact on quiet enjoyment
 4. Requests denial of the permit application
 5. MAINTAINS a RESPECTFUL but firm tone
+6. Adding color and personality is fine, but don't make up personal stories
+7. These emails are going to city officials
 
 Length requirement: ${data.lengthStyle === 'quick' ? 'Keep it brief - 1-2 paragraphs only, get straight to the point' :
                     data.lengthStyle === 'thorough' ? 'Write a thorough letter with 4-5 paragraphs, include context and detailed arguments' :
@@ -877,29 +879,7 @@ Tone: ${data.tone === 'formal' ? 'Use formal, professional language' :
                     alert('Error: ' + (result.error || 'Failed to generate email'));
                 }
             } catch (error) {
-                // For local testing, generate a mock response
-                if (window.location.hostname === 'localhost' || window.location.protocol === 'file:') {
-                    const mockEmail = `Dear Ada County Commissioners,
-
-My name is ${data.name}, and I am writing as a ${data.residentType.join(' and ')} living ${data.distance.replace(/_/g, ' ')} from the proposed burn facility at 15401 N. Cartwright Rd.
-
-I am deeply concerned about this facility for several reasons, particularly ${concerns}.
-
-${data.personalImpact || 'This facility would significantly impact our community and quality of life.'}
-
-I strongly urge you to deny the permit for this facility and protect our community's safety and well-being.
-
-Sincerely,
-${data.name}
-${location}`;
-                    
-                    document.getElementById('emailSubject').textContent = 'Subject: Concern Regarding Proposed Burn Facility at 15401 N. Cartwright Rd';
-                    document.getElementById('emailContent').textContent = mockEmail;
-                    document.getElementById('results').style.display = 'block';
-                    document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
-                } else {
-                    alert('Failed to generate email. Please try again.');
-                }
+                alert('Failed to generate email. Please try again.');
             } finally {
                 submitButton.textContent = originalText;
                 submitButton.disabled = false;
