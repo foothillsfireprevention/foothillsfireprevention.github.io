@@ -122,11 +122,17 @@ exports.handler = async (event, context) => {
       apiKey: apiKey,
     });
 
+    // Adjust token limit based on requested length
+    const lengthStyle = data.prompt.includes('1-2 paragraphs') ? 'quick' :
+                       data.prompt.includes('4-5 paragraphs') ? 'thorough' : 'standard';
+    const maxTokens = lengthStyle === 'quick' ? 300 : 
+                      lengthStyle === 'thorough' ? 700 : 500;
+
     // Generate email with Claude
     const message = await anthropic.messages.create({
       model: 'claude-3-haiku-20240307',
-      max_tokens: 500,
-      temperature: 0.7,
+      max_tokens: maxTokens,
+      temperature: 0.78,
       system: `You are helping concerned citizens write concise, professional emails to local government officials. 
 
 You MUST format your response EXACTLY like this:
@@ -139,7 +145,18 @@ BODY:
 Important:
 - The subject line should be unique and specific to the writer's situation
 - Vary subject lines based on their primary concerns and tone
-- Keep emails concise and personal`,
+- Keep emails concise and personal
+
+IMPORTANT: Generate unique content that doesn't follow a template pattern. 
+Vary the opening, structure, and phrasing. Avoid starting with "I am writing to..." 
+or other common form letter phrases. Make it sound like a real person wrote it.
+
+Opening examples:
+- "I just learned about the illegal shooting range and I'm alarmed..."
+- "As someone who [bikes/lives/hikes] in Hidden Springs..."
+- "The ongoing violations at 15401 N. Cartwright concern me because..."
+- "My family and I were shocked to discover..."
+- "Yesterday I drove past the shooting range and realized..."`,
       messages: [
         {
           role: 'user',

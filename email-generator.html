@@ -298,6 +298,11 @@
             background: #f8f9fa;
             transform: translateY(-2px);
         }
+        
+        .share-button:hover {
+            background: #365899 !important;
+            transform: translateY(-2px);
+        }
 
         /* Error Message */
         .error-message {
@@ -473,6 +478,12 @@
                 <div id="tone" class="radio-group"></div>
             </fieldset>
 
+            <!-- Length/Style Selection -->
+            <fieldset>
+                <legend>Length/Style Options</legend>
+                <div id="lengthStyle" class="radio-group"></div>
+            </fieldset>
+
             <!-- Disclaimer -->
             <div style="background: #fff3cd; border: 2px solid #ffeaa7; border-radius: 8px; padding: 20px; margin-bottom: 25px;">
                 <h4 style="color: #856404; margin: 0 0 10px 0; font-size: var(--font-size-base);">Important Notice</h4>
@@ -504,6 +515,16 @@
         <div class="action-buttons">
             <button id="copyButton" class="action-button copy-button">Copy to Clipboard</button>
             <button id="emailButton" class="action-button email-button">Open in Email Client</button>
+        </div>
+        
+        <!-- Share Tool Section -->
+        <div class="share-tool-section" style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e9ecef; text-align: center;">
+            <p style="margin: 0 0 15px 0; color: #666; font-style: italic;">
+                Found this helpful? Share with neighbors who care about our community:
+            </p>
+            <button id="shareToolButton" style="background: #2c5282; color: white; border: none; padding: 10px 24px; border-radius: 6px; font-size: var(--font-size-base); cursor: pointer; transition: all 0.2s ease;">
+                📤 Share This Tool
+            </button>
         </div>
     </div>
 
@@ -569,6 +590,14 @@
                     { value: 'formal', label: 'Formal/Professional' },
                     { value: 'personal', label: 'Personal/Neighborly' },
                     { value: 'urgent', label: 'Urgent/Assertive' }
+                ]
+            },
+            lengthStyle: {
+                type: 'radio',
+                options: [
+                    { value: 'quick', label: 'Quick Note', definition: 'Get to the point fast (1-2 paragraphs)' },
+                    { value: 'standard', label: 'Standard Email', definition: 'Balance of detail and brevity (3-4 paragraphs)' },
+                    { value: 'thorough', label: 'Thorough Letter', definition: 'Complete argument with context (4-5 paragraphs)' }
                 ]
             }
         };
@@ -640,14 +669,23 @@
                         input.value = option.value;
                         input.id = `${fieldName}_${index}`;
                         
-                        // Set default for tone
+                        // Set defaults
                         if (fieldName === 'tone' && index === 0) {
+                            input.checked = true;
+                        }
+                        if (fieldName === 'lengthStyle' && option.value === 'standard') {
                             input.checked = true;
                         }
                         
                         const label = document.createElement('label');
                         label.htmlFor = `${fieldName}_${index}`;
-                        label.textContent = option.label;
+                        
+                        if (option.definition && fieldName === 'lengthStyle') {
+                            // For lengthStyle, show label with definition
+                            label.innerHTML = `<span style="font-weight: 500;">${option.label}</span> - <span style="color: #6c757d; font-size: var(--font-size-sm);">${option.definition}</span>`;
+                        } else {
+                            label.textContent = option.label;
+                        }
                         
                         wrapper.appendChild(input);
                         wrapper.appendChild(label);
@@ -724,7 +762,10 @@ For the BODY: Write a compelling email that:
 3. References the inherent risks, public safety concerns, and impact on quiet enjoyment
 4. Requests denial of the permit application
 5. MAINTAINS a RESPECTFUL but firm tone
-6. Keep it to 3 or 4 paragraphs
+
+Length requirement: ${data.lengthStyle === 'quick' ? 'Keep it brief - 1-2 paragraphs only, get straight to the point' :
+                    data.lengthStyle === 'thorough' ? 'Write a thorough letter with 4-5 paragraphs, include context and detailed arguments' :
+                    'Standard length - 3-4 paragraphs with good balance of detail'}
 
 
 The email should be personal and authentic, not generic.
@@ -767,7 +808,8 @@ Tone: ${data.tone === 'formal' ? 'Use formal, professional language' :
                 concerns: formData.getAll('concerns'),
                 concernsOther: formData.get('concernsOther'),
                 personalImpact: formData.get('personalImpact'),
-                tone: formData.get('tone')
+                tone: formData.get('tone'),
+                lengthStyle: formData.get('lengthStyle')
             };
             
             // Validate selections
@@ -881,11 +923,84 @@ ${location}`;
             window.location.href = mailto;
         }
 
+        // Share tool functionality
+        async function shareTool() {
+            const shareData = {
+                title: 'Help Stop the Non-compliant Shooting Range',
+                text: 'I found this tool that makes it easy to email Ada County officials about the shooting range. Check it out:',
+                url: window.location.href
+            };
+            
+            if (navigator.share) {
+                try {
+                    await navigator.share(shareData);
+                } catch (err) {
+                    if (err.name !== 'AbortError') {
+                        // Fallback to copying link
+                        copyToolLink();
+                    }
+                }
+            } else {
+                // Fallback for desktop - copy link
+                copyToolLink();
+            }
+        }
+        
+        function copyToolLink() {
+            const toolUrl = window.location.href;
+            navigator.clipboard.writeText(toolUrl).then(() => {
+                const button = document.getElementById('shareToolButton');
+                const originalText = button.innerHTML;
+                button.innerHTML = '✓ Link Copied!';
+                button.style.background = '#28a745';
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.style.background = '#2c5282';
+                }, 2000);
+            }).catch(() => {
+                // Fallback fallback - show URL
+                alert('Share this link: ' + toolUrl);
+            });
+        }
+
+        // Test mode - pre-fill form if ?test=true
+        function checkTestMode() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('test') === 'true') {
+                // Pre-fill form with test data
+                document.getElementById('name').value = 'Test User';
+                document.getElementById('city').value = 'Boise';
+                document.getElementById('state').value = 'ID';
+                document.getElementById('zipcode').value = '83714';
+                
+                // Check some boxes
+                document.querySelector('input[name="residentType"][value="homeowner"]').checked = true;
+                document.querySelector('input[name="residentType"][value="hiker"]').checked = true;
+                document.querySelector('input[name="distance"][value="1_to_2"]').checked = true;
+                document.querySelector('input[name="concerns"][value="fire_risk"]').checked = true;
+                document.querySelector('input[name="concerns"][value="noise_pollution"]').checked = true;
+                document.querySelector('input[name="tone"][value="formal"]').checked = true;
+                document.querySelector('input[name="lengthStyle"][value="standard"]').checked = true;
+                
+                document.getElementById('personalImpact').value = 'I hike these trails with my family every weekend.';
+                
+                // Add visual indicator
+                document.querySelector('.header').style.border = '3px solid #ff6b6b';
+                const testBadge = document.createElement('div');
+                testBadge.style.cssText = 'position: fixed; top: 10px; right: 10px; background: #ff6b6b; color: white; padding: 5px 15px; border-radius: 20px; font-weight: bold; z-index: 1000;';
+                testBadge.textContent = 'TEST MODE';
+                document.body.appendChild(testBadge);
+            }
+        }
+
         // Initialize
         buildFormFields();
+        checkTestMode();
         document.getElementById('emailForm').addEventListener('submit', handleSubmit);
         document.getElementById('copyButton').addEventListener('click', copyToClipboard);
         document.getElementById('emailButton').addEventListener('click', openEmailClient);
+        document.getElementById('shareToolButton').addEventListener('click', shareTool);
     </script>
 </body>
 </html>
