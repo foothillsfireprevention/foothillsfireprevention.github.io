@@ -154,12 +154,24 @@ IMPORTANT: Generate unique content that doesn't follow a template pattern.
 Vary the opening, structure, and phrasing. Avoid starting with "I am writing to..." 
 or other common form letter phrases. Make it sound like a real person wrote it.
 
+Always incorporate the writer's city and/or zip code naturally in the email, but AVOID obvious patterns like:
+- DO NOT start with "As a resident of [city]..." or "As a [city] resident..."
+- DO NOT use "As someone who lives in..."
+
+Instead, weave location more creatively:
+- "My home in Eagle sits just 2 miles from..."
+- "Here in the 83702 area, we can hear..."
+- "I've lived in Boise for 15 years and..."
+- "The shooting echoes through our Hidden Springs neighborhood..."
+- Mention location mid-paragraph or in context of a specific concern
+Vary how this is incorporated to avoid templates.
+
 Opening examples:
 - "I just learned about the illegal shooting range and I'm alarmed..."
 - "As someone who [bikes/lives/hikes] in Hidden Springs..."
 - "The ongoing violations at 15401 N. Cartwright concern me because..."
 - "My family and I were shocked to discover..."
-- "Yesterday I drove past the shooting range and realized..."`,
+- "Yesterday I realized I have been hearing gunshots, not noise from construction..."`,
       messages: [
         {
           role: 'user',

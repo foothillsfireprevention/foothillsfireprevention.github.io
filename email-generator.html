@@ -567,6 +567,14 @@
         <h2>Your Generated Quick Draft</h2>
         <div id="emailSubject" class="email-subject"></div>
         <div id="emailContent" class="email-content"></div>
+        
+        <!-- Address Reminder -->
+        <div style="margin-bottom: 20px; margin-top: 20px; padding: 15px; background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 6px; text-align: center;">
+            <p style="margin: 0; color: #856404; font-weight: 500;">
+                ⚠️ Remember: Adding your address increases impact
+            </p>
+        </div>
+        
         <div class="action-buttons">
             <button id="copyButton" class="action-button copy-button">Copy to Clipboard</button>
             <button id="emailButton" class="action-button email-button">Open in Email Client</button>
@@ -771,8 +779,9 @@
             const facilityContext = `
 Key Facts about the Shooting Range:
 - Location: 15401 N. Cartwright Rd, Boise (Foothills area)
+- Access:  The range is on private property, one cannot drive by it, walk by it, etc.
 - Type: Commercial shooting range with paid memberships and training courses
-- Hours: Operates sporadically, but most often on Saturdays and weekday evenings
+- Hours: Operates sporadically, but most often on Saturdays and weekday evenings. NEVER ALL DAY.
 - Noise: Intense bursts of gunfire, periods of silence, more gunfire. 
 - Status: Operating WITHOUT permits since 2024, now seeking approval
 - Legal: They've been told to stop and they're not
@@ -780,6 +789,7 @@ Key Facts about the Shooting Range:
 - Fire Risk: A shooting range in the foothills is like an own goal.  It makes things worse, no matter what.
 - Proximity: Less than 1 mile from residential areas and popular recreation trails
 - Bad Outcomes: A major fire could burn 1000s of houses
+- Hearing shots: Unless you are within 1.5 miles, you will never hear the gunshots
 - Precedent Concern: Rewarding illegal operation with permits`;
 
             // Combine selected options with "other" fields
@@ -834,7 +844,20 @@ ${facilityContext}
 
 Generate BOTH a subject line and email body:
 
-For the SUBJECT: ${hasOwnWords ? 'Create a subject line that reflects the specific concerns and experiences they wrote about in their own words' : 'Create a unique, specific subject line based on the writer\'s primary concerns and situation'}
+For the SUBJECT: ${hasOwnWords ? 
+  'Create a subject line that reflects the specific concerns and experiences they wrote about in their own words, while ensuring it mentions "shooting range," "gun range," or "firing range" so officials know the topic' : 
+  'Create a unique, specific subject line based on the writer\'s primary concerns and situation that clearly identifies this is about the shooting/gun/firing range'}
+
+Subject line should:
+- Always include some reference to the "shooting range," "gun range," or "firing range" - vary usage
+- Match the tone/style (formal emails may include Case #202501185-CU-MSP, casual ones should not)
+- Reflect the writer's specific angle (fire worry = fire in subject, noise concern = noise in subject) but still try to vary the wording
+- Be unique to avoid pattern detection, vary the use of language, match the tone of the email body
+
+Examples: 
+- Formal: "Re: Case #202501185-CU-MSP - Fire Safety Concerns"
+- Personal: "My Dog Hides from the Cartwright Gun Range Noise"
+- Urgent: "Daily Illegal Shooting Range Operations Must Stop"
 
 For the BODY: ${hasOwnWords ? `
 IMPORTANT: Build the email around the personal details they provided. Use their specific examples, mirror their writing style, and expand on the concerns they expressed. The email should feel like a natural extension of what they wrote.
