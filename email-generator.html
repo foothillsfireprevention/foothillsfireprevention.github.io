@@ -839,7 +839,7 @@ Tone: ${data.tone === 'formal' ? 'Use formal, professional language' :
             
             try {
                 // Call Netlify function with the ready prompt
-                const response = await fetch('/.netlify/functions/generate-email', {
+                const response = await fetch('https://brilliant-muffin-f02696.netlify.app/.netlify/functions/generate-email', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
