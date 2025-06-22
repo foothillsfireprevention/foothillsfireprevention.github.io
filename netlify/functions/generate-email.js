@@ -130,7 +130,7 @@ exports.handler = async (event, context) => {
 
     // Generate email with Claude
     const message = await anthropic.messages.create({
-      model: 'claude-3-haiku-20240307',
+      model: 'claude-3-5-sonnet-20241022',
       max_tokens: maxTokens,
       temperature: 0.78,
       system: `You are helping concerned citizens write concise, professional emails to local government officials. 
