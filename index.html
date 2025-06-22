@@ -835,7 +835,10 @@
             <div class="faq-question">What are the specific fire risks from a shooting range in the foothills?</div>
             <div class="faq-answer">Shooting ranges start fires from sparks when bullets hit rocks or metal targets, and hot ammunition casings igniting dry vegetation. The 1996 Boise foothills fire started at a police range and burned 14,000 acres, destroying homes across the area.</div>
         </div>
-
+        <div class="faq-item">
+            <div class="faq-question">How does a nearby shooting range impact property values?</div>
+            <div class="faq-answer">According to Better Homes and Gardens Real Estate: "While having a gun range nearby can be beneficial to some people because they can take part in such a hobby, a shooting range right next door can actually drag down your home's value by 3.7%." The article notes concerns about "noise of gunfire, especially from outdoor gun ranges" and "environmental and safety concerns since the lead that leached out of spent shells might poison the soil and water." <em style="font-size: 0.9em; color: #6c757d;">(Source: <a href="https://buyingva.com/blog/2018/8/22/watch-out-these-neighborhood-features-can-drag-down-your-homes-value" target="_blank" style="color: #2c5282;">Better Homes and Gardens Real Estate</a>)</em></div>
+        </div>
         <div class="faq-item">
             <div class="faq-question">Is this about being anti-gun?</div>
             <div class="faq-answer">Not at all. This is about fire safety, protecting property values, managing traffic on residential roads, and controlling noise in our quiet community. Many of us are gun owners who support shooting sports - we just believe this is too close to where we live and recreate.</div>
@@ -921,9 +924,18 @@
         <p><strong>Your voice matters in this process!</strong></p>
         
         <div class="signup-cta">
-            <p class="cta-intro">Use our Quick Draft Generator to create a personalized email to county officials about this issue.</p>
-            <a href="email-generator.html" class="signup-button">Write an email now</a>
-            <p class="cta-note">Make your voice heard - every message counts</p>
+            <h3 style="color: #2c3e50; margin: 0 0 20px 0;">What You Can Do Right Now:</h3>
+            <div style="text-align: left; max-width: 500px; margin: 0 auto;">
+                <div style="margin-bottom: 15px; font-size: 18px;">
+                    <span style="color: #6c757d;">□</span> <a href="email-generator.html" style="color: #2c5282; text-decoration: none; font-weight: 500;">Email commissioners</a> <span style="color: #6c757d;">(5 min) - Use our AI enabled tool!</span>
+                </div>
+                <div style="margin-bottom: 15px; font-size: 18px;">
+                    <span style="color: #6c757d;">□</span> <a href="signup.html" style="color: #2c5282; text-decoration: none; font-weight: 500;">Sign up for hearing alerts</a> <span style="color: #6c757d;">(1 min)</span>
+                </div>
+                <div style="margin-bottom: 15px; font-size: 18px;">
+                    <span style="color: #6c757d;">□</span> <a href="javascript:void(0)" onclick="shareSite()" style="color: #2c5282; text-decoration: none; font-weight: 500;">Share this site with neighbors</a><span style="color: #6c757d;">(1 min)</span>
+                </div>
+            </div>
         </div>
         
         <div class="action-divider">
@@ -1033,6 +1045,38 @@
             if (toc) {
                 toc.scrollIntoView({ behavior: 'smooth' });
             }
+        }
+        
+        // Share site functionality
+        async function shareSite() {
+            const shareData = {
+                title: 'Help Stop the Non-compliant Shooting Range',
+                text: 'Learn about the unpermitted shooting range threatening our community safety:',
+                url: window.location.href
+            };
+            
+            if (navigator.share) {
+                try {
+                    await navigator.share(shareData);
+                } catch (err) {
+                    if (err.name !== 'AbortError') {
+                        // Fallback to copying link
+                        copyLink();
+                    }
+                }
+            } else {
+                // Fallback for desktop - copy link
+                copyLink();
+            }
+        }
+        
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('Link copied to clipboard! You can now paste it to share with others.');
+            }).catch(() => {
+                // Final fallback - show URL
+                prompt('Copy this link to share:', window.location.href);
+            });
         }
     </script>
 </body>
