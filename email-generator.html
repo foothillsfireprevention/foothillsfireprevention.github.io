@@ -580,6 +580,16 @@
             <button id="emailButton" class="action-button email-button">Open in Email Client</button>
         </div>
         
+        <!-- Email details for reference -->
+        <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px;">
+            <p style="margin: 0 0 5px 0; font-size: var(--font-size-sm); color: #6c757d;">
+                <strong>To:</strong> planner@adacounty.id.gov
+            </p>
+            <p id="subjectReference" style="margin: 0; font-size: var(--font-size-sm); color: #6c757d;">
+                <strong>Subject:</strong> <span id="subjectText"></span>
+            </p>
+        </div>
+        
         <!-- Share Tool Section -->
         <div class="share-tool-section" style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e9ecef; text-align: center;">
             <p style="margin: 0 0 15px 0; color: #666; font-style: italic;">
@@ -972,6 +982,7 @@ Tone: ${data.tone === 'formal' ? 'Use formal, professional language' :
                     // Display results
                     document.getElementById('emailSubject').textContent = 'Subject: ' + result.subject;
                     document.getElementById('emailContent').textContent = result.email;
+                    document.getElementById('subjectText').textContent = result.subject;
                     document.getElementById('results').style.display = 'block';
                     
                     // Scroll to results
