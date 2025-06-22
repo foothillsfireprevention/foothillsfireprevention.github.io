@@ -146,6 +146,9 @@ Important:
 - The subject line should be unique and specific to the writer's situation
 - Vary subject lines based on their primary concerns and tone
 - Keep emails concise and personal
+- DO NOT add any commentary, notes, or explanations after the email body
+- Your response should contain ONLY the subject line and email body in the format shown
+- Sign the email with the writer's name provided in the prompt (look for "Name:" in the writer details)
 
 IMPORTANT: Generate unique content that doesn't follow a template pattern. 
 Vary the opening, structure, and phrasing. Avoid starting with "I am writing to..." 

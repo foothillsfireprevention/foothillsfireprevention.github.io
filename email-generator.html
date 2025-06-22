@@ -930,7 +930,12 @@ Tone: ${data.tone === 'formal' ? 'Use formal, professional language' :
             
             try {
                 // Call Netlify function with the ready prompt
-                const response = await fetch('https://brilliant-muffin-f02696.netlify.app/.netlify/functions/generate-email', {
+                // Use local endpoint when running on localhost
+                const apiUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+                    ? '/.netlify/functions/generate-email'  // Local relative path
+                    : 'https://brilliant-muffin-f02696.netlify.app/.netlify/functions/generate-email';  // Production
+                
+                const response = await fetch(apiUrl, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
