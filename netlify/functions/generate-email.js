@@ -48,7 +48,7 @@ exports.handler = async (event, context) => {
     }
 
     // 2. LENGTH CHECK - Prevent huge prompts
-    if (data.prompt.length > 5000) {
+    if (data.prompt.length > 15000) {
       return {
         statusCode: 400,
         headers,
