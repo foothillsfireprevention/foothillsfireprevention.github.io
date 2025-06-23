@@ -907,7 +907,7 @@ Tone: ${data.tone === 'formal' ? 'Use formal, professional language' :
             
             const submitButton = e.target.querySelector('.submit-button');
             const originalText = submitButton.textContent;
-            submitButton.textContent = 'Generating...';
+            submitButton.innerHTML = 'Generating your unique email... please wait while AI crafts your personalized message<br><span style="font-size: 0.9em; opacity: 0.9;">(10-15 seconds)</span>';
             submitButton.disabled = true;
             
             // Collect form data
@@ -916,7 +916,7 @@ Tone: ${data.tone === 'formal' ? 'Use formal, professional language' :
             // Check special field
             if (formData.get('website')) {
                 // Invalid submission - fail silently
-                submitButton.textContent = originalText;
+                submitButton.innerHTML = originalText;
                 submitButton.disabled = false;
                 return;
             }
@@ -939,21 +939,21 @@ Tone: ${data.tone === 'formal' ? 'Use formal, professional language' :
             // Validate selections
             if (data.residentType.length === 0 && !data.residentTypeOther) {
                 alert('Please select at least one option for "I am a..." or fill in "Other"');
-                submitButton.textContent = originalText;
+                submitButton.innerHTML = originalText;
                 submitButton.disabled = false;
                 return;
             }
             
             if (!data.distance) {
                 alert('Please select your distance from the shooting range');
-                submitButton.textContent = originalText;
+                submitButton.innerHTML = originalText;
                 submitButton.disabled = false;
                 return;
             }
             
             if (data.concerns.length === 0 && !data.concernsOther) {
                 alert('Please select at least one concern or fill in "Other concerns"');
-                submitButton.textContent = originalText;
+                submitButton.innerHTML = originalText;
                 submitButton.disabled = false;
                 return;
             }
@@ -993,7 +993,7 @@ Tone: ${data.tone === 'formal' ? 'Use formal, professional language' :
             } catch (error) {
                 alert('Failed to generate email. Please try again.');
             } finally {
-                submitButton.textContent = originalText;
+                submitButton.innerHTML = originalText;
                 submitButton.disabled = false;
             }
         }
