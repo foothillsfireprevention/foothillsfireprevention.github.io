@@ -572,6 +572,7 @@
             border: none;
             padding: 8px;
             cursor: pointer;
+            z-index: 1001;
         }
         .mobile-menu-toggle span {
             display: block;
@@ -580,6 +581,66 @@
             background: #1a2332;
             margin: 5px 0;
             transition: 0.3s;
+        }
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+        /* Mobile Menu Overlay */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(26, 35, 50, 0.95);
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .mobile-menu-content {
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .mobile-menu-content .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .mobile-menu-content .nav-links a {
+            color: white;
+            font-size: 1.25rem;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            transition: background 0.2s ease;
+        }
+        .mobile-menu-content .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .mobile-menu-content .nav-cta {
+            display: inline-block;
+            margin-top: 30px;
+            background: #c9302c;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
         }
         
         /* Tablet Styles */
@@ -742,6 +803,21 @@
             </div>
         </nav>
     </div>
+    
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <ul class="nav-links">
+                <li><a href="#quick-facts" onclick="closeMobileMenu()">Facts</a></li>
+                <li><a href="#faq" onclick="closeMobileMenu()">FAQ</a></li>
+                <li><a href="#map" onclick="closeMobileMenu()">Location</a></li>
+                <li><a href="#timeline" onclick="closeMobileMenu()">Timeline</a></li>
+                <li><a href="#resources" onclick="closeMobileMenu()">Resources</a></li>
+            </ul>
+            <a href="email-generator.html" class="nav-cta">Take Action</a>
+        </div>
+    </div>
+    
     <div class="header">
         <h1>Boise Foothills Shooting Range Proposal</h1>
         <p>Community Information & Resources</p>
@@ -1044,12 +1120,35 @@
         
         // Mobile menu toggle
         function toggleMobileMenu() {
-            // For now, just scroll to the table of contents
-            const toc = document.querySelector('.toc-section');
-            if (toc) {
-                toc.scrollIntoView({ behavior: 'smooth' });
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            const body = document.body;
+            
+            if (mobileMenu.classList.contains('active')) {
+                closeMobileMenu();
+            } else {
+                mobileMenu.classList.add('active');
+                menuToggle.classList.add('active');
+                body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
             }
         }
+        
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            const body = document.body;
+            
+            mobileMenu.classList.remove('active');
+            menuToggle.classList.remove('active');
+            body.style.overflow = ''; // Restore scrolling
+        }
+        
+        // Close mobile menu on resize to desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                closeMobileMenu();
+            }
+        });
         
         // Share site functionality
         async function shareSite() {
