@@ -271,36 +271,77 @@
         .action-button {
             flex: 1;
             min-width: 200px;
-            padding: 12px 24px;
+            padding: 14px 28px;
             border: none;
             border-radius: 6px;
             font-size: var(--font-size-base);
-            font-weight: 500;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.2s ease;
             text-align: center;
             text-decoration: none;
+            font-family: var(--font-primary);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
         
-        .copy-button {
-            background: #2c5282;
-            color: white;
-        }
-        
-        .copy-button:hover {
-            background: #1e3a5f;
-            transform: translateY(-2px);
-        }
-        
+        /* Primary action - Email button */
         .email-button {
-            background: white;
-            color: #2c5282;
-            border: 2px solid #2c5282;
+            background: #c9302c;
+            color: white;
+            box-shadow: 0 2px 4px rgba(201, 48, 44, 0.2);
         }
         
         .email-button:hover {
-            background: #f8f9fa;
+            background: #a02622;
             transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(201, 48, 44, 0.3);
+        }
+        
+        /* Secondary action - Copy button */
+        .copy-button {
+            background: white;
+            color: #2c5282;
+            border: 2px solid #2c5282;
+            box-shadow: 0 2px 4px rgba(44, 82, 130, 0.1);
+        }
+        
+        .copy-button:hover {
+            background: #2c5282;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(44, 82, 130, 0.2);
+        }
+        
+        /* Small copy buttons for fields */
+        .field-copy-button {
+            padding: 10px 20px;
+            font-size: var(--font-size-sm);
+            min-width: 120px;
+            background: white;
+            color: #2c5282;
+            border: 2px solid #2c5282;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            font-family: var(--font-primary);
+            text-align: center;
+            display: inline-block;
+        }
+        
+        .field-copy-button:hover {
+            background: #2c5282;
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 6px rgba(44, 82, 130, 0.15);
+        }
+        
+        .field-copy-button:active {
+            transform: translateY(0);
         }
         
         .share-button:hover {
@@ -569,29 +610,85 @@
     <!-- Results Section -->
     <div id="results" class="results-container">
         <h2>Your Generated Quick Draft</h2>
-        <div id="emailSubject" class="email-subject"></div>
+        
+        <!-- Email Body Display -->
         <div id="emailContent" class="email-content"></div>
         
-        <!-- Address Reminder -->
-        <div style="margin-bottom: 20px; margin-top: 20px; padding: 15px; background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 6px; text-align: center;">
-            <p style="margin: 0; color: #856404; font-weight: 500;">
-                ⚠️ Remember: Adding your address increases impact
-            </p>
+        <!-- Action Buttons -->
+        <div id="actionSection" style="margin-top: 20px;">
+            <div class="action-buttons">
+                <button id="emailButton" class="action-button email-button">
+                    📧 Open in Email App
+                </button>
+                <button id="copyButton" class="action-button copy-button">
+                    📋 Copy to Clipboard
+                </button>
+            </div>
         </div>
         
-        <div class="action-buttons">
-            <button id="copyButton" class="action-button copy-button">Copy to Clipboard</button>
-            <button id="emailButton" class="action-button email-button">Open in Email Client</button>
+        <!-- Success/Instructions Section (hidden initially) -->
+        <div id="successSection" style="display: none; margin-top: 20px; text-align: center;">
+            <div style="padding: 20px; background: #d4edda; border: 1px solid #c3e6cb; border-radius: 8px; margin-bottom: 15px;">
+                <p style="margin: 0; color: #155724; font-size: var(--font-size-lg); font-weight: 600;">
+                    ✓ Check your email app!
+                </p>
+            </div>
+            <button id="copyInsteadButton" class="action-button copy-button" style="min-width: auto; padding: 10px 20px;">
+                Didn't open? Copy instead
+            </button>
+            <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 6px; text-align: left;">
+                <ul style="margin: 0; padding-left: 20px; line-height: var(--line-height-relaxed);">
+                    <li>Review and personalize the message</li>
+                    <li><strong>Add your mailing address after your name</strong></li>
+                    <li>Make sure it sounds like you</li>
+                </ul>
+            </div>
         </div>
         
-        <!-- Email details for reference -->
-        <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px;">
-            <p style="margin: 0 0 5px 0; font-size: var(--font-size-sm); color: #6c757d;">
-                <strong>To:</strong> planner@adacounty.id.gov
-            </p>
-            <p id="subjectReference" style="margin: 0; font-size: var(--font-size-sm); color: #6c757d;">
-                <strong>Subject:</strong> <span id="subjectText"></span>
-            </p>
+        <!-- Copy Details Section (hidden initially) -->
+        <div id="copyDetailsSection" style="display: none; margin-top: 20px;">
+            <div style="padding: 20px; background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px;">
+                <h3 style="margin: 0 0 20px 0; color: #2c3e50; text-align: center;">📋 Copy These to Your Email App</h3>
+                
+                <div style="padding: 15px; background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 6px; margin-bottom: 20px;">
+                    <p style="margin: 0 0 10px 0; font-weight: 600; color: #856404;">
+                        📝 Instructions:
+                    </p>
+                    <ol style="margin: 0; padding-left: 20px; color: #856404; line-height: var(--line-height-relaxed);">
+                        <li>Copy each field below and paste into your email app</li>
+                        <li>Personalize the message to reflect your voice</li>
+                        <li><strong>Add your mailing address after your name</strong></li>
+                        <li>Send to make your voice heard!</li>
+                    </ol>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 5px; color: #2c3e50;">TO:</label>
+                    <input type="text" id="toField" value="lletson@adacounty.id.gov, bocc1@adacounty.id.gov" readonly 
+                           style="width: 100%; padding: 10px; font-family: monospace; background: white; border: 1px solid #dee2e6; border-radius: 4px; cursor: text; box-sizing: border-box;">
+                    <button onclick="copyField('toField')" class="action-button field-copy-button" style="margin-top: 8px;">
+                        Copy TO addresses
+                    </button>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 5px; color: #2c3e50;">SUBJECT:</label>
+                    <input type="text" id="subjectField" value="" readonly 
+                           style="width: 100%; padding: 10px; font-family: monospace; background: white; border: 1px solid #dee2e6; border-radius: 4px; cursor: text; box-sizing: border-box;">
+                    <button onclick="copyField('subjectField')" class="action-button field-copy-button" style="margin-top: 8px;">
+                        Copy Subject line
+                    </button>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 5px; color: #2c3e50;">BODY:</label>
+                    <textarea id="bodyField" readonly 
+                              style="width: 100%; padding: 10px; font-family: var(--font-primary); background: white; border: 1px solid #dee2e6; border-radius: 4px; min-height: 200px; resize: vertical; line-height: var(--line-height-relaxed); box-sizing: border-box;"></textarea>
+                    <button onclick="copyField('bodyField')" class="action-button field-copy-button" style="margin-top: 8px;">
+                        Copy Email body
+                    </button>
+                </div>
+            </div>
         </div>
         
         <!-- Share Tool Section -->
@@ -1017,11 +1114,17 @@ Tone: ${data.tone === 'formal' ? 'Use formal, professional language' :
                 const result = await response.json();
                 
                 if (response.ok) {
-                    // Display results
-                    document.getElementById('emailSubject').textContent = 'Subject: ' + result.subject;
+                    // Store subject globally
+                    generatedSubject = result.subject;
+                    
+                    // Display only email body
                     document.getElementById('emailContent').textContent = result.email;
-                    document.getElementById('subjectText').textContent = result.subject;
                     document.getElementById('results').style.display = 'block';
+                    
+                    // Reset sections to initial state
+                    document.getElementById('actionSection').style.display = 'block';
+                    document.getElementById('successSection').style.display = 'none';
+                    document.getElementById('copyDetailsSection').style.display = 'none';
                     
                     // Scroll to results
                     document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
@@ -1036,37 +1139,60 @@ Tone: ${data.tone === 'formal' ? 'Use formal, professional language' :
             }
         }
 
+        // Store the generated subject globally
+        let generatedSubject = '';
+
         // Copy to clipboard handler
         function copyToClipboard() {
-            const subject = document.getElementById('emailSubject').textContent.replace('Subject: ', '');
             const content = document.getElementById('emailContent').textContent;
-            const fullText = `${subject}\n\n${content}`;
             
-            navigator.clipboard.writeText(fullText).then(() => {
-                const button = document.getElementById('copyButton');
-                const originalText = button.textContent;
-                button.textContent = 'Copied!';
-                button.style.background = '#28a745';
-                
-                setTimeout(() => {
-                    button.textContent = originalText;
-                    button.style.background = '';
-                }, 2000);
-            }).catch(() => {
-                alert('Failed to copy to clipboard. Please select and copy manually.');
-            });
+            // Populate all fields
+            document.getElementById('subjectField').value = generatedSubject;
+            document.getElementById('bodyField').value = content;
+            
+            // Show copy details section
+            document.getElementById('copyDetailsSection').style.display = 'block';
+            
+            // Scroll to copy section
+            document.getElementById('copyDetailsSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         // Email client handler
         function openEmailClient() {
-            const subject = document.getElementById('emailSubject').textContent.replace('Subject: ', '');
             const content = document.getElementById('emailContent').textContent;
             
-            // Commissioners email
-            const to = 'planner@adacounty.id.gov';
-            const mailto = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(content)}`;
+            // Email addresses
+            const to = 'lletson@adacounty.id.gov,bocc1@adacounty.id.gov';
+            const mailto = `mailto:${to}?subject=${encodeURIComponent(generatedSubject)}&body=${encodeURIComponent(content)}`;
             
             window.location.href = mailto;
+            
+            // Show success section and hide action buttons
+            document.getElementById('actionSection').style.display = 'none';
+            document.getElementById('successSection').style.display = 'block';
+        }
+        
+        // Copy individual fields
+        function copyField(fieldId) {
+            const field = document.getElementById(fieldId);
+            const value = field.value;
+            
+            navigator.clipboard.writeText(value).then(() => {
+                // Find the button (next sibling element)
+                const button = field.nextElementSibling;
+                const originalText = button.textContent;
+                button.textContent = '✓ Copied!';
+                button.style.background = '#28a745';
+                button.style.color = 'white';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = '';
+                    button.style.color = '';
+                }, 2000);
+            }).catch(() => {
+                alert('Failed to copy. Please select and copy manually.');
+            });
         }
 
         // Share tool functionality
@@ -1140,6 +1266,16 @@ Tone: ${data.tone === 'formal' ? 'Use formal, professional language' :
             }
         }
 
+        // Copy instead button handler
+        function handleCopyInstead() {
+            // Hide success section, show action section
+            document.getElementById('successSection').style.display = 'none';
+            document.getElementById('actionSection').style.display = 'block';
+            
+            // Trigger copy action
+            copyToClipboard();
+        }
+
         // Initialize
         buildFormFields();
         checkTestMode();
@@ -1147,6 +1283,7 @@ Tone: ${data.tone === 'formal' ? 'Use formal, professional language' :
         document.getElementById('copyButton').addEventListener('click', copyToClipboard);
         document.getElementById('emailButton').addEventListener('click', openEmailClient);
         document.getElementById('shareToolButton').addEventListener('click', shareTool);
+        document.getElementById('copyInsteadButton').addEventListener('click', handleCopyInstead);
     </script>
 </body>
 </html>
