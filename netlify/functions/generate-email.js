@@ -47,6 +47,70 @@ exports.handler = async (event, context) => {
       };
     }
 
+    // Check for test mode
+    if (data.test === 'all') {
+      // Return mock response immediately without calling LLM
+      const mockResponses = [
+        {
+          subject: 'Urgent Action Needed: Illegal Shooting Range Threatening Our Community',
+          email: `Dear Representative Letson and Commissioners,
+
+My home in Eagle sits just 2 miles from the unpermitted shooting range at 15401 N. Cartwright Road, and the constant gunfire has made our once-peaceful neighborhood feel like a war zone. Yesterday afternoon, while my children were playing in our backyard, rapid-fire shooting erupted and continued for over an hour. They were terrified.
+
+What's most concerning is that this facility has been operating without permits for years, blatantly disregarding county regulations designed to protect residents like us. During the current extreme fire conditions, I'm losing sleep knowing that one stray bullet or spark could ignite a wildfire that would devastate our entire community.
+
+I urge you to take immediate enforcement action to shut down this illegal operation before tragedy strikes. Our families deserve to feel safe in our own homes and yards. Please prioritize our safety over the profits of someone who has shown complete disregard for the law and their neighbors' wellbeing.
+
+Thank you for your attention to this urgent matter.
+
+Sincerely,
+Test User`
+        },
+        {
+          subject: 'Hidden Springs Resident Demanding Action on Dangerous Gun Range',
+          email: `Dear Representative Letson and Commissioners,
+
+The shooting echoes through our Hidden Springs neighborhood at all hours, disrupting our peaceful community and putting lives at risk. As someone who moved here specifically for the quiet mountain lifestyle, I'm appalled that an illegal commercial gun range has been allowed to operate unchecked at 15401 N. Cartwright Road.
+
+I've documented over 50 instances of shooting in just the past month, often lasting hours. The noise carries for miles through our canyon, and with the current drought conditions, I fear it's only a matter of time before a spark ignites a catastrophic wildfire. This unpermitted facility poses an immediate threat to thousands of homes and families.
+
+Please enforce the county ordinances that are being violated daily. This isn't about being anti-gun - it's about illegal commercial activity that endangers our community. We need action now, not after a preventable tragedy occurs.
+
+I look forward to your prompt response and enforcement action.
+
+Respectfully,
+Test User`
+        },
+        {
+          subject: 'Boise Foothills at Risk: Shut Down Illegal Shooting Range Now',
+          email: `Dear Representative Letson and Commissioners,
+
+I just learned about the illegal shooting range operating at 15401 N. Cartwright Road and I'm alarmed that this has been allowed to continue for so long. Here in the 83714 area, we can hear the gunfire clearly, especially on weekends when it seems to go on for hours without pause.
+
+As a frequent hiker on the Ridge to Rivers trails, I'm deeply concerned about stray bullets and the extreme fire risk this poses. The facility is operating without any permits or safety oversight, in direct violation of county zoning laws. How many more red flag fire warnings do we need before taking action?
+
+This isn't a minor code violation - it's a clear and present danger to our community. I'm asking you to immediately enforce the existing regulations and shut down this illegal operation. Our beautiful foothills and the safety of residents must come first.
+
+Thank you for treating this with the urgency it deserves.
+
+Sincerely,
+Test User`
+        }
+      ];
+
+      // Select a random mock response
+      const mockResponse = mockResponses[Math.floor(Math.random() * mockResponses.length)];
+      
+      return {
+        statusCode: 200,
+        headers,
+        body: JSON.stringify({
+          email: mockResponse.email,
+          subject: mockResponse.subject,
+        }),
+      };
+    }
+
     // 2. LENGTH CHECK - Prevent huge prompts
     if (data.prompt.length > 15000) {
       return {

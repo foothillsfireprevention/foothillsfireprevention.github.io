@@ -664,7 +664,7 @@
                 
                 <div style="margin-bottom: 20px;">
                     <label style="display: block; font-weight: 600; margin-bottom: 5px; color: #2c3e50;">TO:</label>
-                    <input type="text" id="toField" value="lletson@adacounty.id.gov, bocc1@adacounty.id.gov" readonly 
+                    <input type="text" id="toField" value="Planning Mgr <lletson@adacounty.id.gov>, Commissioners <bocc1@adacounty.id.gov>" readonly 
                            style="width: 100%; padding: 10px; font-family: monospace; background: white; border: 1px solid #dee2e6; border-radius: 4px; cursor: text; box-sizing: border-box;">
                     <button onclick="copyField('toField')" class="action-button field-copy-button" style="margin-top: 8px;">
                         Copy TO addresses
@@ -1103,12 +1103,22 @@ Tone: ${data.tone === 'formal' ? 'Use formal, professional language' :
                     ? '/.netlify/functions/generate-email'  // Local relative path
                     : 'https://brilliant-muffin-f02696.netlify.app/.netlify/functions/generate-email';  // Production
                 
+                // Check if we're in test mode
+                const urlParams = new URLSearchParams(window.location.search);
+                const testParam = urlParams.get('test');
+                const requestBody = { prompt };
+                
+                // Add test parameter if in test=all mode
+                if (testParam === 'all') {
+                    requestBody.test = 'all';
+                }
+                
                 const response = await fetch(apiUrl, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ prompt }),
+                    body: JSON.stringify(requestBody),
                 });
                 
                 const result = await response.json();
@@ -1162,7 +1172,7 @@ Tone: ${data.tone === 'formal' ? 'Use formal, professional language' :
             const content = document.getElementById('emailContent').textContent;
             
             // Email addresses
-            const to = 'lletson@adacounty.id.gov,bocc1@adacounty.id.gov';
+            const to = 'Planning Mgr <lletson@adacounty.id.gov>,Commissioners <bocc1@adacounty.id.gov>';
             const mailto = `mailto:${to}?subject=${encodeURIComponent(generatedSubject)}&body=${encodeURIComponent(content)}`;
             
             window.location.href = mailto;
@@ -1236,10 +1246,11 @@ Tone: ${data.tone === 'formal' ? 'Use formal, professional language' :
             });
         }
 
-        // Test mode - pre-fill form if ?test=true
+        // Test mode - pre-fill form if ?test=true, ?test=prefill, or ?test=all
         function checkTestMode() {
             const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.get('test') === 'true') {
+            const testParam = urlParams.get('test');
+            if (testParam === 'true' || testParam === 'prefill' || testParam === 'all') {
                 // Pre-fill form with test data
                 document.getElementById('name').value = 'Test User';
                 document.getElementById('city').value = 'Boise';
@@ -1261,7 +1272,14 @@ Tone: ${data.tone === 'formal' ? 'Use formal, professional language' :
                 document.querySelector('.header').style.border = '3px solid #ff6b6b';
                 const testBadge = document.createElement('div');
                 testBadge.style.cssText = 'position: fixed; top: 10px; right: 10px; background: #ff6b6b; color: white; padding: 5px 15px; border-radius: 20px; font-weight: bold; z-index: 1000;';
-                testBadge.textContent = 'TEST MODE';
+                
+                // Show different badge text based on test mode
+                if (testParam === 'all') {
+                    testBadge.textContent = 'TEST MODE: MOCK API';
+                } else {
+                    testBadge.textContent = 'TEST MODE: PREFILL';
+                }
+                
                 document.body.appendChild(testBadge);
             }
         }
