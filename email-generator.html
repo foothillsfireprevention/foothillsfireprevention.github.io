@@ -533,49 +533,42 @@
                 </div>
             </fieldset>
 
-            <!-- Resident Type -->
-            <fieldset>
-                <legend>I am a... (check all that apply)</legend>
-                <div id="residentType" class="checkbox-group"></div>
-                <div class="input-group" style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #e9ecef;">
-                    <label for="residentTypeOther" style="font-weight: 600; color: #2c5282; font-size: var(--font-size-base);">Your Specific Situation - In Your Words</label>
-                    <textarea id="residentTypeOther" name="residentTypeOther" rows="3"
-                              style="margin-top: 8px;"
-                              placeholder="Describe your connection to the area: Are you a local teacher, volunteer firefighter, long-time resident? How long have you lived here? What brought you to this community?"></textarea>
-                </div>
-            </fieldset>
-
             <!-- Distance from Range -->
             <fieldset>
                 <legend>Distance from 15401 N. Cartwright Rd.</legend>
                 <div id="distance" class="radio-group"></div>
             </fieldset>
 
-            <!-- Primary Concerns -->
+            <!-- Tell Us About Yourself -->
             <fieldset>
-                <legend>What are your primary concerns? (check all that apply)</legend>
-                <div id="concerns" class="checkbox-group"></div>
-                <div class="input-group" style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #e9ecef;">
-                    <label for="concernsOther" style="font-weight: 600; color: #2c5282; font-size: var(--font-size-base);">Your Specific Concerns - In Your Words</label>
-                    <textarea id="concernsOther" name="concernsOther" rows="3"
+                <legend>Tell Us About Yourself</legend>
+                <p style="color: #666; margin-top: -5px; margin-bottom: 15px; font-size: 0.95rem;">Use this area to tell us about yourself and your connection to Boise and the foothills. Focus on what you love about the area, what brings you to the foothills and keeps you coming back. Anything that helps us know more about you.</p>
+                <div class="input-group">
+                    <textarea id="residentTypeOther" name="residentTypeOther" rows="4"
                               style="margin-top: 8px;"
-                              placeholder="What specific concerns do you have? How would this shooting range impact your daily life, your family, your property? Be as detailed as possible - your personal perspective matters."></textarea>
+                              placeholder="Share your story: How long have you lived here? What do you love about this area? What activities bring you to the foothills?"></textarea>
                 </div>
             </fieldset>
 
-            <!-- Personal Impact -->
+            <!-- Primary Concerns -->
             <fieldset>
-                <legend>Personal Impact</legend>
-                <label for="personalImpact" style="font-weight: 600; color: #2c5282; font-size: var(--font-size-base);">Your Personal Story - This Is Where You Make It Real</label>
+                <legend>What are your primary concerns? (select up to 3)</legend>
+                <div id="concerns" class="checkbox-group"></div>
+                <div class="input-group" style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #e9ecef;">
+                    <label for="concernsOther" style="font-weight: 600; color: #2c5282; font-size: var(--font-size-base);">Tell us more</label>
+                    <p style="color: #666; margin-top: -5px; margin-bottom: 10px; font-size: 0.95rem;">Please tell us more about how your primary concerns affect you and your family. What impact would a legal and busy shooting range have on how you live, recreate, and relax? What would you worry about, what would you feel had been lost?</p>
+                    <textarea id="concernsOther" name="concernsOther" rows="4"
+                              style="margin-top: 8px;"
+                              placeholder=""></textarea>
+                </div>
+            </fieldset>
+
+            <!-- Current Impacts -->
+            <fieldset>
+                <legend>Current Impacts</legend>
                 <p style="margin: 5px 0 10px 0; font-size: var(--font-size-sm); color: #6c757d;">This is the most important field. Share your experiences, fears, and what this means for your life.</p>
                 <textarea id="personalImpact" name="personalImpact" rows="5" 
                     placeholder="Share your story: Do you hear the gunfire from your home? Are you worried about evacuation routes? Do your kids ask about the shooting sounds? Have you changed your hiking routes? Has this affected your property value or peace of mind? The more specific you are, the more powerful your email will be."></textarea>
-            </fieldset>
-
-            <!-- Tone Selection -->
-            <fieldset>
-                <legend>Quick Draft Tone</legend>
-                <div id="tone" class="radio-group"></div>
             </fieldset>
 
             <!-- Length/Style Selection -->
@@ -721,19 +714,6 @@
     <script>
         // Configuration for form fields
         const formConfig = {
-            residentType: {
-                type: 'checkbox',
-                options: [
-                    { value: 'homeowner', label: 'Homeowner' },
-                    { value: 'business_owner', label: 'Business Owner' },
-                    { value: 'parent', label: 'Parent with children in nearby schools' },
-                    { value: 'concerned_citizen', label: 'Concerned Citizen' },
-                    { value: 'hiker', label: 'Hiker' },
-                    { value: 'cyclist', label: 'Cyclist' },
-                    { value: 'shooting_sports', label: 'Shooting Sports Enthusiast' },
-                    { value: 'equestrian', label: 'Equestrian' }
-                ]
-            },
             distance: {
                 type: 'radio',
                 options: [
@@ -748,14 +728,11 @@
                 groups: {
                     'Safety & Emergency': [
                         { value: 'fire_risk', label: 'Fire risk/wildfire danger', definition: 'Sparks from shooting can ignite dry grass' },
-                        { value: 'public_safety', label: 'Public safety concerns', definition: 'Bullets, ricochets, and accidents near people' },
-                        { value: 'emergency_access', label: 'Emergency access/evacuation routes', definition: 'Traffic blocking escape roads' },
                         { value: 'safety_oversight', label: 'Lack of safety oversight', definition: 'No inspections or safety requirements' }
                     ],
                     'Legal & Governance': [
                         { value: 'legal_process', label: 'Disregard for legal process', definition: 'Operating illegally, ignoring enforcement' },
                         { value: 'precedent', label: 'Setting dangerous precedent', definition: 'Break rules now, get permits later' },
-                        { value: 'zoning', label: 'Incompatible with zoning', definition: 'Commercial business in wrong area type' },
                         { value: 'liability', label: 'Liability/uninsured risks', definition: 'Who pays if accidents/fires happen?' }
                     ],
                     'Financial Impact': [
@@ -764,23 +741,13 @@
                     ],
                     'Quality of Life': [
                         { value: 'noise_pollution', label: 'Noise pollution', definition: 'Constant gunfire disrupting peace' },
-                        { value: 'quality_of_life', label: 'Quality of life degradation', definition: 'Daily stress, can\'t enjoy outdoors' },
                         { value: 'recreational_conflict', label: 'Conflict with recreational use', definition: 'Ruins hiking, biking, horseback riding' }
                     ],
                     'Infrastructure & Environment': [
                         { value: 'traffic', label: 'Increased traffic/road safety', definition: 'More vehicles on residential roads' },
-                        { value: 'infrastructure', label: 'Stress on infrastructure', definition: 'Roads/utilities not built for businesses' },
                         { value: 'environment', label: 'Environmental/wildlife impact', definition: 'Lead contamination, disturbing animals' }
                     ]
                 }
-            },
-            tone: {
-                type: 'radio',
-                options: [
-                    { value: 'formal', label: 'Formal/Professional' },
-                    { value: 'personal', label: 'Personal/Neighborly' },
-                    { value: 'urgent', label: 'Urgent/Assertive' }
-                ]
             },
             lengthStyle: {
                 type: 'radio',
@@ -885,6 +852,22 @@
             });
         }
 
+        // Add event listeners to limit concerns checkboxes to 3 selections
+        function setupConcernsLimit() {
+            const concernsCheckboxes = document.querySelectorAll('input[name="concerns"]');
+            
+            concernsCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const checkedBoxes = document.querySelectorAll('input[name="concerns"]:checked');
+                    
+                    if (checkedBoxes.length > 3) {
+                        this.checked = false;
+                        alert('Please select no more than 3 primary concerns');
+                    }
+                });
+            });
+        }
+
         // Build the prompt
         function buildPrompt(data) {
             const facilityContext = `
@@ -903,12 +886,8 @@ Key Facts about the Shooting Range:
 - Hearing shots: Unless you are within 1.5 miles, you will never hear the gunshots
 - Precedent Concern: Rewarding illegal operation with permits`;
 
-            // Combine selected options with "other" fields
-            let residentTypes = data.residentType.join(', ') || '';
-            if (data.residentTypeOther) {
-                residentTypes = residentTypes ? `${residentTypes}, ${data.residentTypeOther}` : data.residentTypeOther;
-            }
-            residentTypes = residentTypes || 'resident';
+            // Use the specific situation field
+            let residentTypes = data.residentTypeOther || 'resident';
             
             // Build concerns with definitions for better context
             let concernsWithDefs = [];
@@ -947,7 +926,6 @@ ${data.personalImpact ? `\nTheir personal story: "${data.personalImpact}"` : ''}
 ${hasOwnWords ? '\nAdditional context from form:' : ''}
 - Name: ${data.name}
 - Location: ${location}
-- Status: ${residentTypes}
 - Distance from facility: ${data.distance}
 - Checkbox concerns selected: ${concerns}
 
@@ -957,20 +935,9 @@ OVERALL INSTRUCTIONS:
 Tone Calibration Instructions:
 - Avoid dramatic or flowery language like "shattered," "stark reminder," "devastate," etc.
 - Use plain, direct language that real people would actually write
-- Match dramatic intensity to the tone selected:
-  
-For Professional/Formal tone:
 - Stick to facts and measured concerns
-- Avoid emotional descriptors entirely
+- Avoid overly emotional descriptors
 - Example: "The noise is disruptive" NOT "gunfire shatters our peace"
-
-For Concerned Citizen tone:
-- Some emotion is OK but keep it restrained
-- Example: "We're worried about fire risk" NOT "one spark could devastate everything"
-
-For Frustrated tone:
-- Stronger language acceptable but still realistic
-- Example: "This is unacceptable" NOT "blatant disregard"
 
 General rules:
 - Write like someone talking to their neighbor, not writing a novel
@@ -995,14 +962,14 @@ For the SUBJECT: ${hasOwnWords ?
 
 Subject line should:
 - Always include some reference to the "shooting range," "gun range," or "firing range" - vary usage
-- Match the tone/style (formal emails may include Case #202501185-CU-MSP, casual ones should not)
+- Include Case #202501185-CU-MSP for formal, professional tone
 - Reflect the writer's specific angle (fire worry = fire in subject, noise concern = noise in subject) but still try to vary the wording
-- Be unique to avoid pattern detection, vary the use of language, match the tone of the email body
+- Be unique to avoid pattern detection, vary the use of language
 
 Examples: 
-- Formal: "Re: Case #202501185-CU-MSP - Fire Safety Concerns"
-- Personal: "My Dog Hides from the Cartwright Gun Range Noise"
-- Urgent: "Daily Illegal Shooting Range Operations Must Stop"
+- "Re: Case #202501185-CU-MSP - Fire Safety Concerns"
+- "Concerns Regarding Shooting Range Operations - Case #202501185-CU-MSP"
+- "Public Comment on Case #202501185-CU-MSP - Noise and Safety Issues"
 
 For the BODY: ${hasOwnWords ? `
 IMPORTANT: Build the email around the personal details they provided. Use their specific examples, mirror their writing style, and expand on the concerns they expressed. The email should feel like a natural extension of what they wrote.
@@ -1029,9 +996,7 @@ Length requirement: ${data.lengthStyle === 'quick' ? 'Keep it brief - 1-2 paragr
 
 ${hasOwnWords ? 'Remember: Their own words are the foundation. Everything else supports their personal narrative.' : 'The email should be personal and authentic, not generic.'}
 
-Tone: ${data.tone === 'formal' ? 'Use formal, professional language' : 
-       data.tone === 'personal' ? 'Use warm, neighborly language that emphasizes community' :
-       'Use urgent, assertive language that conveys serious concern'}`;
+Tone: Use formal, professional language`;
 
             return prompt;
         }
@@ -1061,19 +1026,18 @@ Tone: ${data.tone === 'formal' ? 'Use formal, professional language' :
                 city: formData.get('city'),
                 state: formData.get('state'),
                 zipcode: formData.get('zipcode'),
-                residentType: formData.getAll('residentType'),
                 residentTypeOther: formData.get('residentTypeOther'),
                 distance: formData.get('distance'),
                 concerns: formData.getAll('concerns'),
                 concernsOther: formData.get('concernsOther'),
                 personalImpact: formData.get('personalImpact'),
-                tone: formData.get('tone'),
+                tone: 'formal', // Always use formal tone
                 lengthStyle: formData.get('lengthStyle')
             };
             
-            // Validate selections
-            if (data.residentType.length === 0 && !data.residentTypeOther) {
-                alert('Please select at least one option for "I am a..." or fill in "Other"');
+            // Validate about yourself section
+            if (!data.residentTypeOther) {
+                alert('Please tell us about yourself and your connection to the area');
                 submitButton.innerHTML = originalText;
                 submitButton.disabled = false;
                 return;
@@ -1257,15 +1221,17 @@ Tone: ${data.tone === 'formal' ? 'Use formal, professional language' :
                 document.getElementById('state').value = 'ID';
                 document.getElementById('zipcode').value = '83714';
                 
-                // Check some boxes
-                document.querySelector('input[name="residentType"][value="homeowner"]').checked = true;
-                document.querySelector('input[name="residentType"][value="hiker"]').checked = true;
                 document.querySelector('input[name="distance"][value="1_to_2"]').checked = true;
-                document.querySelector('input[name="concerns"][value="fire_risk"]').checked = true;
-                document.querySelector('input[name="concerns"][value="noise_pollution"]').checked = true;
-                document.querySelector('input[name="tone"][value="formal"]').checked = true;
+                
+                // Randomly select 3 concerns
+                const allConcerns = Array.from(document.querySelectorAll('input[name="concerns"]'));
+                const shuffled = allConcerns.sort(() => 0.5 - Math.random());
+                shuffled.slice(0, 3).forEach(checkbox => checkbox.checked = true);
+                
                 document.querySelector('input[name="lengthStyle"][value="standard"]').checked = true;
                 
+                document.getElementById('residentTypeOther').value = 'Long-time homeowner and avid hiker who uses the Ridge to Rivers trails weekly';
+                document.getElementById('concernsOther').value = 'The constant gunfire disrupts our weekend family hikes and makes our dogs anxious. We worry about the increased fire risk during dry months and potential property value impacts.';
                 document.getElementById('personalImpact').value = 'I hike these trails with my family every weekend.';
                 
                 // Add visual indicator
@@ -1296,6 +1262,7 @@ Tone: ${data.tone === 'formal' ? 'Use formal, professional language' :
 
         // Initialize
         buildFormFields();
+        setupConcernsLimit();
         checkTestMode();
         document.getElementById('emailForm').addEventListener('submit', handleSubmit);
         document.getElementById('copyButton').addEventListener('click', copyToClipboard);
