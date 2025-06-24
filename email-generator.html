@@ -745,11 +745,14 @@
                 groups: {
                     'Safety & Emergency': [
                         { value: 'fire_risk', label: 'Fire risk/wildfire danger', definition: 'Sparks from shooting can ignite dry grass' },
+                        { value: 'emergency_access', label: 'Emergency access/evacuation routes', definition: 'Traffic blocking escape roads' },
                         { value: 'safety_oversight', label: 'Lack of safety oversight', definition: 'No inspections or safety requirements' }
                     ],
                     'Legal & Governance': [
                         { value: 'legal_process', label: 'Disregard for legal process', definition: 'Operating illegally, ignoring enforcement' },
                         { value: 'precedent', label: 'Setting dangerous precedent', definition: 'Break rules now, get permits later' },
+                        { value: 'commercializing_foothills', label: 'Sets precedent for commercializing foothills', definition: 'Once commercial uses start, they rarely stop' },
+                        { value: 'zoning', label: 'Incompatible with zoning', definition: 'Commercial business in wrong area type' },
                         { value: 'liability', label: 'Liability/uninsured risks', definition: 'Who pays if accidents/fires happen?' }
                     ],
                     'Financial Impact': [
@@ -771,7 +774,7 @@
                 options: [
                     { value: 'quick', label: 'Quick Note', definition: 'Get to the point fast (1-2 paragraphs)' },
                     { value: 'standard', label: 'Standard Email', definition: 'Balance of detail and brevity (3-4 paragraphs)' },
-                    { value: 'thorough', label: 'Thorough Letter', definition: 'Complete argument with context (4-5 paragraphs)' }
+                    { value: 'thorough', label: 'Thorough Letter', definition: 'Complete argument with context (5-6 paragraphs)' }
                 ]
             }
         };
@@ -1008,7 +1011,7 @@ Write a compelling email that:
 8. End with a natural sign-off that matches the tone and style of the email. Let the closing feel authentic to how this person would actually sign their email.
 
 Length requirement: ${data.lengthStyle === 'quick' ? 'Keep it brief - 1-2 paragraphs only, get straight to the point' :
-                    data.lengthStyle === 'thorough' ? 'Write a thorough letter with 4-5 paragraphs, include context and detailed arguments' :
+                    data.lengthStyle === 'thorough' ? 'Write a thorough letter with 5-6 paragraphs, include context and detailed arguments' :
                     'Standard length - 3-4 paragraphs with good balance of detail'}
 
 ${hasOwnWords ? 'Remember: Their own words are the foundation. Everything else supports their personal narrative.' : 'The email should be personal and authentic, not generic.'}
