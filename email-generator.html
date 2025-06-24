@@ -120,8 +120,16 @@
             font-size: var(--font-size-base);
         }
         
+        /* Style for required field asterisks */
+        .required-asterisk {
+            color: #dc3545;
+            margin-left: 2px;
+            font-weight: 600;
+        }
+        
         input[type="text"],
         input[type="email"],
+        select,
         textarea {
             width: 100%;
             padding: 12px 16px;
@@ -133,8 +141,19 @@
             box-sizing: border-box;
         }
         
+        select {
+            background: white;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M10.293 3.293L6 7.586 1.707 3.293A1 1 0 00.293 4.707l5 5a1 1 0 001.414 0l5-5a1 1 0 10-1.414-1.414z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            padding-right: 40px;
+        }
+        
         input[type="text"]:focus,
         input[type="email"]:focus,
+        select:focus,
         textarea:focus {
             outline: none;
             border-color: #2c5282;
@@ -507,36 +526,43 @@
     <div class="form-container">
         <h2 style="color: #2c3e50; font-size: var(--font-size-2xl); margin: 0 0 25px 0; text-align: center;">Let's write!</h2>
         
+        <p style="text-align: right; font-size: var(--font-size-sm); color: #6c757d; margin: -10px 0 20px 0;">* Required fields</p>
+        
         <form id="emailForm">
             <!-- Basic Information -->
             <fieldset>
                 <legend>Your Information</legend>
                 
                 <div class="input-group">
-                    <label for="name">Name (required)</label>
+                    <label for="name">Name <span class="required-asterisk">*</span></label>
                     <input type="text" id="name" name="name" required>
                 </div>
                 
                 <div class="input-group">
-                    <label for="city">City (required)</label>
+                    <label for="city">City <span class="required-asterisk">*</span></label>
                     <input type="text" id="city" name="city" required>
                 </div>
                 
                 <div class="input-group">
-                    <label for="state">State (required)</label>
+                    <label for="state">State <span class="required-asterisk">*</span></label>
                     <input type="text" id="state" name="state" required value="ID">
                 </div>
                 
                 <div class="input-group">
-                    <label for="zipcode">Zipcode (required)</label>
+                    <label for="zipcode">Zipcode <span class="required-asterisk">*</span></label>
                     <input type="text" id="zipcode" name="zipcode" required pattern="[0-9]{5}" placeholder="83714">
                 </div>
-            </fieldset>
-
-            <!-- Distance from Range -->
-            <fieldset>
-                <legend>Distance from 15401 N. Cartwright Rd.</legend>
-                <div id="distance" class="radio-group"></div>
+                
+                <div class="input-group">
+                    <label for="distance">Distance from 15401 N. Cartwright Rd. <span class="required-asterisk">*</span></label>
+                    <select id="distance" name="distance" required style="width: 100%; padding: 12px 16px; border: 1px solid #dee2e6; border-radius: 6px; font-size: var(--font-size-base); font-family: var(--font-primary); transition: border-color 0.2s ease, box-shadow 0.2s ease; box-sizing: border-box; background: white; cursor: pointer;">
+                        <option value="">Select distance</option>
+                        <option value="less_than_1">Less than 1 mile</option>
+                        <option value="1_to_2">1-2 miles</option>
+                        <option value="2_to_5">2-5 miles</option>
+                        <option value="more_than_5">More than 5 miles</option>
+                    </select>
+                </div>
             </fieldset>
 
             <!-- Tell Us About Yourself -->
@@ -546,7 +572,7 @@
                 <div class="input-group">
                     <textarea id="residentTypeOther" name="residentTypeOther" rows="4"
                               style="margin-top: 8px;"
-                              placeholder="Share your story: How long have you lived here? What do you love about this area? What activities bring you to the foothills?"></textarea>
+                              placeholder="I've lived in Boise for 15 years and the foothills are why I stay. My dog and I hike Chukar Butte twice a week. My teenagers learned to mountain bike on these trails. This is home..."></textarea>
                 </div>
             </fieldset>
 
@@ -559,16 +585,16 @@
                     <p style="color: #666; margin-top: -5px; margin-bottom: 10px; font-size: 0.95rem;">Please tell us more about how your primary concerns affect you and your family. What impact would a legal and busy shooting range have on how you live, recreate, and relax? What would you worry about, what would you feel had been lost?</p>
                     <textarea id="concernsOther" name="concernsOther" rows="4"
                               style="margin-top: 8px;"
-                              placeholder=""></textarea>
+                              placeholder="The constant gunfire has ruined our peaceful hikes, and knowing they're shooting in fire-prone areas makes me anxious every time I see smoke or smell anything burning..."></textarea>
                 </div>
             </fieldset>
 
-            <!-- Current Impacts -->
+            <!-- Long-Term Impacts -->
             <fieldset>
-                <legend>Current Impacts</legend>
-                <p style="margin: 5px 0 10px 0; font-size: var(--font-size-sm); color: #6c757d;">This is the most important field. Share your experiences, fears, and what this means for your life.</p>
+                <legend>Long-Term Impacts</legend>
+                <p style="margin: 5px 0 10px 0; font-size: var(--font-size-sm); color: #6c757d;">If this shooting range were to be approved, how would your life change? What would you do differently?</p>
                 <textarea id="personalImpact" name="personalImpact" rows="5" 
-                    placeholder="Share your story: Do you hear the gunfire from your home? Are you worried about evacuation routes? Do your kids ask about the shooting sounds? Have you changed your hiking routes? Has this affected your property value or peace of mind? The more specific you are, the more powerful your email will be."></textarea>
+                    placeholder="I'd have to find new running routes, adding 40 minutes of driving to my day. Our property values would drop. My anxious dog would need medication. We'd keep windows closed year-round. This isn't the life we chose..."></textarea>
             </fieldset>
 
             <!-- Length/Style Selection -->
@@ -714,15 +740,6 @@
     <script>
         // Configuration for form fields
         const formConfig = {
-            distance: {
-                type: 'radio',
-                options: [
-                    { value: 'less_than_1', label: 'Less than 1 mile' },
-                    { value: '1_to_2', label: '1-2 miles' },
-                    { value: '2_to_5', label: '2-5 miles' },
-                    { value: 'more_than_5', label: 'More than 5 miles' }
-                ]
-            },
             concerns: {
                 type: 'grouped',
                 groups: {
@@ -1221,7 +1238,7 @@ Tone: Use formal, professional language`;
                 document.getElementById('state').value = 'ID';
                 document.getElementById('zipcode').value = '83714';
                 
-                document.querySelector('input[name="distance"][value="1_to_2"]').checked = true;
+                document.getElementById('distance').value = '1_to_2';
                 
                 // Randomly select 3 concerns
                 const allConcerns = Array.from(document.querySelectorAll('input[name="concerns"]'));
