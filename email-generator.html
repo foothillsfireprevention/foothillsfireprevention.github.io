@@ -578,7 +578,7 @@
 
             <!-- Primary Concerns -->
             <fieldset>
-                <legend>What are your primary concerns? (select up to 3)</legend>
+                <legend>What are your primary concerns? (select up to 4)</legend>
                 <div id="concerns" class="checkbox-group"></div>
                 <div class="input-group" style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #e9ecef;">
                     <label for="concernsOther" style="font-weight: 600; color: #2c5282; font-size: var(--font-size-base);">Tell us more</label>
@@ -872,7 +872,7 @@
             });
         }
 
-        // Add event listeners to limit concerns checkboxes to 3 selections
+        // Add event listeners to limit concerns checkboxes to 4 selections
         function setupConcernsLimit() {
             const concernsCheckboxes = document.querySelectorAll('input[name="concerns"]');
             
@@ -880,9 +880,9 @@
                 checkbox.addEventListener('change', function() {
                     const checkedBoxes = document.querySelectorAll('input[name="concerns"]:checked');
                     
-                    if (checkedBoxes.length > 3) {
+                    if (checkedBoxes.length > 4) {
                         this.checked = false;
-                        alert('Please select no more than 3 primary concerns');
+                        alert('Please select no more than 4 primary concerns');
                     }
                 });
             });
@@ -1243,10 +1243,10 @@ Tone: Use formal, professional language`;
                 
                 document.getElementById('distance').value = '1_to_2';
                 
-                // Randomly select 3 concerns
+                // Randomly select 4 concerns
                 const allConcerns = Array.from(document.querySelectorAll('input[name="concerns"]'));
                 const shuffled = allConcerns.sort(() => 0.5 - Math.random());
-                shuffled.slice(0, 3).forEach(checkbox => checkbox.checked = true);
+                shuffled.slice(0, 4).forEach(checkbox => checkbox.checked = true);
                 
                 document.querySelector('input[name="lengthStyle"][value="standard"]').checked = true;
                 
