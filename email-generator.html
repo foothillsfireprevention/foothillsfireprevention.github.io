@@ -120,8 +120,16 @@
             font-size: var(--font-size-base);
         }
         
+        /* Style for required field asterisks */
+        .required-asterisk {
+            color: #dc3545;
+            margin-left: 2px;
+            font-weight: 600;
+        }
+        
         input[type="text"],
         input[type="email"],
+        select,
         textarea {
             width: 100%;
             padding: 12px 16px;
@@ -133,8 +141,19 @@
             box-sizing: border-box;
         }
         
+        select {
+            background: white;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M10.293 3.293L6 7.586 1.707 3.293A1 1 0 00.293 4.707l5 5a1 1 0 001.414 0l5-5a1 1 0 10-1.414-1.414z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            padding-right: 40px;
+        }
+        
         input[type="text"]:focus,
         input[type="email"]:focus,
+        select:focus,
         textarea:focus {
             outline: none;
             border-color: #2c5282;
@@ -271,36 +290,77 @@
         .action-button {
             flex: 1;
             min-width: 200px;
-            padding: 12px 24px;
+            padding: 14px 28px;
             border: none;
             border-radius: 6px;
             font-size: var(--font-size-base);
-            font-weight: 500;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.2s ease;
             text-align: center;
             text-decoration: none;
+            font-family: var(--font-primary);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
         
-        .copy-button {
-            background: #2c5282;
-            color: white;
-        }
-        
-        .copy-button:hover {
-            background: #1e3a5f;
-            transform: translateY(-2px);
-        }
-        
+        /* Primary action - Email button */
         .email-button {
-            background: white;
-            color: #2c5282;
-            border: 2px solid #2c5282;
+            background: #c9302c;
+            color: white;
+            box-shadow: 0 2px 4px rgba(201, 48, 44, 0.2);
         }
         
         .email-button:hover {
-            background: #f8f9fa;
+            background: #a02622;
             transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(201, 48, 44, 0.3);
+        }
+        
+        /* Secondary action - Copy button */
+        .copy-button {
+            background: white;
+            color: #2c5282;
+            border: 2px solid #2c5282;
+            box-shadow: 0 2px 4px rgba(44, 82, 130, 0.1);
+        }
+        
+        .copy-button:hover {
+            background: #2c5282;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(44, 82, 130, 0.2);
+        }
+        
+        /* Small copy buttons for fields */
+        .field-copy-button {
+            padding: 10px 20px;
+            font-size: var(--font-size-sm);
+            min-width: 120px;
+            background: white;
+            color: #2c5282;
+            border: 2px solid #2c5282;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            font-family: var(--font-primary);
+            text-align: center;
+            display: inline-block;
+        }
+        
+        .field-copy-button:hover {
+            background: #2c5282;
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 6px rgba(44, 82, 130, 0.15);
+        }
+        
+        .field-copy-button:active {
+            transform: translateY(0);
         }
         
         .share-button:hover {
@@ -393,72 +453,22 @@
             Writing to county officials is one of the most effective ways to influence this decision. Personal emails in your own words carry the most weight.
         </p>
         
-        <p style="line-height: var(--line-height-relaxed);">
-            We know that starting an email can be the hardest part. This tool uses AI to create a personalized draft based on your specific situation and concerns. Think of it as a starting point - not a final product.
-        </p>
     </div>
 
     <!-- How It Works -->
     <div class="intro-container" style="background: white; border-radius: 8px; padding: 30px; margin-bottom: 30px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
         <h2 style="color: #2c3e50; font-size: var(--font-size-2xl); margin: 0 0 20px 0;">How It Works</h2>
         
-        <ol style="margin: 0; padding-left: 25px; line-height: var(--line-height-relaxed);">
-            <li style="margin-bottom: 10px;">Fill out the form below with your information and concerns</li>
+        <ul style="margin: 0; padding-left: 25px; line-height: var(--line-height-relaxed);">
+            <li style="margin-bottom: 10px;">Fill out the form below</li>
             <li style="margin-bottom: 10px;">Click "Generate Quick Draft" to create a personalized draft</li>
-            <li style="margin-bottom: 10px;">Review the draft and edit it to match your voice</li>
-            <li>Copy the final version and send it to Ada County officials</li>
-        </ol>
-    </div>
-
-    <!-- How to Use This Tool Effectively -->
-    <div class="intro-container" style="background: white; border-radius: 8px; padding: 30px; margin-bottom: 30px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-        <h2 style="color: #2c3e50; font-size: var(--font-size-2xl); margin: 0 0 20px 0;">How to Use This Tool Effectively</h2>
-        
-        <div style="background: #f8f9fa; border-left: 4px solid #2c5282; padding: 20px; border-radius: 4px; margin-bottom: 20px;">
-            <p style="margin: 0 0 15px 0; font-weight: 600; color: #1a2332;">
-                The More You Share, The Better Your Email Will Be
-            </p>
-            <p style="margin: 0; color: #495057;">
-                Generic emails get ignored - personal stories get attention. This tool works best when you provide specific details in your own words.
-            </p>
-        </div>
-
-        <h3 style="color: #2c3e50; font-size: var(--font-size-lg); margin: 20px 0 15px 0;">Tips for a Powerful Email:</h3>
-        
-        <div style="margin-bottom: 20px;">
-            <div style="margin-bottom: 12px;">
-                <strong>✓ Use the text boxes</strong><br>
-                <span style="color: #6c757d;">Don't just check boxes. The more you write in "Personal Impact" and other fields, the more authentic your email will be.</span>
-            </div>
-            
-            <div style="margin-bottom: 12px;">
-                <strong>✓ Be specific</strong><br>
-                <span style="color: #6c757d;">Instead of "I'm concerned about noise," write "I can hear gunfire from my backyard during dinner time"</span>
-            </div>
-            
-            <div style="margin-bottom: 12px;">
-                <strong>✓ Share your story</strong><br>
-                <span style="color: #6c757d;">Do you hike those trails? Live nearby? Have kids who play outside? Have a dog terrified by gunfire? Include these details!</span>
-            </div>
-            
-            <div style="margin-bottom: 12px;">
-                <strong>✓ Use your words</strong><br>
-                <span style="color: #6c757d;">Write how you naturally speak. If you'd say "this really pisses me off," put that. If you'd say "I'm deeply troubled," use that.</span>
-            </div>
-        </div>
-
-        <h3 style="color: #2c3e50; font-size: var(--font-size-lg); margin: 20px 0 15px 0;">Examples of Details That Matter:</h3>
-        
-        <ul style="margin: 0 0 20px 0; padding-left: 25px; color: #495057; line-height: var(--line-height-relaxed);">
-            <li>"Every high wind hot day, I'm on edge because of fire danger"</li>
-            <li>"My dog won't go outside when the shooting starts"</li>
-            <li>"I moved here specifically for the quiet trails"</li>
-            <li>"I'm a gun owner myself but this is too close to homes"</li>
+            <li style="margin-bottom: 10px;">Review and edit to match your voice</li>
+            <li>Send to Ada County officials</li>
         </ul>
         
-        <div style="background: #fff3cd; border: 1px solid #ffeaa7; padding: 15px; border-radius: 4px;">
-            <p style="margin: 0; color: #856404;">
-                <strong>Remember:</strong> The checkboxes give structure, but YOUR WORDS make the difference. Officials can spot generic emails immediately. The 2 minutes you spend adding personal details could determine whether your email gets counted or ignored.
+        <div style="background: #f8f9fa; border-left: 4px solid #2c5282; padding: 15px; border-radius: 4px; margin-top: 20px;">
+            <p style="margin: 0; color: #495057;">
+                💡 <strong>Tip:</strong> The more personal details you share, the stronger your email will be. Generic emails get ignored - personal stories get attention.
             </p>
         </div>
     </div>
@@ -466,75 +476,75 @@
     <div class="form-container">
         <h2 style="color: #2c3e50; font-size: var(--font-size-2xl); margin: 0 0 25px 0; text-align: center;">Let's write!</h2>
         
+        <p style="text-align: right; font-size: var(--font-size-sm); color: #6c757d; margin: -10px 0 20px 0;">* Required fields</p>
+        
         <form id="emailForm">
             <!-- Basic Information -->
             <fieldset>
                 <legend>Your Information</legend>
                 
                 <div class="input-group">
-                    <label for="name">Name (required)</label>
+                    <label for="name">Name <span class="required-asterisk">*</span></label>
                     <input type="text" id="name" name="name" required>
                 </div>
                 
                 <div class="input-group">
-                    <label for="city">City (required)</label>
+                    <label for="city">City <span class="required-asterisk">*</span></label>
                     <input type="text" id="city" name="city" required>
                 </div>
                 
                 <div class="input-group">
-                    <label for="state">State (required)</label>
+                    <label for="state">State <span class="required-asterisk">*</span></label>
                     <input type="text" id="state" name="state" required value="ID">
                 </div>
                 
                 <div class="input-group">
-                    <label for="zipcode">Zipcode (required)</label>
+                    <label for="zipcode">Zipcode <span class="required-asterisk">*</span></label>
                     <input type="text" id="zipcode" name="zipcode" required pattern="[0-9]{5}" placeholder="83714">
                 </div>
-            </fieldset>
-
-            <!-- Resident Type -->
-            <fieldset>
-                <legend>I am a... (check all that apply)</legend>
-                <div id="residentType" class="checkbox-group"></div>
-                <div class="input-group" style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #e9ecef;">
-                    <label for="residentTypeOther" style="font-weight: 600; color: #2c5282; font-size: var(--font-size-base);">Your Specific Situation - In Your Words</label>
-                    <textarea id="residentTypeOther" name="residentTypeOther" rows="3"
-                              style="margin-top: 8px;"
-                              placeholder="Describe your connection to the area: Are you a local teacher, volunteer firefighter, long-time resident? How long have you lived here? What brought you to this community?"></textarea>
+                
+                <div class="input-group">
+                    <label for="distance">Distance from 15401 N. Cartwright Rd. <span class="required-asterisk">*</span></label>
+                    <select id="distance" name="distance" required style="width: 100%; padding: 12px 16px; border: 1px solid #dee2e6; border-radius: 6px; font-size: var(--font-size-base); font-family: var(--font-primary); transition: border-color 0.2s ease, box-shadow 0.2s ease; box-sizing: border-box; background: white; cursor: pointer;">
+                        <option value="">Select distance</option>
+                        <option value="less_than_1">Less than 1 mile</option>
+                        <option value="1_to_2">1-2 miles</option>
+                        <option value="2_to_5">2-5 miles</option>
+                        <option value="more_than_5">More than 5 miles</option>
+                    </select>
                 </div>
             </fieldset>
 
-            <!-- Distance from Range -->
+            <!-- Tell Us About Yourself -->
             <fieldset>
-                <legend>Distance from 15401 N. Cartwright Rd.</legend>
-                <div id="distance" class="radio-group"></div>
+                <legend>Tell Us About Yourself</legend>
+                <p style="color: #666; margin-top: -5px; margin-bottom: 15px; font-size: 0.95rem;">Use this area to tell us about yourself and your connection to Boise and the foothills. Focus on what you love about the area, what brings you to the foothills and keeps you coming back. Anything that helps us know more about you.</p>
+                <div class="input-group">
+                    <textarea id="residentTypeOther" name="residentTypeOther" rows="4"
+                              style="margin-top: 8px;"
+                              placeholder="I've lived in Boise for 15 years and the foothills are why I stay. My dog and I hike Chukar Butte twice a week. My teenagers learned to mountain bike on these trails. This is home..."></textarea>
+                </div>
             </fieldset>
 
             <!-- Primary Concerns -->
             <fieldset>
-                <legend>What are your primary concerns? (check all that apply)</legend>
+                <legend>What are your primary concerns? (select up to 4)</legend>
                 <div id="concerns" class="checkbox-group"></div>
                 <div class="input-group" style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #e9ecef;">
-                    <label for="concernsOther" style="font-weight: 600; color: #2c5282; font-size: var(--font-size-base);">Your Specific Concerns - In Your Words</label>
-                    <textarea id="concernsOther" name="concernsOther" rows="3"
+                    <label for="concernsOther" style="font-weight: 600; color: #2c5282; font-size: var(--font-size-base);">Tell us more</label>
+                    <p style="color: #666; margin-top: -5px; margin-bottom: 10px; font-size: 0.95rem;">Please tell us more about how your primary concerns affect you and your family. What impact would a legal and busy shooting range have on how you live, recreate, and relax? What would you worry about, what would you feel had been lost?</p>
+                    <textarea id="concernsOther" name="concernsOther" rows="4"
                               style="margin-top: 8px;"
-                              placeholder="What specific concerns do you have? How would this shooting range impact your daily life, your family, your property? Be as detailed as possible - your personal perspective matters."></textarea>
+                              placeholder="The constant gunfire has ruined our peaceful hikes, and knowing they're shooting in fire-prone areas makes me anxious every time I see smoke or smell anything burning..."></textarea>
                 </div>
             </fieldset>
 
-            <!-- Personal Impact -->
+            <!-- Long-Term Impacts -->
             <fieldset>
-                <legend>Personal Impact</legend>
-                <label for="personalImpact" style="font-weight: 600; color: #2c5282; font-size: var(--font-size-base);">Your Personal Story - This Is Where You Make It Real</label>
-                <p style="margin: 5px 0 10px 0; font-size: var(--font-size-sm); color: #6c757d;">This is the most important field. Share your experiences, fears, and what this means for your life.</p>
+                <legend>Long-Term Impacts</legend>
+                <p style="margin: 5px 0 10px 0; font-size: var(--font-size-sm); color: #6c757d;">If this shooting range were to be approved, how would your life change? What would you do differently?</p>
                 <textarea id="personalImpact" name="personalImpact" rows="5" 
-                    placeholder="Share your story: Do you hear the gunfire from your home? Are you worried about evacuation routes? Do your kids ask about the shooting sounds? Have you changed your hiking routes? Has this affected your property value or peace of mind? The more specific you are, the more powerful your email will be."></textarea>
-            </fieldset>
-
-            <!-- Tone Selection -->
-            <fieldset>
-                <legend>Quick Draft Tone</legend>
-                <div id="tone" class="radio-group"></div>
+                    placeholder="I'd have to find new running routes, adding 40 minutes of driving to my day. Our property values would drop. My anxious dog would need medication. We'd keep windows closed year-round. This isn't the life we chose..."></textarea>
             </fieldset>
 
             <!-- Length/Style Selection -->
@@ -569,29 +579,85 @@
     <!-- Results Section -->
     <div id="results" class="results-container">
         <h2>Your Generated Quick Draft</h2>
-        <div id="emailSubject" class="email-subject"></div>
+        
+        <!-- Email Body Display -->
         <div id="emailContent" class="email-content"></div>
         
-        <!-- Address Reminder -->
-        <div style="margin-bottom: 20px; margin-top: 20px; padding: 15px; background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 6px; text-align: center;">
-            <p style="margin: 0; color: #856404; font-weight: 500;">
-                ⚠️ Remember: Adding your address increases impact
-            </p>
+        <!-- Action Buttons -->
+        <div id="actionSection" style="margin-top: 20px;">
+            <div class="action-buttons">
+                <button id="emailButton" class="action-button email-button">
+                    📧 Open in Email App
+                </button>
+                <button id="copyButton" class="action-button copy-button">
+                    📋 Copy to Clipboard
+                </button>
+            </div>
         </div>
         
-        <div class="action-buttons">
-            <button id="copyButton" class="action-button copy-button">Copy to Clipboard</button>
-            <button id="emailButton" class="action-button email-button">Open in Email Client</button>
+        <!-- Success/Instructions Section (hidden initially) -->
+        <div id="successSection" style="display: none; margin-top: 20px; text-align: center;">
+            <div style="padding: 20px; background: #d4edda; border: 1px solid #c3e6cb; border-radius: 8px; margin-bottom: 15px;">
+                <p style="margin: 0; color: #155724; font-size: var(--font-size-lg); font-weight: 600;">
+                    ✓ Check your email app!
+                </p>
+            </div>
+            <button id="copyInsteadButton" class="action-button copy-button" style="min-width: auto; padding: 10px 20px;">
+                Didn't open? Copy instead
+            </button>
+            <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 6px; text-align: left;">
+                <ul style="margin: 0; padding-left: 20px; line-height: var(--line-height-relaxed);">
+                    <li>Review and personalize the message</li>
+                    <li><strong>Add your mailing address after your name</strong></li>
+                    <li>Make sure it sounds like you</li>
+                </ul>
+            </div>
         </div>
         
-        <!-- Email details for reference -->
-        <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px;">
-            <p style="margin: 0 0 5px 0; font-size: var(--font-size-sm); color: #6c757d;">
-                <strong>To:</strong> lletson@adacounty.id.gov (Ada County Planning Manager), bocc1@adacounty.id.gov (Ada County Commissioners Office)
-            </p>
-            <p id="subjectReference" style="margin: 0; font-size: var(--font-size-sm); color: #6c757d;">
-                <strong>Subject:</strong> <span id="subjectText"></span>
-            </p>
+        <!-- Copy Details Section (hidden initially) -->
+        <div id="copyDetailsSection" style="display: none; margin-top: 20px;">
+            <div style="padding: 20px; background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px;">
+                <h3 style="margin: 0 0 20px 0; color: #2c3e50; text-align: center;">📋 Copy These to Your Email App</h3>
+                
+                <div style="padding: 15px; background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 6px; margin-bottom: 20px;">
+                    <p style="margin: 0 0 10px 0; font-weight: 600; color: #856404;">
+                        📝 Instructions:
+                    </p>
+                    <ol style="margin: 0; padding-left: 20px; color: #856404; line-height: var(--line-height-relaxed);">
+                        <li>Copy each field below and paste into your email app</li>
+                        <li>Personalize the message to reflect your voice</li>
+                        <li><strong>Add your mailing address after your name</strong></li>
+                        <li>Send to make your voice heard!</li>
+                    </ol>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 5px; color: #2c3e50;">TO:</label>
+                    <input type="text" id="toField" value="Planning Mgr <lletson@adacounty.id.gov>, Commissioners <bocc1@adacounty.id.gov>" readonly 
+                           style="width: 100%; padding: 10px; font-family: monospace; background: white; border: 1px solid #dee2e6; border-radius: 4px; cursor: text; box-sizing: border-box;">
+                    <button onclick="copyField('toField')" class="action-button field-copy-button" style="margin-top: 8px;">
+                        Copy TO addresses
+                    </button>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 5px; color: #2c3e50;">SUBJECT:</label>
+                    <input type="text" id="subjectField" value="" readonly 
+                           style="width: 100%; padding: 10px; font-family: monospace; background: white; border: 1px solid #dee2e6; border-radius: 4px; cursor: text; box-sizing: border-box;">
+                    <button onclick="copyField('subjectField')" class="action-button field-copy-button" style="margin-top: 8px;">
+                        Copy Subject line
+                    </button>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 5px; color: #2c3e50;">BODY:</label>
+                    <textarea id="bodyField" readonly 
+                              style="width: 100%; padding: 10px; font-family: var(--font-primary); background: white; border: 1px solid #dee2e6; border-radius: 4px; min-height: 200px; resize: vertical; line-height: var(--line-height-relaxed); box-sizing: border-box;"></textarea>
+                    <button onclick="copyField('bodyField')" class="action-button field-copy-button" style="margin-top: 8px;">
+                        Copy Email body
+                    </button>
+                </div>
+            </div>
         </div>
         
         <!-- Share Tool Section -->
@@ -624,28 +690,6 @@
     <script>
         // Configuration for form fields
         const formConfig = {
-            residentType: {
-                type: 'checkbox',
-                options: [
-                    { value: 'homeowner', label: 'Homeowner' },
-                    { value: 'business_owner', label: 'Business Owner' },
-                    { value: 'parent', label: 'Parent with children in nearby schools' },
-                    { value: 'concerned_citizen', label: 'Concerned Citizen' },
-                    { value: 'hiker', label: 'Hiker' },
-                    { value: 'cyclist', label: 'Cyclist' },
-                    { value: 'shooting_sports', label: 'Shooting Sports Enthusiast' },
-                    { value: 'equestrian', label: 'Equestrian' }
-                ]
-            },
-            distance: {
-                type: 'radio',
-                options: [
-                    { value: 'less_than_1', label: 'Less than 1 mile' },
-                    { value: '1_to_2', label: '1-2 miles' },
-                    { value: '2_to_5', label: '2-5 miles' },
-                    { value: 'more_than_5', label: 'More than 5 miles' }
-                ]
-            },
             concerns: {
                 type: 'grouped',
                 groups: {
@@ -667,7 +711,6 @@
                     ],
                     'Quality of Life': [
                         { value: 'noise_pollution', label: 'Noise pollution', definition: 'Constant gunfire disrupting peace' },
-                        { value: 'quality_of_life', label: 'Quality of life degradation', definition: 'Daily stress, can\'t enjoy outdoors' },
                         { value: 'recreational_conflict', label: 'Conflict with recreational use', definition: 'Ruins hiking, biking, horseback riding' }
                     ],
                     'Infrastructure & Environment': [
@@ -675,14 +718,6 @@
                         { value: 'environment', label: 'Environmental/wildlife impact', definition: 'Lead contamination, disturbing animals' }
                     ]
                 }
-            },
-            tone: {
-                type: 'radio',
-                options: [
-                    { value: 'formal', label: 'Formal/Professional' },
-                    { value: 'personal', label: 'Personal/Neighborly' },
-                    { value: 'urgent', label: 'Urgent/Assertive' }
-                ]
             },
             lengthStyle: {
                 type: 'radio',
@@ -787,6 +822,22 @@
             });
         }
 
+        // Add event listeners to limit concerns checkboxes to 4 selections
+        function setupConcernsLimit() {
+            const concernsCheckboxes = document.querySelectorAll('input[name="concerns"]');
+            
+            concernsCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const checkedBoxes = document.querySelectorAll('input[name="concerns"]:checked');
+                    
+                    if (checkedBoxes.length > 4) {
+                        this.checked = false;
+                        alert('Please select no more than 4 primary concerns');
+                    }
+                });
+            });
+        }
+
         // Build the prompt
         function buildPrompt(data) {
             const facilityContext = `
@@ -805,12 +856,8 @@ Key Facts about the Shooting Range:
 - Hearing shots: Unless you are within 1.5 miles, you will never hear the gunshots
 - Precedent Concern: Rewarding illegal operation with permits`;
 
-            // Combine selected options with "other" fields
-            let residentTypes = data.residentType.join(', ') || '';
-            if (data.residentTypeOther) {
-                residentTypes = residentTypes ? `${residentTypes}, ${data.residentTypeOther}` : data.residentTypeOther;
-            }
-            residentTypes = residentTypes || 'resident';
+            // Use the specific situation field
+            let residentTypes = data.residentTypeOther || 'resident';
             
             // Build concerns with definitions for better context
             let concernsWithDefs = [];
@@ -849,7 +896,6 @@ ${data.personalImpact ? `\nTheir personal story: "${data.personalImpact}"` : ''}
 ${hasOwnWords ? '\nAdditional context from form:' : ''}
 - Name: ${data.name}
 - Location: ${location}
-- Status: ${residentTypes}
 - Distance from facility: ${data.distance}
 - Checkbox concerns selected: ${concerns}
 
@@ -859,20 +905,9 @@ OVERALL INSTRUCTIONS:
 Tone Calibration Instructions:
 - Avoid dramatic or flowery language like "shattered," "stark reminder," "devastate," etc.
 - Use plain, direct language that real people would actually write
-- Match dramatic intensity to the tone selected:
-  
-For Professional/Formal tone:
 - Stick to facts and measured concerns
-- Avoid emotional descriptors entirely
+- Avoid overly emotional descriptors
 - Example: "The noise is disruptive" NOT "gunfire shatters our peace"
-
-For Concerned Citizen tone:
-- Some emotion is OK but keep it restrained
-- Example: "We're worried about fire risk" NOT "one spark could devastate everything"
-
-For Frustrated tone:
-- Stronger language acceptable but still realistic
-- Example: "This is unacceptable" NOT "blatant disregard"
 
 General rules:
 - Write like someone talking to their neighbor, not writing a novel
@@ -897,14 +932,14 @@ For the SUBJECT: ${hasOwnWords ?
 
 Subject line should:
 - Always include some reference to the "shooting range," "gun range," or "firing range" - vary usage
-- Match the tone/style (formal emails may include Case #202501185-CU-MSP, casual ones should not)
+- Include Case #202501185-CU-MSP for formal, professional tone
 - Reflect the writer's specific angle (fire worry = fire in subject, noise concern = noise in subject) but still try to vary the wording
-- Be unique to avoid pattern detection, vary the use of language, match the tone of the email body
+- Be unique to avoid pattern detection, vary the use of language
 
 Examples: 
-- Formal: "Re: Case #202501185-CU-MSP - Fire Safety Concerns"
-- Personal: "My Dog Hides from the Cartwright Gun Range Noise"
-- Urgent: "Daily Illegal Shooting Range Operations Must Stop"
+- "Re: Case #202501185-CU-MSP - Fire Safety Concerns"
+- "Concerns Regarding Shooting Range Operations - Case #202501185-CU-MSP"
+- "Public Comment on Case #202501185-CU-MSP - Noise and Safety Issues"
 
 For the BODY: ${hasOwnWords ? `
 IMPORTANT: Build the email around the personal details they provided. Use their specific examples, mirror their writing style, and expand on the concerns they expressed. The email should feel like a natural extension of what they wrote.
@@ -931,9 +966,7 @@ Length requirement: ${data.lengthStyle === 'quick' ? 'Keep it brief - 1-2 paragr
 
 ${hasOwnWords ? 'Remember: Their own words are the foundation. Everything else supports their personal narrative.' : 'The email should be personal and authentic, not generic.'}
 
-Tone: ${data.tone === 'formal' ? 'Use formal, professional language' : 
-       data.tone === 'personal' ? 'Use warm, neighborly language that emphasizes community' :
-       'Use urgent, assertive language that conveys serious concern'}`;
+Tone: Use formal, professional language`;
 
             return prompt;
         }
@@ -963,19 +996,18 @@ Tone: ${data.tone === 'formal' ? 'Use formal, professional language' :
                 city: formData.get('city'),
                 state: formData.get('state'),
                 zipcode: formData.get('zipcode'),
-                residentType: formData.getAll('residentType'),
                 residentTypeOther: formData.get('residentTypeOther'),
                 distance: formData.get('distance'),
                 concerns: formData.getAll('concerns'),
                 concernsOther: formData.get('concernsOther'),
                 personalImpact: formData.get('personalImpact'),
-                tone: formData.get('tone'),
+                tone: 'formal', // Always use formal tone
                 lengthStyle: formData.get('lengthStyle')
             };
             
-            // Validate selections
-            if (data.residentType.length === 0 && !data.residentTypeOther) {
-                alert('Please select at least one option for "I am a..." or fill in "Other"');
+            // Validate about yourself section
+            if (!data.residentTypeOther) {
+                alert('Please tell us about yourself and your connection to the area');
                 submitButton.innerHTML = originalText;
                 submitButton.disabled = false;
                 return;
@@ -1005,22 +1037,38 @@ Tone: ${data.tone === 'formal' ? 'Use formal, professional language' :
                     ? '/.netlify/functions/generate-email'  // Local relative path
                     : 'https://brilliant-muffin-f02696.netlify.app/.netlify/functions/generate-email';  // Production
                 
+                // Check if we're in test mode
+                const urlParams = new URLSearchParams(window.location.search);
+                const testParam = urlParams.get('test');
+                const requestBody = { prompt };
+                
+                // Add test parameter if in test=all mode
+                if (testParam === 'all') {
+                    requestBody.test = 'all';
+                }
+                
                 const response = await fetch(apiUrl, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ prompt }),
+                    body: JSON.stringify(requestBody),
                 });
                 
                 const result = await response.json();
                 
                 if (response.ok) {
-                    // Display results
-                    document.getElementById('emailSubject').textContent = 'Subject: ' + result.subject;
+                    // Store subject globally
+                    generatedSubject = result.subject;
+                    
+                    // Display only email body
                     document.getElementById('emailContent').textContent = result.email;
-                    document.getElementById('subjectText').textContent = result.subject;
                     document.getElementById('results').style.display = 'block';
+                    
+                    // Reset sections to initial state
+                    document.getElementById('actionSection').style.display = 'block';
+                    document.getElementById('successSection').style.display = 'none';
+                    document.getElementById('copyDetailsSection').style.display = 'none';
                     
                     // Scroll to results
                     document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
@@ -1035,37 +1083,60 @@ Tone: ${data.tone === 'formal' ? 'Use formal, professional language' :
             }
         }
 
+        // Store the generated subject globally
+        let generatedSubject = '';
+
         // Copy to clipboard handler
         function copyToClipboard() {
-            const subject = document.getElementById('emailSubject').textContent.replace('Subject: ', '');
             const content = document.getElementById('emailContent').textContent;
-            const fullText = `${subject}\n\n${content}`;
             
-            navigator.clipboard.writeText(fullText).then(() => {
-                const button = document.getElementById('copyButton');
-                const originalText = button.textContent;
-                button.textContent = 'Copied!';
-                button.style.background = '#28a745';
-                
-                setTimeout(() => {
-                    button.textContent = originalText;
-                    button.style.background = '';
-                }, 2000);
-            }).catch(() => {
-                alert('Failed to copy to clipboard. Please select and copy manually.');
-            });
+            // Populate all fields
+            document.getElementById('subjectField').value = generatedSubject;
+            document.getElementById('bodyField').value = content;
+            
+            // Show copy details section
+            document.getElementById('copyDetailsSection').style.display = 'block';
+            
+            // Scroll to copy section
+            document.getElementById('copyDetailsSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         // Email client handler
         function openEmailClient() {
-            const subject = document.getElementById('emailSubject').textContent.replace('Subject: ', '');
             const content = document.getElementById('emailContent').textContent;
             
-            // Commissioners email
-            const to = 'lletson@adacounty.id.gov,bocc1@adacounty.id.gov';
-            const mailto = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(content)}`;
+            // Email addresses
+            const to = 'Planning Mgr <lletson@adacounty.id.gov>,Commissioners <bocc1@adacounty.id.gov>';
+            const mailto = `mailto:${to}?subject=${encodeURIComponent(generatedSubject)}&body=${encodeURIComponent(content)}`;
             
             window.location.href = mailto;
+            
+            // Show success section and hide action buttons
+            document.getElementById('actionSection').style.display = 'none';
+            document.getElementById('successSection').style.display = 'block';
+        }
+        
+        // Copy individual fields
+        function copyField(fieldId) {
+            const field = document.getElementById(fieldId);
+            const value = field.value;
+            
+            navigator.clipboard.writeText(value).then(() => {
+                // Find the button (next sibling element)
+                const button = field.nextElementSibling;
+                const originalText = button.textContent;
+                button.textContent = '✓ Copied!';
+                button.style.background = '#28a745';
+                button.style.color = 'white';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = '';
+                    button.style.color = '';
+                }, 2000);
+            }).catch(() => {
+                alert('Failed to copy. Please select and copy manually.');
+            });
         }
 
         // Share tool functionality
@@ -1109,43 +1180,65 @@ Tone: ${data.tone === 'formal' ? 'Use formal, professional language' :
             });
         }
 
-        // Test mode - pre-fill form if ?test=true
+        // Test mode - pre-fill form if ?test=true, ?test=prefill, or ?test=all
         function checkTestMode() {
             const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.get('test') === 'true') {
+            const testParam = urlParams.get('test');
+            if (testParam === 'true' || testParam === 'prefill' || testParam === 'all') {
                 // Pre-fill form with test data
                 document.getElementById('name').value = 'Test User';
                 document.getElementById('city').value = 'Boise';
                 document.getElementById('state').value = 'ID';
                 document.getElementById('zipcode').value = '83714';
                 
-                // Check some boxes
-                document.querySelector('input[name="residentType"][value="homeowner"]').checked = true;
-                document.querySelector('input[name="residentType"][value="hiker"]').checked = true;
-                document.querySelector('input[name="distance"][value="1_to_2"]').checked = true;
-                document.querySelector('input[name="concerns"][value="fire_risk"]').checked = true;
-                document.querySelector('input[name="concerns"][value="noise_pollution"]').checked = true;
-                document.querySelector('input[name="tone"][value="formal"]').checked = true;
+                document.getElementById('distance').value = '1_to_2';
+                
+                // Randomly select 4 concerns
+                const allConcerns = Array.from(document.querySelectorAll('input[name="concerns"]'));
+                const shuffled = allConcerns.sort(() => 0.5 - Math.random());
+                shuffled.slice(0, 4).forEach(checkbox => checkbox.checked = true);
+                
                 document.querySelector('input[name="lengthStyle"][value="standard"]').checked = true;
                 
+                document.getElementById('residentTypeOther').value = 'Long-time homeowner and avid hiker who uses the Ridge to Rivers trails weekly';
+                document.getElementById('concernsOther').value = 'The constant gunfire disrupts our weekend family hikes and makes our dogs anxious. We worry about the increased fire risk during dry months and potential property value impacts.';
                 document.getElementById('personalImpact').value = 'I hike these trails with my family every weekend.';
                 
                 // Add visual indicator
                 document.querySelector('.header').style.border = '3px solid #ff6b6b';
                 const testBadge = document.createElement('div');
                 testBadge.style.cssText = 'position: fixed; top: 10px; right: 10px; background: #ff6b6b; color: white; padding: 5px 15px; border-radius: 20px; font-weight: bold; z-index: 1000;';
-                testBadge.textContent = 'TEST MODE';
+                
+                // Show different badge text based on test mode
+                if (testParam === 'all') {
+                    testBadge.textContent = 'TEST MODE: MOCK API';
+                } else {
+                    testBadge.textContent = 'TEST MODE: PREFILL';
+                }
+                
                 document.body.appendChild(testBadge);
             }
         }
 
+        // Copy instead button handler
+        function handleCopyInstead() {
+            // Hide success section, show action section
+            document.getElementById('successSection').style.display = 'none';
+            document.getElementById('actionSection').style.display = 'block';
+            
+            // Trigger copy action
+            copyToClipboard();
+        }
+
         // Initialize
         buildFormFields();
+        setupConcernsLimit();
         checkTestMode();
         document.getElementById('emailForm').addEventListener('submit', handleSubmit);
         document.getElementById('copyButton').addEventListener('click', copyToClipboard);
         document.getElementById('emailButton').addEventListener('click', openEmailClient);
         document.getElementById('shareToolButton').addEventListener('click', shareTool);
+        document.getElementById('copyInsteadButton').addEventListener('click', handleCopyInstead);
     </script>
 </body>
 </html>
