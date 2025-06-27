@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recent Updates - Boise Foothills Shooting Range</title>
+    <!-- Force no-cache to ensure latest version -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <style>
+        /* Typography System */
+        :root {
+            --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-size-base: 16px;
+            --font-size-sm: 0.875rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 2rem;
+            --font-size-4xl: 2.5rem;
+            --line-height-tight: 1.25;
+            --line-height-base: 1.6;
+            --line-height-relaxed: 1.75;
+            --letter-spacing-tight: -0.025em;
+            --letter-spacing-wide: 0.025em;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            font-size: var(--font-size-base);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: var(--line-height-base);
+            color: #2c3e50;
+            background: #f8f9fa;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .header {
+            background: linear-gradient(135deg, #1a2332 0%, #2c3e50 60%, #c9302c 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            height: 4px;
+            background: #c9302c;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+        /* Navigation Bar */
+        .nav-container {
+            position: fixed;
+            top: -60px;
+            left: 0;
+            right: 0;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: top 0.3s ease;
+        }
+        .nav-container.visible {
+            top: 0;
+        }
+        nav {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+        .nav-brand {
+            font-weight: 600;
+            color: #1a2332;
+            font-size: 1.1em;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links a {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95em;
+            transition: color 0.2s ease;
+            position: relative;
+        }
+        .nav-links a:hover {
+            color: #c9302c;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #c9302c;
+            transition: width 0.2s ease;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .nav-cta {
+            background: #c9302c;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95em;
+            transition: background 0.2s ease;
+        }
+        .nav-cta:hover {
+            background: #a02622;
+        }
+        /* Add padding to body when nav is visible */
+        body.nav-visible {
+            padding-top: 60px;
+        }
+        /* Global Typography Styles */
+        h1 {
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            letter-spacing: var(--letter-spacing-tight);
+            line-height: var(--line-height-tight);
+            margin: 0 0 10px 0;
+        }
+        h2 {
+            font-size: var(--font-size-3xl);
+            font-weight: 600;
+            letter-spacing: var(--letter-spacing-tight);
+            margin-top: 0;
+            margin-bottom: 25px;
+            color: #1a2332;
+        }
+        h3 {
+            font-size: var(--font-size-2xl);
+            font-weight: 600;
+            letter-spacing: var(--letter-spacing-tight);
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        h4 {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        p {
+            margin-bottom: 15px;
+            line-height: var(--line-height-relaxed);
+        }
+        .header h1 {
+            margin: 0 0 10px 0;
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            letter-spacing: var(--letter-spacing-tight);
+            line-height: var(--line-height-tight);
+        }
+        .header p {
+            margin: 0;
+            font-size: var(--font-size-xl);
+            opacity: 0.95;
+            font-weight: 400;
+            letter-spacing: var(--letter-spacing-wide);
+        }
+        
+        /* Updates Page Specific Styles */
+        .updates-container {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .update-item {
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .update-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .update-item h3 {
+            color: #c9302c;
+            margin-bottom: 15px;
+            font-size: var(--font-size-xl);
+        }
+        
+        .update-source {
+            font-size: var(--font-size-sm);
+            color: #6c757d;
+            margin-bottom: 15px;
+        }
+        
+        .update-source a {
+            color: #2c5282;
+            text-decoration: none;
+        }
+        
+        .update-source a:hover {
+            text-decoration: underline;
+        }
+        
+        .update-content {
+            margin-bottom: 20px;
+            color: #495057;
+            line-height: var(--line-height-relaxed);
+        }
+        
+        .key-takeaways {
+            background: #f8f9fa;
+            border-left: 4px solid #c9302c;
+            padding: 20px;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        .key-takeaways h4 {
+            color: #1a2332;
+            margin-bottom: 12px;
+            font-size: var(--font-size-lg);
+        }
+        
+        .key-takeaways ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .key-takeaways li {
+            margin-bottom: 8px;
+            line-height: var(--line-height-base);
+        }
+        
+        /* Back to Home Link */
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #2c5282;
+            text-decoration: none;
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        
+        .back-link:hover {
+            color: #1a365d;
+            text-decoration: underline;
+        }
+        
+        /* Mobile Navigation Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .mobile-menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: #1a2332;
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+        /* Mobile Menu Overlay */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(26, 35, 50, 0.95);
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .mobile-menu-content {
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .mobile-menu-content .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .mobile-menu-content .nav-links a {
+            color: white;
+            font-size: 1.25rem;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            transition: background 0.2s ease;
+        }
+        .mobile-menu-content .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .mobile-menu-content .nav-cta {
+            display: inline-block;
+            margin-top: 30px;
+            background: #c9302c;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #666;
+            font-size: var(--font-size-sm);
+        }
+        
+        /* Tablet Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .nav-brand {
+                font-size: 1em;
+            }
+            .mobile-menu-toggle {
+                display: block;
+            }
+            .nav-cta {
+                font-size: var(--font-size-sm);
+                padding: 6px 16px;
+            }
+            
+            /* Adjust header */
+            .header {
+                padding: 30px 20px;
+            }
+            .header h1 {
+                font-size: var(--font-size-3xl);
+            }
+            .header p {
+                font-size: var(--font-size-lg);
+            }
+            
+            /* Adjust typography */
+            h2 {
+                font-size: var(--font-size-2xl);
+            }
+            h3 {
+                font-size: var(--font-size-xl);
+            }
+        }
+        
+        /* Mobile Styles */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            
+            /* Mobile header */
+            .header {
+                padding: 25px 15px;
+                border-radius: 6px;
+            }
+            .header h1 {
+                font-size: 1.75rem;
+                line-height: 1.2;
+            }
+            .header p {
+                font-size: var(--font-size-base);
+            }
+            
+            /* Mobile navigation */
+            nav {
+                padding: 0 15px;
+            }
+            .nav-brand {
+                font-size: 0.9rem;
+            }
+            
+            /* Mobile sections */
+            .updates-container {
+                padding: 20px 15px;
+                margin: 15px 0;
+            }
+            
+            .update-item {
+                margin-bottom: 30px;
+                padding-bottom: 30px;
+            }
+            
+            .update-item h3 {
+                font-size: var(--font-size-lg);
+            }
+            
+            .key-takeaways {
+                padding: 15px;
+            }
+            
+            /* Touch-friendly links */
+            a {
+                padding: 5px 0;
+                display: inline-block;
+            }
+            
+            /* Mobile footer */
+            .footer {
+                padding-top: 15px;
+                margin-top: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-container" id="navbar">
+        <nav>
+            <div class="nav-brand">Foothills Fire Prevention</div>
+            <ul class="nav-links">
+                <li><a href="index.html#quick-facts">Facts</a></li>
+                <li><a href="index.html#faq">FAQ</a></li>
+                <li><a href="updates.html">Updates</a></li>
+                <li><a href="index.html#map">Location</a></li>
+                <li><a href="index.html#timeline">Timeline</a></li>
+                <li><a href="index.html#resources">Resources</a></li>
+            </ul>
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <a href="email-generator.html" class="nav-cta">Take Action</a>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </div>
+    
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <ul class="nav-links">
+                <li><a href="index.html#quick-facts" onclick="closeMobileMenu()">Facts</a></li>
+                <li><a href="index.html#faq" onclick="closeMobileMenu()">FAQ</a></li>
+                <li><a href="updates.html" onclick="closeMobileMenu()">Updates</a></li>
+                <li><a href="index.html#map" onclick="closeMobileMenu()">Location</a></li>
+                <li><a href="index.html#timeline" onclick="closeMobileMenu()">Timeline</a></li>
+                <li><a href="index.html#resources" onclick="closeMobileMenu()">Resources</a></li>
+            </ul>
+            <a href="email-generator.html" class="nav-cta">Take Action</a>
+        </div>
+    </div>
+    
+    <a href="index.html" class="back-link">← Back to Main Page</a>
+    
+    <div class="header">
+        <h1>Recent Updates</h1>
+        <p>Latest developments on the shooting range issue</p>
+    </div>
+    
+    <div class="updates-container">
+        
+        <!-- NEW UPDATES GO HERE - Add new updates at the top -->
+        <!-- Example template:
+        <div class="update-item">
+            <h3>Month DD, YYYY - Update Title Here</h3>
+            <p class="update-source">Source: <a href="URL_HERE" target="_blank">Source Name</a></p>
+            <div class="update-content">
+                <p>Main update content goes here. This should be a clear summary of what happened or what new information became available.</p>
+            </div>
+            <div class="key-takeaways">
+                <h4>Key Takeaways:</h4>
+                <ul>
+                    <li>First important point</li>
+                    <li>Second important point</li>
+                    <li>Third important point</li>
+                </ul>
+            </div>
+        </div>
+        -->
+        
+        <div class="update-item">
+            <h3>June 26, 2025 - Shooting Range Files Permit to Become Permanent</h3>
+            <p class="update-source">Source: <a href="https://boisedev.com/news/2025/06/26/ada-county-shooting-range-june-26-2025/" target="_blank">BoiseDev</a></p>
+            <div class="update-content">
+                <p>The landowner submitted a conditional use permit application but hasn't paid the required $1,150 in fees. Without payment, the application won't be processed. The application claims they don't need a permit and describes the operation as for 'invited guests of whatever nature' - avoiding mention of the commercial business.</p>
+            </div>
+            <div class="key-takeaways">
+                <h4>Key Takeaways:</h4>
+                <ul>
+                    <li>Still defying authorities (no fees paid)</li>
+                    <li>Deceptive application language</li>
+                    <li>Wants ability to shoot "any hours of any day"</li>
+                    <li>Your voice matters - they're feeling the pressure</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- OLDER UPDATES GO BELOW -->
+        
+    </div>
+
+    <div class="footer">
+        <p><strong>This page is maintained by concerned Boise foothills residents.</strong></p>
+        <p>Information compiled from public records, news sources, and official county documents.</p>
+        <p><em>Last updated: June 2025</em></p>
+    </div>
+    
+    <script>
+        // Show/hide navigation on scroll
+        let lastScroll = 0;
+        const navbar = document.getElementById('navbar');
+        const header = document.querySelector('.header');
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            const headerBottom = header.offsetTop + header.offsetHeight;
+            
+            if (currentScroll > headerBottom) {
+                navbar.classList.add('visible');
+                document.body.classList.add('nav-visible');
+            } else {
+                navbar.classList.remove('visible');
+                document.body.classList.remove('nav-visible');
+            }
+            
+            lastScroll = currentScroll;
+        });
+        
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            const body = document.body;
+            
+            if (mobileMenu.classList.contains('active')) {
+                closeMobileMenu();
+            } else {
+                mobileMenu.classList.add('active');
+                menuToggle.classList.add('active');
+                body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+            }
+        }
+        
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            const body = document.body;
+            
+            mobileMenu.classList.remove('active');
+            menuToggle.classList.remove('active');
+            body.style.overflow = ''; // Restore scrolling
+        }
+        
+        // Close mobile menu on resize to desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                closeMobileMenu();
+            }
+        });
+    </script>
+</body>
+</html>

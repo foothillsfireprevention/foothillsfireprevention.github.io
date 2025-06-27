@@ -643,6 +643,41 @@
             font-size: 1.1rem;
         }
         
+        /* Latest Update Notification */
+        .latest-update {
+            background: #fff9e6;
+            border: 1px solid #f0e0c0;
+            border-radius: 8px;
+            padding: 20px 25px;
+            margin: 30px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .update-content {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .update-header {
+            font-weight: 600;
+            font-size: var(--font-size-lg);
+            color: #6b5b00;
+        }
+        .update-text {
+            color: #5a4d00;
+            line-height: 1.5;
+        }
+        .update-link {
+            color: #c9302c;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: var(--font-size-base);
+            transition: color 0.2s ease;
+        }
+        .update-link:hover {
+            color: #a02622;
+            text-decoration: underline;
+        }
+        
         /* Tablet Styles */
         @media (max-width: 768px) {
             .nav-links {
@@ -709,7 +744,7 @@
             /* Mobile sections */
             .quick-facts, .toc-section, .faq-section, 
             .action-section, .resources-section, 
-            .timeline-section, .map-section {
+            .timeline-section, .map-section, .latest-update {
                 padding: 20px 15px;
                 margin: 15px 0;
             }
@@ -789,6 +824,7 @@
             <ul class="nav-links">
                 <li><a href="#quick-facts">Facts</a></li>
                 <li><a href="#faq">FAQ</a></li>
+                <li><a href="updates.html">Updates</a></li>
                 <li><a href="#map">Location</a></li>
                 <li><a href="#timeline">Timeline</a></li>
                 <li><a href="#resources">Resources</a></li>
@@ -810,6 +846,7 @@
             <ul class="nav-links">
                 <li><a href="#quick-facts" onclick="closeMobileMenu()">Facts</a></li>
                 <li><a href="#faq" onclick="closeMobileMenu()">FAQ</a></li>
+                <li><a href="updates.html" onclick="closeMobileMenu()">Updates</a></li>
                 <li><a href="#map" onclick="closeMobileMenu()">Location</a></li>
                 <li><a href="#timeline" onclick="closeMobileMenu()">Timeline</a></li>
                 <li><a href="#resources" onclick="closeMobileMenu()">Resources</a></li>
@@ -821,6 +858,14 @@
     <div class="header">
         <h1>Boise Foothills Shooting Range Proposal</h1>
         <p>Community Information & Resources</p>
+    </div>
+
+    <div class="latest-update">
+        <div class="update-content">
+            <div class="update-header">Latest News</div>
+            <div class="update-text">Shooting range files permit to become permanent. (June 26, 2025)</div>
+            <a href="/updates" class="update-link">Read full update →</a>
+        </div>
     </div>
 
     <div class="quick-facts" id="quick-facts">
