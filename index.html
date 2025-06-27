@@ -90,6 +90,11 @@
             font-weight: 600;
             color: #1a2332;
             font-size: 1.1em;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .nav-brand:hover {
+            color: #c9302c;
         }
         .nav-links {
             display: flex;
@@ -678,6 +683,42 @@
             text-decoration: underline;
         }
         
+        /* Nav Actions Container */
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-shrink: 0;
+        }
+        
+        /* Medium screens - hide nav before full tablet breakpoint */
+        @media (max-width: 900px) {
+            .nav-links {
+                gap: 20px;
+            }
+            .nav-links a {
+                font-size: 0.9em;
+            }
+            .nav-cta {
+                white-space: nowrap;
+                padding: 6px 16px;
+                font-size: 0.9em;
+            }
+        }
+        
+        /* Prevent layout break at medium sizes */
+        @media (max-width: 850px) and (min-width: 769px) {
+            nav {
+                padding: 0 15px;
+            }
+            .nav-links {
+                gap: 15px;
+            }
+            .nav-brand {
+                font-size: 1em;
+            }
+        }
+        
         /* Tablet Styles */
         @media (max-width: 768px) {
             .nav-links {
@@ -820,7 +861,7 @@
 <body>
     <div class="nav-container" id="navbar">
         <nav>
-            <div class="nav-brand">Foothills Fire Prevention</div>
+            <a href="#" class="nav-brand">Foothills Fire Prevention</a>
             <ul class="nav-links">
                 <li><a href="#quick-facts">Facts</a></li>
                 <li><a href="#faq">FAQ</a></li>
@@ -829,7 +870,7 @@
                 <li><a href="#timeline">Timeline</a></li>
                 <li><a href="#resources">Resources</a></li>
             </ul>
-            <div style="display: flex; align-items: center; gap: 15px;">
+            <div class="nav-actions">
                 <a href="email-generator.html" class="nav-cta">Take Action</a>
                 <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
                     <span></span>
