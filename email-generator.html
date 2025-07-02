@@ -517,12 +517,12 @@
 
             <!-- Tell Us About Yourself -->
             <fieldset>
-                <legend>Tell Us About Yourself</legend>
+                <legend>Tell Us About Yourself <span class="required-asterisk">*</span></legend>
                 <p style="color: #666; margin-top: -5px; margin-bottom: 15px; font-size: 0.95rem;">Use this area to tell us about yourself and your connection to Boise and the foothills. Focus on what you love about the area, what brings you to the foothills and keeps you coming back. Anything that helps us know more about you.</p>
                 <div class="input-group">
                     <textarea id="residentTypeOther" name="residentTypeOther" rows="4"
                               style="margin-top: 8px;"
-                              placeholder="I've lived in Boise for 15 years and the foothills are why I stay. My dog and I hike Chukar Butte twice a week. My teenagers learned to mountain bike on these trails. This is home..."></textarea>
+                              placeholder="I've lived in Boise for 15 years and the foothills are why I stay. My dog and I hike Chukar Butte twice a week. My teenagers learned to mountain bike on these trails. This is home..." required></textarea>
                 </div>
             </fieldset>
 
@@ -531,20 +531,20 @@
                 <legend>What are your primary concerns? (select up to 4)</legend>
                 <div id="concerns" class="checkbox-group"></div>
                 <div class="input-group" style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #e9ecef;">
-                    <label for="concernsOther" style="font-weight: 600; color: #2c5282; font-size: var(--font-size-base);">Tell us more</label>
+                    <label for="concernsOther" style="font-weight: 600; color: #2c5282; font-size: var(--font-size-base);">Tell us more <span class="required-asterisk">*</span></label>
                     <p style="color: #666; margin-top: -5px; margin-bottom: 10px; font-size: 0.95rem;">Please tell us more about how your primary concerns affect you and your family. What impact would a legal and busy shooting range have on how you live, recreate, and relax? What would you worry about, what would you feel had been lost?</p>
                     <textarea id="concernsOther" name="concernsOther" rows="4"
                               style="margin-top: 8px;"
-                              placeholder="The constant gunfire has ruined our peaceful hikes, and knowing they're shooting in fire-prone areas makes me anxious every time I see smoke or smell anything burning..."></textarea>
+                              placeholder="The constant gunfire has ruined our peaceful hikes, and knowing they're shooting in fire-prone areas makes me anxious every time I see smoke or smell anything burning..." required></textarea>
                 </div>
             </fieldset>
 
             <!-- Long-Term Impacts -->
             <fieldset>
-                <legend>Long-Term Impacts</legend>
+                <legend>Long-Term Impacts <span class="required-asterisk">*</span></legend>
                 <p style="margin: 5px 0 10px 0; font-size: var(--font-size-sm); color: #6c757d;">If this shooting range were to be approved, how would your life change? What would you do differently?</p>
                 <textarea id="personalImpact" name="personalImpact" rows="5" 
-                    placeholder="I'd have to find new running routes, adding 40 minutes of driving to my day. Our property values would drop. My anxious dog would need medication. We'd keep windows closed year-round. This isn't the life we chose..."></textarea>
+                    placeholder="I'd have to find new running routes, adding 40 minutes of driving to my day. Our property values would drop. My anxious dog would need medication. We'd keep windows closed year-round. This isn't the life we chose..." required></textarea>
             </fieldset>
 
             <!-- Length/Style Selection -->
@@ -568,7 +568,7 @@
 
             <!-- Special field for form processing -->
             <div style="position: absolute; left: -5000px;" aria-hidden="true">
-                <input type="text" name="website" tabindex="-1" autocomplete="off">
+                <input type="text" name="hp_field_check" tabindex="-1" autocomplete="off">
             </div>
 
             <!-- Submit -->
@@ -984,8 +984,9 @@ Tone: Use formal, professional language`;
             const formData = new FormData(e.target);
             
             // Check special field
-            if (formData.get('website')) {
-                // Invalid submission - fail silently
+            if (formData.get('hp_field_check')) {
+                // Invalid submission - provide user feedback
+                alert('There was an issue with your submission. Please refresh the page and try again.');
                 submitButton.innerHTML = originalText;
                 submitButton.disabled = false;
                 return;
@@ -1005,13 +1006,6 @@ Tone: Use formal, professional language`;
                 lengthStyle: formData.get('lengthStyle')
             };
             
-            // Validate about yourself section
-            if (!data.residentTypeOther) {
-                alert('Please tell us about yourself and your connection to the area');
-                submitButton.innerHTML = originalText;
-                submitButton.disabled = false;
-                return;
-            }
             
             if (!data.distance) {
                 alert('Please select your distance from the shooting range');
@@ -1020,8 +1014,8 @@ Tone: Use formal, professional language`;
                 return;
             }
             
-            if (data.concerns.length === 0 && !data.concernsOther) {
-                alert('Please select at least one concern or fill in "Other concerns"');
+            if (data.concerns.length === 0) {
+                alert('Please select at least one concern');
                 submitButton.innerHTML = originalText;
                 submitButton.disabled = false;
                 return;
@@ -1232,13 +1226,27 @@ Tone: Use formal, professional language`;
 
         // Initialize
         buildFormFields();
-        setupConcernsLimit();
-        checkTestMode();
-        document.getElementById('emailForm').addEventListener('submit', handleSubmit);
-        document.getElementById('copyButton').addEventListener('click', copyToClipboard);
-        document.getElementById('emailButton').addEventListener('click', openEmailClient);
-        document.getElementById('shareToolButton').addEventListener('click', shareTool);
-        document.getElementById('copyInsteadButton').addEventListener('click', handleCopyInstead);
+        // Wait for DOM to be fully loaded before attaching event listeners
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+                setupConcernsLimit();
+                checkTestMode();
+                document.getElementById('emailForm').addEventListener('submit', handleSubmit);
+                document.getElementById('copyButton').addEventListener('click', copyToClipboard);
+                document.getElementById('emailButton').addEventListener('click', openEmailClient);
+                document.getElementById('shareToolButton').addEventListener('click', shareTool);
+                document.getElementById('copyInsteadButton').addEventListener('click', handleCopyInstead);
+            });
+        } else {
+            // DOM is already loaded
+            setupConcernsLimit();
+            checkTestMode();
+            document.getElementById('emailForm').addEventListener('submit', handleSubmit);
+            document.getElementById('copyButton').addEventListener('click', copyToClipboard);
+            document.getElementById('emailButton').addEventListener('click', openEmailClient);
+            document.getElementById('shareToolButton').addEventListener('click', shareTool);
+            document.getElementById('copyInsteadButton').addEventListener('click', handleCopyInstead);
+        }
     </script>
 </body>
 </html>
