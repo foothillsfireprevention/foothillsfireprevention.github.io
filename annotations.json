@@ -1,0 +1,25 @@
+{
+  "pages": [
+    {
+      "pageNumber": 1,
+      "imageNaturalWidth": 1700,
+      "imageNaturalHeight": 2200,
+      "annotations": [
+        {
+          "id": "no-permit-belief",
+          "coordinates": { "x": 216, "y": 357, "width": 1270, "height": 96 },
+          "title": "Does Not Believe He Even Needs a Permit",
+          "description": "The applicant explicitly states he does not believe a conditional use permit is necessary and does not believe it has violated county code. This shows a fundamental misunderstanding or disregard for county regulations.",
+          "category": "critical"
+        },
+        {
+          "id": "annotation-2",
+          "coordinates": { "x": 216, "y": 618, "width": 1262, "height": 55 },
+          "title": "Title for this section",
+          "description": "Description for this highlighted section",
+          "category": "warning"
+        }
+      ]
+    }
+  ]
+}

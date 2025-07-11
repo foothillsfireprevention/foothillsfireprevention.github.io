@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detailed Letter Analysis - Boise Foothills Shooting Range</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <style>
+        /* Typography System */
+        :root {
+            --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-size-base: 16px;
+            --font-size-sm: 0.875rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 2rem;
+            --font-size-4xl: 2.5rem;
+            --line-height-tight: 1.25;
+            --line-height-base: 1.6;
+            --line-height-relaxed: 1.75;
+            --letter-spacing-tight: -0.025em;
+            --letter-spacing-wide: 0.025em;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            font-size: var(--font-size-base);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: var(--line-height-base);
+            color: #2c3e50;
+            background: #f8f9fa;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Navigation Bar */
+        .nav-container {
+            position: fixed;
+            top: -60px;
+            left: 0;
+            right: 0;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: top 0.3s ease;
+        }
+        .nav-container.visible {
+            top: 0;
+        }
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+        .nav-brand {
+            font-weight: 600;
+            color: #1a2332;
+            font-size: 1.1em;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .nav-brand:hover {
+            color: #c9302c;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        .nav-links a {
+            color: #1a2332;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+            font-size: 0.95em;
+        }
+        .nav-links a:hover {
+            color: #c9302c;
+        }
+        .nav-links .active {
+            color: #c9302c;
+            position: relative;
+        }
+        .nav-links .active::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #c9302c;
+        }
+        
+        /* Mobile menu toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+        .mobile-menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: #1a2332;
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1a2332 0%, #2c3e50 60%, #c9302c 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 30px;
+            margin-top: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            letter-spacing: var(--letter-spacing-tight);
+        }
+        .header p {
+            margin: 10px 0 0;
+            font-size: var(--font-size-lg);
+            opacity: 0.9;
+        }
+        
+        /* Letter viewer container */
+        .letter-viewer {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .viewer-controls {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .legend {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: var(--font-size-sm);
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            border: 1px solid rgba(0,0,0,0.2);
+        }
+        
+        .zoom-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .zoom-controls button {
+            background: #1a2332;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: var(--font-size-sm);
+            transition: background-color 0.2s ease;
+        }
+        
+        .zoom-controls button:hover {
+            background: #2c3e50;
+        }
+        
+        .zoom-controls button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .zoom-level {
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            min-width: 50px;
+            text-align: center;
+        }
+        
+        /* Letter container */
+        .letter-container {
+            position: relative;
+            overflow: auto;
+            max-height: 80vh;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: #fafafa;
+        }
+        
+        .letter-image-wrapper {
+            position: relative;
+            display: inline-block;
+            transform-origin: top left;
+            transition: transform 0.3s ease;
+        }
+        
+        .letter-image {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* Annotation overlays */
+        .annotation {
+            position: absolute;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .annotation.coordinate-mode {
+            pointer-events: none;
+            opacity: 0.3;
+        }
+        
+        .annotation:hover {
+            border-color: currentColor;
+            box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
+        }
+        
+        .annotation.critical {
+            background: rgba(220, 53, 69, 0.2);
+            color: #dc3545;
+        }
+        
+        .annotation.warning {
+            background: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+        }
+        
+        .annotation.info {
+            background: rgba(23, 162, 184, 0.2);
+            color: #17a2b8;
+        }
+        
+        .annotation.success {
+            background: rgba(40, 167, 69, 0.2);
+            color: #28a745;
+        }
+        
+        /* Tooltip */
+        .tooltip {
+            position: absolute;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 100;
+            max-width: 300px;
+            display: none;
+            pointer-events: none;
+        }
+        
+        .tooltip.visible {
+            display: block;
+        }
+        
+        .tooltip-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: var(--font-size-base);
+            color: #1a2332;
+        }
+        
+        .tooltip-description {
+            font-size: var(--font-size-sm);
+            line-height: var(--line-height-base);
+            color: #2c3e50;
+        }
+        
+        .tooltip-arrow {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: white;
+            border: 1px solid #ddd;
+            transform: rotate(45deg);
+        }
+        
+        .tooltip-arrow.top {
+            bottom: -6px;
+            left: 50%;
+            margin-left: -5px;
+            border-top: none;
+            border-left: none;
+        }
+        
+        .tooltip-arrow.bottom {
+            top: -6px;
+            left: 50%;
+            margin-left: -5px;
+            border-bottom: none;
+            border-right: none;
+        }
+        
+        /* Instructions */
+        .instructions {
+            background: #f8f9fa;
+            border-left: 4px solid #17a2b8;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        
+        .instructions h3 {
+            margin: 0 0 10px;
+            color: #1a2332;
+            font-size: var(--font-size-lg);
+        }
+        
+        .instructions p {
+            margin: 0;
+            font-size: var(--font-size-sm);
+            color: #2c3e50;
+        }
+        
+        /* Mobile styles */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .header h1 {
+                font-size: var(--font-size-2xl);
+            }
+            
+            .viewer-controls {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .legend {
+                flex-wrap: wrap;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: #fff;
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all 0.3s ease;
+            }
+            
+            .nav-links.mobile-visible {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            .tooltip {
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="nav-container">
+        <nav>
+            <a href="index.html" class="nav-brand">Foothills Fire Prevention</a>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="updates.html">Updates</a>
+                <a href="letter-viewer.html" class="active">Letter Analysis</a>
+                <a href="email-generator.html">Take Action</a>
+                <a href="signup.html">Newsletter</a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>Detailed Letter Analysis</h1>
+        <p>Interactive review of the conditional use permit application</p>
+    </div>
+
+    <!-- Instructions -->
+    <div class="instructions">
+        <h3>How to use this viewer</h3>
+        <p>Hover over or click the highlighted areas to see detailed commentary about specific sections of the letter. Different colors indicate different types of issues or points of interest.</p>
+    </div>
+
+    <!-- Letter Viewer -->
+    <div class="letter-viewer">
+        <div class="viewer-controls">
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color" style="background: rgba(220, 53, 69, 0.3);"></div>
+                    <span>Critical Issues</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: rgba(255, 193, 7, 0.3);"></div>
+                    <span>Concerns</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: rgba(23, 162, 184, 0.3);"></div>
+                    <span>Information</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: rgba(40, 167, 69, 0.3);"></div>
+                    <span>Key Points</span>
+                </div>
+            </div>
+            
+            <div class="zoom-controls">
+                <button onclick="zoomOut()">Zoom Out</button>
+                <span class="zoom-level">100%</span>
+                <button onclick="zoomIn()">Zoom In</button>
+                <button onclick="resetZoom()">Reset</button>
+                <button onclick="toggleCoordinateMode()" style="margin-left: 10px; background: #17a2b8;">Coordinate Mode</button>
+            </div>
+        </div>
+        
+        <div class="letter-container" id="letterContainer">
+            <div class="letter-image-wrapper" id="imageWrapper">
+                <img src="images/DetailedLetter.jpeg" alt="Detailed Letter Page 1" class="letter-image" id="letterImage">
+                <!-- Annotations will be added here dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Tooltip -->
+    <div class="tooltip" id="tooltip">
+        <div class="tooltip-title"></div>
+        <div class="tooltip-description"></div>
+        <div class="tooltip-arrow"></div>
+    </div>
+
+    <script>
+        // Zoom functionality
+        let currentZoom = 1;
+        const zoomStep = 0.1;
+        const maxZoom = 3;
+        const minZoom = 0.5;
+        let coordinateMode = false;
+        
+        function updateZoom() {
+            const wrapper = document.getElementById('imageWrapper');
+            wrapper.style.transform = `scale(${currentZoom})`;
+            document.querySelector('.zoom-level').textContent = Math.round(currentZoom * 100) + '%';
+            
+            // Update button states
+            document.querySelector('.zoom-controls button:first-child').disabled = currentZoom <= minZoom;
+            document.querySelector('.zoom-controls button:nth-child(3)').disabled = currentZoom >= maxZoom;
+            
+            // Redisplay annotations to account for zoom
+            if (annotations.length > 0) {
+                displayAnnotations();
+            }
+        }
+        
+        function zoomIn() {
+            if (currentZoom < maxZoom) {
+                currentZoom = Math.min(currentZoom + zoomStep, maxZoom);
+                updateZoom();
+            }
+        }
+        
+        function zoomOut() {
+            if (currentZoom > minZoom) {
+                currentZoom = Math.max(currentZoom - zoomStep, minZoom);
+                updateZoom();
+            }
+        }
+        
+        function resetZoom() {
+            currentZoom = 1;
+            updateZoom();
+        }
+        
+        function toggleCoordinateMode() {
+            coordinateMode = !coordinateMode;
+            const button = event.target;
+            const annotations = document.querySelectorAll('.annotation');
+            
+            if (coordinateMode) {
+                button.style.background = '#dc3545';
+                button.textContent = 'Exit Coordinate Mode';
+                annotations.forEach(ann => ann.classList.add('coordinate-mode'));
+                console.log('=== COORDINATE MODE ENABLED ===');
+                console.log('Click anywhere on the image to get coordinates');
+                console.log('Annotations are dimmed and click-through');
+            } else {
+                button.style.background = '#17a2b8';
+                button.textContent = 'Coordinate Mode';
+                annotations.forEach(ann => ann.classList.remove('coordinate-mode'));
+                console.log('=== COORDINATE MODE DISABLED ===');
+            }
+        }
+        
+        // Navigation functionality
+        let lastScrollY = window.scrollY;
+        const navContainer = document.querySelector('.nav-container');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                if (window.scrollY < lastScrollY) {
+                    navContainer.classList.add('visible');
+                } else {
+                    navContainer.classList.remove('visible');
+                }
+            } else {
+                navContainer.classList.remove('visible');
+            }
+            lastScrollY = window.scrollY;
+        });
+        
+        function toggleMobileMenu() {
+            document.querySelector('.nav-links').classList.toggle('mobile-visible');
+        }
+        
+        // Load and display annotations
+        let annotations = [];
+        
+        async function loadAnnotations() {
+            try {
+                console.log('Loading annotations...');
+                const response = await fetch('annotations.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                console.log('Annotations data loaded:', data);
+                const page1 = data.pages.find(p => p.pageNumber === 1);
+                if (page1) {
+                    annotations = page1.annotations;
+                    console.log(`Found ${annotations.length} annotations`);
+                    displayAnnotations();
+                }
+            } catch (error) {
+                console.error('Error loading annotations:', error);
+            }
+        }
+        
+        function displayAnnotations() {
+            const wrapper = document.getElementById('imageWrapper');
+            const image = document.getElementById('letterImage');
+            
+            console.log('Display annotations called');
+            console.log('Image complete:', image.complete);
+            console.log('Natural dimensions:', image.naturalWidth, 'x', image.naturalHeight);
+            console.log('Displayed dimensions:', image.width, 'x', image.height);
+            
+            // Wait for image to load
+            if (!image.complete || !image.naturalWidth) {
+                console.log('Image not loaded, waiting...');
+                image.onload = () => displayAnnotations();
+                return;
+            }
+            
+            // Clear existing annotations
+            wrapper.querySelectorAll('.annotation').forEach(el => el.remove());
+            
+            // Get the current scale factor accounting for zoom
+            const displayScale = image.width / image.naturalWidth;
+            const totalScale = displayScale * currentZoom;
+            console.log('Display scale:', displayScale, 'Zoom:', currentZoom, 'Total scale:', totalScale);
+            
+            // Add new annotations
+            annotations.forEach((annotation, index) => {
+                console.log(`Adding annotation ${index + 1}:`, annotation.title);
+                console.log('Raw coordinates:', annotation.coordinates);
+                
+                const div = document.createElement('div');
+                div.className = `annotation ${annotation.category}`;
+                
+                // Calculate position based on absolute coordinates scaled to current image size
+                const scaledX = annotation.coordinates.x * displayScale;
+                const scaledY = annotation.coordinates.y * displayScale;
+                const scaledWidth = annotation.coordinates.width * displayScale;
+                const scaledHeight = annotation.coordinates.height * displayScale;
+                
+                div.style.left = scaledX + 'px';
+                div.style.top = scaledY + 'px';
+                div.style.width = scaledWidth + 'px';
+                div.style.height = scaledHeight + 'px';
+                
+                console.log(`Scaled position: ${scaledX}px, ${scaledY}px, ${scaledWidth}px x ${scaledHeight}px`);
+                
+                // Add event listeners
+                div.addEventListener('mouseenter', (e) => showTooltip(e, annotation));
+                div.addEventListener('mouseleave', hideTooltip);
+                div.addEventListener('click', (e) => showTooltip(e, annotation, true));
+                
+                wrapper.appendChild(div);
+            });
+            console.log('All annotations added');
+        }
+        
+        function showTooltip(event, annotation, isClick = false) {
+            const tooltip = document.getElementById('tooltip');
+            const titleEl = tooltip.querySelector('.tooltip-title');
+            const descEl = tooltip.querySelector('.tooltip-description');
+            
+            titleEl.textContent = annotation.title;
+            descEl.textContent = annotation.description;
+            
+            tooltip.classList.add('visible');
+            
+            // Position tooltip
+            const rect = event.target.getBoundingClientRect();
+            const tooltipRect = tooltip.getBoundingClientRect();
+            const arrow = tooltip.querySelector('.tooltip-arrow');
+            
+            let left = rect.left + rect.width / 2 - tooltipRect.width / 2;
+            let top = rect.bottom + 10;
+            
+            // Check if tooltip goes off screen
+            if (left < 10) left = 10;
+            if (left + tooltipRect.width > window.innerWidth - 10) {
+                left = window.innerWidth - tooltipRect.width - 10;
+            }
+            
+            // If tooltip would go below viewport, show above
+            if (top + tooltipRect.height > window.innerHeight - 10) {
+                top = rect.top - tooltipRect.height - 10;
+                arrow.className = 'tooltip-arrow bottom';
+            } else {
+                arrow.className = 'tooltip-arrow top';
+            }
+            
+            tooltip.style.left = left + 'px';
+            tooltip.style.top = top + 'px';
+            
+            // For clicks on mobile, add a close handler
+            if (isClick) {
+                setTimeout(() => {
+                    document.addEventListener('click', hideTooltipOnClick);
+                }, 100);
+            }
+        }
+        
+        function hideTooltip() {
+            const tooltip = document.getElementById('tooltip');
+            tooltip.classList.remove('visible');
+        }
+        
+        function hideTooltipOnClick(e) {
+            if (!e.target.closest('.annotation')) {
+                hideTooltip();
+                document.removeEventListener('click', hideTooltipOnClick);
+            }
+        }
+        
+        // Helper function to get coordinates on image click
+        function setupCoordinateHelper() {
+            const image = document.getElementById('letterImage');
+            const wrapper = document.getElementById('imageWrapper');
+            
+            wrapper.addEventListener('click', (e) => {
+                if (e.target === image) {
+                    const rect = image.getBoundingClientRect();
+                    const displayScale = image.width / image.naturalWidth;
+                    
+                    // Get click position relative to image
+                    const relativeX = e.clientX - rect.left;
+                    const relativeY = e.clientY - rect.top;
+                    
+                    // Convert to natural image coordinates
+                    const naturalX = relativeX / displayScale;
+                    const naturalY = relativeY / displayScale;
+                    
+                    console.log('=== COORDINATE HELPER ===');
+                    console.log(`Clicked at: ${Math.round(naturalX)}, ${Math.round(naturalY)} (natural image coordinates)`);
+                    console.log(`Display coordinates: ${Math.round(relativeX)}, ${Math.round(relativeY)}`);
+                    console.log('To use these coordinates in annotations.json:');
+                    console.log(`"x": ${Math.round(naturalX)}, "y": ${Math.round(naturalY)}`);
+                    console.log('========================');
+                }
+            });
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadAnnotations();
+            updateZoom();
+            setupCoordinateHelper();
+        });
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            if (annotations.length > 0) {
+                displayAnnotations();
+            }
+        });
+    </script>
+</body>
+</html>
