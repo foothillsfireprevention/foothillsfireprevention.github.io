@@ -497,6 +497,179 @@
                 margin-top: 30px;
             }
         }
+        
+        /* Gallery Widget Styles */
+        .gallery-widget {
+            margin: 20px 0;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 8px;
+            background: #f8f9fa;
+            aspect-ratio: 1;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 8px;
+            font-size: 0.85rem;
+            text-align: center;
+            transform: translateY(100%);
+            transition: transform 0.2s ease;
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+        
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+        }
+        
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lightbox img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: white;
+            font-size: 40px;
+            font-weight: 300;
+            cursor: pointer;
+            z-index: 2001;
+            line-height: 1;
+            transition: color 0.2s ease;
+        }
+        
+        .lightbox-close:hover {
+            color: #c9302c;
+        }
+        
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: none;
+            font-size: 30px;
+            padding: 20px 15px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            border-radius: 4px;
+        }
+        
+        .lightbox-nav:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .lightbox-prev {
+            left: 20px;
+        }
+        
+        .lightbox-next {
+            right: 20px;
+        }
+        
+        .lightbox-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            background: rgba(0,0,0,0.7);
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            text-align: center;
+            max-width: 80%;
+        }
+        
+        /* Mobile Gallery Adjustments */
+        @media (max-width: 600px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 10px;
+            }
+            
+            .lightbox-close {
+                top: 10px;
+                right: 20px;
+                font-size: 30px;
+            }
+            
+            .lightbox-nav {
+                font-size: 24px;
+                padding: 15px 10px;
+            }
+            
+            .lightbox-prev {
+                left: 10px;
+            }
+            
+            .lightbox-next {
+                right: 10px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -564,6 +737,54 @@
             </div>
         </div>
         -->
+        
+        <div class="update-item" id="august-14-2025">
+            <h3>August 14, 2025 - Public Hearing Date Set</h3>
+            <div class="update-content">
+                <p>The Ada County Planning and Zoning Commission has scheduled a public hearing for the shooting range conditional use permit application. The hearing will take place on August 14th, 2025 at 6:00 PM.</p>
+            </div>
+            <div class="key-takeaways">
+                <h4>Key Takeaways:</h4>
+                <ul>
+                    <li>Public hearing on August 14th, 2025 at 6:00 PM</li>
+                    <li>Location: 200 W Front Street, Boise (Room #1235) (<a href="https://maps.app.goo.gl/Psx8WKVn4bUUXhk67" target="_blank">map</a>)</li>
+                    <li>Can attend in-person or via WebEx</li>
+                    <li>WebEx testimony requires sign-up by August 11th</li>
+                    <li>This is the community's opportunity to voice concerns</li>
+                </ul>
+                
+                <p><strong>To Testify via WebEx:</strong><br>
+                You must sign up by close of business the Monday before the public hearing (August 11, 2025).<br>
+                Sign up here: <a href="https://adacounty.id.gov/developmentservices/public-hearing-testimony-sign-up/" target="_blank">https://adacounty.id.gov/developmentservices/public-hearing-testimony-sign-up/</a></p>
+            </div>
+            
+            <div style="background: #fff9e6; border: 1px solid #f0e0c0; border-radius: 8px; padding: 25px 40px; margin: 20px 0;">
+                <p style="font-size: 1.1rem; color: #3d3300; margin: 0 0 20px 0; line-height: 1.6;">
+                    <strong>Your voice matters!</strong><br>&nbsp;<br>
+                    If you can make it to the meeting to speak in person, your impact will be amplified. We urge you to show up and speak.
+                    If you can't get to Boise but want to attend (in person or online) and need help - <a href="mailto:foothillsfire@protonmail.com" style="color: #c9302c;">reach out</a>.
+                </p>
+                <div style="text-align: center;">
+                    <a href="email-generator.html" style="display: inline-block; background: #c9302c; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 600; transition: background 0.2s ease;">
+                        Write Planning and Zoning Now
+                    </a>
+                </div>
+            </div>
+            
+            <div class="gallery-widget">
+                <h4>Official Notice Documents:</h4>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="images/pz_meeting.png" alt="Planning & Zoning Meeting Notice - Page 1">
+                        <div class="gallery-caption">PZ Meeting Notice - Page 1</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/pz_meeting2.png" alt="Planning & Zoning Meeting Notice - Page 2">
+                        <div class="gallery-caption">PZ Meeting Notice - Page 2</div>
+                    </div>
+                </div>
+            </div>
+        </div>
         
         <div class="update-item">
             <h3>June 26, 2025 - Shooting range seeks to become permanent</h3>
@@ -645,6 +866,124 @@
                 closeMobileMenu();
             }
         });
+        
+        // Gallery Widget JavaScript
+        let currentImageIndex = 0;
+        let galleryImages = [];
+        
+        function initializeGalleries() {
+            const galleries = document.querySelectorAll('.gallery-widget');
+            
+            galleries.forEach((gallery, galleryIndex) => {
+                const items = gallery.querySelectorAll('.gallery-item');
+                
+                items.forEach((item, index) => {
+                    item.addEventListener('click', () => {
+                        const galleryItems = gallery.querySelectorAll('.gallery-item img');
+                        galleryImages = Array.from(galleryItems).map(img => ({
+                            src: img.src,
+                            alt: img.alt || ''
+                        }));
+                        currentImageIndex = index;
+                        openLightbox();
+                    });
+                });
+            });
+        }
+        
+        function openLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            if (!lightbox) {
+                createLightbox();
+            }
+            
+            updateLightboxImage();
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Add keyboard navigation
+            document.addEventListener('keydown', handleLightboxKeyboard);
+        }
+        
+        function createLightbox() {
+            const lightbox = document.createElement('div');
+            lightbox.id = 'lightbox';
+            lightbox.className = 'lightbox';
+            lightbox.innerHTML = `
+                <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+                <button class="lightbox-nav lightbox-prev" onclick="prevImage()">&#8249;</button>
+                <button class="lightbox-nav lightbox-next" onclick="nextImage()">&#8250;</button>
+                <div class="lightbox-content">
+                    <img src="" alt="">
+                    <div class="lightbox-caption"></div>
+                </div>
+            `;
+            
+            // Close on background click
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+            
+            document.body.appendChild(lightbox);
+        }
+        
+        function updateLightboxImage() {
+            const lightbox = document.getElementById('lightbox');
+            const img = lightbox.querySelector('img');
+            const caption = lightbox.querySelector('.lightbox-caption');
+            const prevBtn = lightbox.querySelector('.lightbox-prev');
+            const nextBtn = lightbox.querySelector('.lightbox-next');
+            
+            img.src = galleryImages[currentImageIndex].src;
+            img.alt = galleryImages[currentImageIndex].alt;
+            
+            if (galleryImages[currentImageIndex].alt) {
+                caption.textContent = galleryImages[currentImageIndex].alt;
+                caption.style.display = 'block';
+            } else {
+                caption.style.display = 'none';
+            }
+            
+            // Show/hide navigation buttons
+            prevBtn.style.display = galleryImages.length > 1 ? 'block' : 'none';
+            nextBtn.style.display = galleryImages.length > 1 ? 'block' : 'none';
+        }
+        
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+            document.removeEventListener('keydown', handleLightboxKeyboard);
+        }
+        
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+            updateLightboxImage();
+        }
+        
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+            updateLightboxImage();
+        }
+        
+        function handleLightboxKeyboard(e) {
+            switch(e.key) {
+                case 'ArrowLeft':
+                    prevImage();
+                    break;
+                case 'ArrowRight':
+                    nextImage();
+                    break;
+                case 'Escape':
+                    closeLightbox();
+                    break;
+            }
+        }
+        
+        // Initialize galleries when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initializeGalleries);
     </script>
 </body>
 </html>

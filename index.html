@@ -879,6 +879,206 @@
                 margin-top: 30px;
             }
         }
+        
+        /* Gallery Widget Styles */
+        .gallery-widget {
+            margin: 20px 0;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 8px;
+            background: #f8f9fa;
+            aspect-ratio: 1;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 8px;
+            font-size: 0.85rem;
+            text-align: center;
+            transform: translateY(100%);
+            transition: transform 0.2s ease;
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+        
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+        }
+        
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lightbox img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            cursor: default;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: white;
+            font-size: 50px;
+            font-weight: 300;
+            cursor: pointer;
+            z-index: 2001;
+            line-height: 1;
+            transition: all 0.2s ease;
+            background: rgba(0,0,0,0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lightbox-close:hover {
+            color: #c9302c;
+            background: rgba(0,0,0,0.7);
+            transform: scale(1.1);
+        }
+        
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: none;
+            font-size: 30px;
+            padding: 20px 15px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            border-radius: 4px;
+        }
+        
+        .lightbox-nav:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .lightbox-prev {
+            left: 20px;
+        }
+        
+        .lightbox-next {
+            right: 20px;
+        }
+        
+        .lightbox-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            background: rgba(0,0,0,0.7);
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            text-align: center;
+            max-width: 80%;
+        }
+        
+        /* Mobile Gallery Adjustments */
+        @media (max-width: 600px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 10px;
+            }
+            
+            .lightbox-close {
+                top: 10px;
+                right: 10px;
+                font-size: 30px;
+                width: 40px;
+                height: 40px;
+            }
+            
+            .lightbox-nav {
+                font-size: 24px;
+                padding: 15px 10px;
+                background: rgba(0,0,0,0.7);
+            }
+            
+            .lightbox-prev {
+                left: 5px;
+            }
+            
+            .lightbox-next {
+                right: 5px;
+            }
+            
+            .lightbox img {
+                max-width: 95%;
+                max-height: 80vh;
+                margin: 20px 0;
+            }
+            
+            .lightbox-caption {
+                bottom: 40px;
+                font-size: 0.8rem;
+                padding: 8px 15px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -927,8 +1127,8 @@
     <div class="latest-update">
         <div class="update-content">
             <div class="update-header">Latest News</div>
-            <div class="update-text">• Shooting range seeks to become permanent. (June 26, 2025)</div>
-            <a href="/updates" class="update-link">Read full update →</a>
+            <div class="update-text">• <a href="updates.html" style="color: inherit; text-decoration: none;"><b>Hearing Scheduled</b>: August 14th, 2025 @ 6:00pm - A Public Hearing on the Shooting Range</a></div>
+            <a href="updates.html" class="update-link">Read full update →</a>
         </div>
     </div>
 
@@ -951,7 +1151,7 @@
             </div>
             <div class="fact-item">
                 <strong>Status:</strong>
-                Permit application in progress after nearly 2 years of ignoring the law<br>&nbsp;<br>
+                Permit application submitted.  Hearing scheduled for August 14th, 2025 @ 6:00pm<br>&nbsp;<br>
                 Ada Country CUP Id:<br>202501185-CU-MSP
             </div>
         
@@ -997,7 +1197,7 @@
 
         <div class="faq-item">
             <div class="faq-question">Where exactly is this located?</div>
-            <div class="faq-answer"><a href="https://maps.app.goo.gl/pimGQp8MYVnHwrCWA" target="_blank">15401 N. Cartwright Road (GPS: 43.7353, -116.2211)</a>. The range sits in the open foothills area just north of Rolling Hills in Hidden Springs.</div>
+            <div class="faq-answer"><a href="#" onclick="openMapImage(); return false;" style="color: #2c5282; text-decoration: underline;">15401 N. Cartwright Road (GPS: 43.7353, -116.2211)</a>. The range sits in the open foothills area just north of Rolling Hills in Hidden Springs.</div>
         </div>
 
         <div class="faq-item">
@@ -1008,18 +1208,54 @@
                 The property belongs to the Forsythe family and is indirectly connected to the <a href="https://14group.com/" target="">1,4 Group</a>. 
                 <blockquote>... documents obtained by BoiseDev show Brian D. Ware of Meridian was also listed on documents for Seven Gates Properties. Ware is the CFO of 1,4Group, Inc., which shares an address on Commercial St. in Meridian associated with Seven Gates Investments and Seven Gates Properties, Ada County Treasurer filings show. The 1,4Group was founded by Darol Forsythe according to its website. Darol Forsythe was formerly listed alongside John Forsythe on Idaho Secretary of State filings for Seven Gates Investments, and died in 2017. (<a href="https://boisedev.com/news/2024/09/11/ada-county-firearms-training-business-investigation/" target="_blank">BoiseDev, 9/11/24</a>) </blockquote></li>
             </ul>
-            </P></div>
+            </P>
+            
+            <div class="gallery-widget">
+                <h4>Related Images:</h4>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="images/v4.png" alt="Advertising">
+                        <div class="gallery-caption">Advertising.</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/v2.png" alt="Above the range">
+                        <div class="gallery-caption">Looking down to the shooting range.</div>
+                    </div>
+
+                   
+                    <div class="gallery-item">
+                        <img src="images/v1.png" alt="Targets outside of the shooting range.">
+                        <div class="gallery-caption">1000 yard targets - not in the range</div>
+                    </div>
+                    
+                </div>
+            </div>
+            </div>
         </div>
 
 
         <div class="faq-item">
             <div class="faq-question">What makes this a commercial operation vs. personal use?</div>
-            <div class="faq-answer">The Ada County Prosecutor documented that people "sign up and pay to attend" organized training courses and purchase monthly memberships.  This is not a case of using private land for personal shooting activity.  This is a commericial enterprise with <a href="https://www.instagram.com/p/DKW-zyQRt9P/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank">advertising</a>, <a href=""https://www.valiancetraining.com/memberships" target="_blank">memberships</a> and <a href="https://www.valiancetraining.com/product-page/2-day-tactical-survival-course" target="_blank">pay-to-play</a> events.</div>
+            <div class="faq-answer">The Ada County Prosecutor documented that people "sign up and pay to attend" organized training courses and purchase monthly memberships.  This is not a case of using private land for personal shooting activity.  This is a commericial enterprise with <a href="https://www.instagram.com/p/DKW-zyQRt9P/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank">advertising</a>, <a href=""https://www.valiancetraining.com/memberships" target="_blank">memberships</a> and <a href="https://www.valiancetraining.com/product-page/2-day-tactical-survival-course" target="_blank">pay-to-play</a> events.
+            
+            <div class="gallery-widget" style="margin-top: 15px;">
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="images/memberships.png" alt="Valiance Memberships - Commercial pricing structure">
+                        <div class="gallery-caption">Monthly Memberships</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/training.png" alt="Paid Training Courses - Commercial operation">
+                        <div class="gallery-caption">Paid Training Courses</div>
+                    </div>
+                </div>
+            </div>
+            </div>
         </div>
 
         <div class="faq-item">
             <div class="faq-question">What's the current legal status?</div>
-            <div class="faq-answer">The operation violates Ada County code by operating without required permits. The prosecutor sent a formal enforcement letter in May 2025 requiring compliance within 30 days. Instead of stopping, the owners are now seeking permits through the conditional use process.  Although they have begun the permitting process, they have been instructed to cease activity until approval.  The shooting continues most days.</div>
+            <div class="faq-answer">The operation violates Ada County code by operating without required permits. The prosecutor sent a formal enforcement letter in May 2025 requiring compliance within 30 days. Instead of stopping, the owners are now seeking permits through the conditional use process.  Learn about the permit they submitted here.  Attend the public hearing on August 14th, 2025 @ 6:00pm to speak in person or online.</div>
         </div>
 
         <div class="faq-item">
@@ -1118,7 +1354,7 @@
                 <div>Planning has communicated a permit application #202501185-CU-MSP is close to submission but unfiled.  Shooting range continues to operate without permits, including a "Sold Out" event for June 20, 2025.</div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-date">Coming Soon</div>
+                <div class="timeline-date">August 14, 2025</div>
                 <div>Public hearing scheduled - your chance to be heard!</div>
             </div>
         </div>
@@ -1178,11 +1414,15 @@
                 </ul>
             </div>
             <div class="resource-category">
-                <h4>Target Shooting and Wildfires</h4>
+                <h4>Wildfires and Shooting Ranges</h4>
                 <ul>
-                    <li><a href="https://www.kivitv.com/news/local-news/in-your-neighborhood/ada-county/dont-be-responsible-for-starting-fires-on-public-lands-because-of-a-hobby" target="_blank">Don't be responsible for starting fires on public lands because of a hobby</a></li>
+                    <li><a href="https://www.kivitv.com/news/local-news/in-your-neighborhood/ada-county/dont-be-responsible-for-starting-fires-on-public-lands-because-of-a-hobby" target="_blank">Don't be responsible for starting fires on public lands because of a hobby (Boise, June 26, 2025)</a></li>
                     <li><a href="https://ksltv.com/website/uncategorized/firefighters-issue-warnings-about-target-shooting-as-danger-heats-up/787743/" target="_blank">Firefighters issue warnings about target shooting as danger heats up (Salt Lake, June 18, 2025)</a></li>
+                    <li><a href="https://www.denver7.com/news/local-news/human-caused-turkey-track-fire-near-douglas-county-shooting-range-remains-128-acres" target="_blank">128-acre human-caused Turkey Track Fire near Douglas County shooting range 30% contained (Denver, April 13, 2025)</a></li>
+                    <li><a href="https://www.southwesternmontananews.com/post/firefighters-responding-to-fire-behind-gun-range-on-ten-mile-road" target="_blank">Firefighters Responding To Fire Behind Gun Range On Ten Mile Road (Montana, July 29, 2024)</a></li>
                     <li><a href="https://www.sciencedirect.com/science/article/pii/S037971122200100X#abs0010" target="_blank">Agency records of wildfires caused by firearms use in the United States (Fire Safety Journal, 2022)</a></li>
+                    
+
                 </ul>
             </div>
             <div class="resource-category">
@@ -1313,6 +1553,175 @@
                 // Final fallback - show URL
                 prompt('Copy this link to share:', window.location.href);
             });
+        }
+        
+        // Gallery Widget JavaScript
+        let currentImageIndex = 0;
+        let galleryImages = [];
+        
+        function initializeGalleries() {
+            const galleries = document.querySelectorAll('.gallery-widget');
+            
+            galleries.forEach((gallery, galleryIndex) => {
+                const items = gallery.querySelectorAll('.gallery-item');
+                
+                items.forEach((item, index) => {
+                    item.addEventListener('click', () => {
+                        const galleryItems = gallery.querySelectorAll('.gallery-item img');
+                        galleryImages = Array.from(galleryItems).map(img => ({
+                            src: img.src,
+                            alt: img.alt || ''
+                        }));
+                        currentImageIndex = index;
+                        openLightbox();
+                    });
+                });
+            });
+        }
+        
+        
+        function createLightbox() {
+            const lightbox = document.createElement('div');
+            lightbox.id = 'lightbox';
+            lightbox.className = 'lightbox';
+            lightbox.innerHTML = `
+                <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+                <button class="lightbox-nav lightbox-prev" onclick="prevImage()">&#8249;</button>
+                <button class="lightbox-nav lightbox-next" onclick="nextImage()">&#8250;</button>
+                <div class="lightbox-content" onclick="event.stopPropagation()">
+                    <img src="" alt="">
+                    <div class="lightbox-caption"></div>
+                </div>
+                <div style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.7); font-size: 14px; pointer-events: none;">Click anywhere to close</div>
+            `;
+            
+            // Close on background click
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+            
+            document.body.appendChild(lightbox);
+        }
+        
+        function updateLightboxImage() {
+            const lightbox = document.getElementById('lightbox');
+            const img = lightbox.querySelector('img');
+            const caption = lightbox.querySelector('.lightbox-caption');
+            const prevBtn = lightbox.querySelector('.lightbox-prev');
+            const nextBtn = lightbox.querySelector('.lightbox-next');
+            
+            img.src = galleryImages[currentImageIndex].src;
+            img.alt = galleryImages[currentImageIndex].alt;
+            
+            if (galleryImages[currentImageIndex].alt) {
+                caption.textContent = galleryImages[currentImageIndex].alt;
+                caption.style.display = 'block';
+            } else {
+                caption.style.display = 'none';
+            }
+            
+            // Show/hide navigation buttons
+            prevBtn.style.display = galleryImages.length > 1 ? 'block' : 'none';
+            nextBtn.style.display = galleryImages.length > 1 ? 'block' : 'none';
+        }
+        
+        
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+            updateLightboxImage();
+        }
+        
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+            updateLightboxImage();
+        }
+        
+        function handleLightboxKeyboard(e) {
+            switch(e.key) {
+                case 'ArrowLeft':
+                    prevImage();
+                    break;
+                case 'ArrowRight':
+                    nextImage();
+                    break;
+                case 'Escape':
+                    closeLightbox();
+                    break;
+            }
+        }
+        
+        // Touch support for mobile swipe
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        function handleTouchStart(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        }
+        
+        function handleTouchEnd(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }
+        
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    // Swiped left - next image
+                    nextImage();
+                } else {
+                    // Swiped right - previous image
+                    prevImage();
+                }
+            }
+        }
+        
+        function openLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            if (!lightbox) {
+                createLightbox();
+            }
+            
+            updateLightboxImage();
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Add keyboard navigation
+            document.addEventListener('keydown', handleLightboxKeyboard);
+            
+            // Add touch support
+            const lightboxContent = lightbox.querySelector('.lightbox-content');
+            lightboxContent.addEventListener('touchstart', handleTouchStart);
+            lightboxContent.addEventListener('touchend', handleTouchEnd);
+        }
+        
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+            document.removeEventListener('keydown', handleLightboxKeyboard);
+            
+            // Remove touch listeners
+            const lightboxContent = lightbox.querySelector('.lightbox-content');
+            lightboxContent.removeEventListener('touchstart', handleTouchStart);
+            lightboxContent.removeEventListener('touchend', handleTouchEnd);
+        }
+        
+        // Initialize galleries when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initializeGalleries);
+        
+        // Open map image directly
+        function openMapImage() {
+            galleryImages = [{
+                src: 'images/map.png',
+                alt: 'Location Map - 15401 N. Cartwright Road'
+            }];
+            currentImageIndex = 0;
+            openLightbox();
         }
     </script>
 </body>
