@@ -127,8 +127,15 @@
             margin-bottom: 30px;
             margin-top: 20px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            position: relative;
+            position: sticky;
+            top: -200px;
+            z-index: 50;
             overflow: hidden;
+            transition: top 0.3s ease;
+        }
+        
+        .header.visible {
+            top: 20px;
         }
         .header::before {
             content: '';
@@ -436,6 +443,42 @@
             margin-bottom: 25px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .instructions.hidden {
+            display: none;
+        }
+        
+        .instructions {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .instructions-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #6c757d;
+            line-height: 1;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+        
+        .instructions-close:hover {
+            background: #f8f9fa;
+            color: #495057;
         }
         
         
@@ -630,7 +673,8 @@
     </div>
 
     <!-- Instructions -->
-    <div class="instructions">
+    <div class="instructions" id="instructions">
+        <button class="instructions-close" onclick="dismissInstructions()" aria-label="Dismiss instructions">&times;</button>
         <p style="margin: 0 0 15px 0; font-size: var(--font-size-lg); color: #2c3e50; line-height: 1.6;">
             You're viewing the actual permit application letter submitted for the proposed shooting range, where the applicant was required to detail their plans and safety measures. Click on highlighted text to see technical analysis and fact-checking of their claims.
         </p>
@@ -679,6 +723,54 @@
     </div>
 
     <script>
+        // Header hide-on-scroll functionality
+        let lastScrollTop = 0;
+        let ticking = false;
+        const header = document.querySelector('.header');
+        
+        function updateHeaderVisibility() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                // Scrolling down & past threshold
+                header.classList.remove('visible');
+            } else if (scrollTop < lastScrollTop - 5) {
+                // Scrolling up with small threshold to prevent jitter
+                header.classList.add('visible');
+            }
+            
+            lastScrollTop = scrollTop;
+            ticking = false;
+        }
+        
+        // Initialize header as visible
+        header.classList.add('visible');
+        
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                window.requestAnimationFrame(updateHeaderVisibility);
+                ticking = true;
+            }
+        });
+        
+        // Dismiss instructions
+        function dismissInstructions() {
+            const instructions = document.getElementById('instructions');
+            instructions.style.opacity = '0';
+            instructions.style.transform = 'translateY(-10px)';
+            setTimeout(() => {
+                instructions.classList.add('hidden');
+            }, 300);
+            
+            // Save preference
+            localStorage.setItem('letterViewerInstructionsDismissed', 'true');
+        }
+        
+        // Check if instructions were previously dismissed
+        if (localStorage.getItem('letterViewerInstructionsDismissed') === 'true') {
+            document.getElementById('instructions').classList.add('hidden');
+        }
+        
         // Zoom functionality
         let currentZoom = 1;
         const zoomStep = 0.1;
@@ -937,6 +1029,17 @@
             if (top + tooltipRect.height > window.innerHeight - 10) {
                 top = rect.top - tooltipRect.height - 10;
                 arrow.className = 'tooltip-arrow bottom';
+                
+                // But if showing above would go off top, show below anyway
+                if (top < 10) {
+                    top = rect.bottom + 10;
+                    arrow.className = 'tooltip-arrow top';
+                    
+                    // If annotation is near top of viewport, scroll it into better view
+                    if (rect.top < 100) {
+                        event.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }
             } else {
                 arrow.className = 'tooltip-arrow top';
             }
