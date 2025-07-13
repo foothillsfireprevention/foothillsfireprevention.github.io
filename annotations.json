@@ -7,17 +7,170 @@
       "annotations": [
         {
           "id": "no-permit-belief",
-          "coordinates": { "x": 216, "y": 357, "width": 1270, "height": 96 },
+          "coordinates": { "x": 215, "y": 357, "width": 1270, "height": 96 },
           "title": "Does Not Believe He Even Needs a Permit",
-          "description": "The applicant explicitly states he does not believe a conditional use permit is necessary and does not believe it has violated county code. This shows a fundamental misunderstanding or disregard for county regulations.",
+          "description": "The dismissiviness of the applicant's response to the permit requirement is a critical issue. It shows a fundamental misunderstanding or disregard for county regulations.  It is also likely that this statement is directed to the Ada County Prosecurtor's office who have an active lawsuit against the applicant for failure to obtain a permit.",
+          "category": "warning"
+        },
+      
+        {
+          "id": "unbounded-use",
+          "coordinates": [
+            { "x": 215, "y": 615, "width": 1264, "height": 28 },
+            { "x": 215, "y": 650, "width": 1109, "height": 23 }
+          ],
+          "title": "Unbounded Use",
+          "description": "What does this mean? The applicant can do whatever they want without regard for regulations? They had to be dragged into the process this time, and right here they say clearly that they won't do the right thing next time, either.",
           "category": "critical"
         },
         {
-          "id": "annotation-2",
-          "coordinates": { "x": 216, "y": 618, "width": 1262, "height": 55 },
-          "title": "Title for this section",
-          "description": "Description for this highlighted section",
+          "id": "Bad Measurement",
+          "coordinates": [
+            { "x": 887, "y": 719, "width": 597, "height": 30 },
+            { "x": 215, "y": 762, "width": 400, "height": 30 }
+          ],
+          "title": "Incorrect Claim",
+          "description": "It takes 2 minutes to measure the distance from the shooting range to the nearest residence.  It's 500 yards away, not 600.  If the applicant cannot measure distances accurately, why should we trust their other claims?",
+          "category": "warning",
+          "imageIcons": [
+            {
+              "x": 1495,
+              "y": 720,
+              "src": "images/distance_to_property.png",
+              "alt": "Aerial measurement showing actual distance",
+              "caption": "Actual distance: 524 yards to the walls of a house, not \"exceeds 600 yards\" as claimed"
+            }
+          ]
+        },
+        {
+          "id": "unsubstantiated-claims",
+          "coordinates": [
+            { "x": 1243, "y": 760, "width": 235, "height": 28 },
+            { "x": 215, "y": 799, "width": 1018, "height": 28 }
+          ],
+          "title": "Unsubstantiated Claims",
+          "description": "The photographs on display from Valiance clearly show this is not accurate.",
+          "category": "critical",
+          "imageIcons": [
+            {
+              "x": 1255,
+              "y": 795,
+              "src": "images/little_backstop.png",
+              "alt": "Photo showing inadequate backstop",
+              "caption": "Clearly this is not a 100' backstop."
+            }
+          ]
+        },
+        {
+          "id": "generalized-claims",
+          "coordinates": [
+            { "x": 503, "y": 888, "width": 970, "height": 28 },
+            { "x": 216, "y": 926, "width": 937, "height": 24 }
+          ],
+          "title": "Overly Generalized Statements",
+          "description": "Tires do not backstop all rounds as evidenced from Valiance pictures.  Rocks are clearly visible in the first and absolutely capable of sparking on impact from a round.",
+          "category": "warning",
+          "imageIcons": [
+            {
+              "x": 1492,
+              "y": 900,
+              "src": "images/sage_rocks.png",
+              "alt": "Photo showing exposed rocks in the backstop area",
+              "caption": "Valiance pictures shows shooting natural terrain, not dirt and tires."
+            }
+          ]
+        },
+        {
+          "id": "one-round-risk",
+          "coordinates": [
+            { "x": 357, "y": 1141, "width": 718, "height": 30 }
+          ],
+          "title": "It Takes Only One Round",
+          "description": "Paying members load their clips, one small mistake and a fire will start.",
+          "category": "critical"
+        },
+        {
+          "id": "pressureized-water",
+          "coordinates": [
+            { "x": 315, "y": 1543, "width": 1055, "height": 30 }
+          ],
+          "title": "No pressurized water on site",
+          "description": "The shooting range is operating on land that is in the 98th percentile for fire risk.  If pressurized water is not required, we should expect expert testimony saying so, not simply a claim from the landowner.",
+          "category": "warning",
+          "imageIcons": [
+            {
+              "x": 1391,
+              "y": 1535,
+              "src": "images/wildfire_risk.png",
+              "alt": "Wildfire risk map showing extreme danger level",
+              "caption": "Area is in the 98th percentile for wildfire risk"
+            }
+          ]
+        },
+        {
+          "id": "lead-contamination",
+          "coordinates": [
+            { "x": 315, "y": 1660, "width": 1172, "height": 19 },
+            { "x": 315, "y": 1692, "width": 223, "height": 30 }
+          ],
+          "title": "Lead Contamination Ignored",
+          "description": "No plan for lead remediation or contamination control. Lead from bullets accumulates in soil and can contaminate groundwater. EPA guidelines require proper management of lead at shooting ranges. Currant Creek flows through the property.",
+          "category": "critical"
+        },
+        {
+          "id": "sensitive-species",
+          "coordinates": [
+            { "x": 315, "y": 1766, "width": 1093, "height": 30 }
+          ],
+          "title": "Ignores Sensitive Species",
+          "description": "The Boise Foothills near Hidden Springs are home to multiple rare and sensitive species, including Aases onion, burrowing owls, sagebrush songbirds, and Townsends big-eared bats. These species depend on quiet, undisturbed sagebrush habitat to survive. No environmental impact assessment or wildlife surveys were conducted to evaluate disruption from gunfire noise.",
           "category": "warning"
+        },
+        {
+          "id": "sound-impact",
+          "coordinates": [
+            { "x": 1388, "y": 1883, "width": 91, "height": 22 },
+            { "x": 315, "y": 1924, "width": 802, "height": 27 }
+          ],
+          "title": "Sound Impact Minimized",
+          "description": "Dismisses noise concerns by claiming distance and natural landscape features mitigates sound, ignoring that gunfire can be heard for miles and disturbs wildlife, residents, and recreational users throughout the foothills. No acoustic analysis was conducted.  Public nuisance alone is a valid reason to deny a permit.",
+          "category": "warning"
+        }
+      ]
+    },
+    {
+      "pageNumber": 2,
+      "imageNaturalWidth": 1700,
+      "imageNaturalHeight": 2200,
+      "annotations": [
+        {
+          "id": "leaving-range",
+          "coordinates": [
+            { "x": 377, "y": 428, "width": 1099, "height": 27 },
+            { "x": 213, "y": 469, "width": 1265, "height": 27 },
+            { "x": 213, "y": 498, "width": 640, "height": 27 }
+          ],
+          "title": "Leaving Range Unsupervised",
+          "description": "This is clearly overstated given photographic evidence from Valiance.",
+          "category": "critical"
+        },
+        {
+          "id": "backstops-claim",
+          "coordinates": [
+            { "x": 915, "y": 740, "width": 487, "height": 26 }
+          ],
+          "title": "Inadequate Backstops",
+          "description": "Claims of '100 foot backstops' are contradicted by photographic evidence showing much smaller berms with exposed rocks that create spark and ricochet hazards.",
+          "category": "critical",
+          "imageIcons": [
+            {
+              "x": 1495,
+              "y": 751,
+              "src": "images/little_backstop.png",
+              "alt": "Photo showing actual backstop height",
+              "caption": "Actual backstop is far less than 100 feet claimed"
+            }
+          ]
         }
       ]
     }

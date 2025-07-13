@@ -254,6 +254,7 @@
             box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
         }
         
+        
         .annotation.critical {
             background: rgba(220, 53, 69, 0.2);
             color: #dc3545;
@@ -328,6 +329,89 @@
             margin-left: -5px;
             border-bottom: none;
             border-right: none;
+        }
+        
+        /* Image icon markers */
+        .image-icon {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background: #17a2b8;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            z-index: 10;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .image-icon:hover {
+            transform: scale(1.1);
+            background: #138496;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+        }
+        
+        .image-icon::after {
+            content: '📷';
+            font-size: 12px;
+        }
+        
+        /* Image preview backdrop */
+        .image-preview-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 100;
+            display: none;
+            cursor: pointer;
+        }
+        
+        .image-preview-backdrop.visible {
+            display: block;
+        }
+        
+        /* Image preview tooltip */
+        .image-preview {
+            position: fixed;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+            z-index: 101;
+            display: none;
+            max-width: 80vw;
+            max-height: 80vh;
+            overflow: auto;
+            cursor: default;
+        }
+        
+        .image-preview.visible {
+            display: block;
+        }
+        
+        .image-preview img {
+            max-width: 100%;
+            max-height: calc(80vh - 80px);
+            height: auto;
+            border-radius: 4px;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .image-preview-caption {
+            margin-top: 8px;
+            font-size: var(--font-size-sm);
+            color: #6c757d;
+            text-align: center;
         }
         
         /* Instructions */
@@ -469,7 +553,8 @@
         
         <div class="letter-container" id="letterContainer">
             <div class="letter-image-wrapper" id="imageWrapper">
-                <img src="images/DetailedLetter.jpeg" alt="Detailed Letter Page 1" class="letter-image" id="letterImage">
+                <img src="images/DetailedLetter.jpeg" alt="Detailed Letter Page 1" class="letter-image letter-page" id="letterImage1" data-page="1">
+                <img src="images/DetailedLetter2.jpg" alt="Detailed Letter Page 2" class="letter-image letter-page" id="letterImage2" data-page="2" style="display: block; margin-top: -4px;">
                 <!-- Annotations will be added here dynamically -->
             </div>
         </div>
@@ -480,6 +565,13 @@
         <div class="tooltip-title"></div>
         <div class="tooltip-description"></div>
         <div class="tooltip-arrow"></div>
+    </div>
+    
+    <!-- Image Preview -->
+    <div class="image-preview-backdrop" id="imageBackdrop" onclick="hideImagePreview()"></div>
+    <div class="image-preview" id="imagePreview">
+        <img src="" alt="">
+        <div class="image-preview-caption"></div>
     </div>
 
     <script>
@@ -567,6 +659,9 @@
         
         // Load and display annotations
         let annotations = [];
+        let currentTooltipAnnotation = null;
+        let tooltipTimeout = null;
+        let currentHighlightedId = null;
         
         async function loadAnnotations() {
             try {
@@ -577,12 +672,9 @@
                 }
                 const data = await response.json();
                 console.log('Annotations data loaded:', data);
-                const page1 = data.pages.find(p => p.pageNumber === 1);
-                if (page1) {
-                    annotations = page1.annotations;
-                    console.log(`Found ${annotations.length} annotations`);
-                    displayAnnotations();
-                }
+                annotations = data.pages;
+                console.log(`Found ${annotations.length} pages`);
+                displayAnnotations();
             } catch (error) {
                 console.error('Error loading annotations:', error);
             }
@@ -590,68 +682,138 @@
         
         function displayAnnotations() {
             const wrapper = document.getElementById('imageWrapper');
-            const image = document.getElementById('letterImage');
+            const images = document.querySelectorAll('.letter-page');
             
             console.log('Display annotations called');
-            console.log('Image complete:', image.complete);
-            console.log('Natural dimensions:', image.naturalWidth, 'x', image.naturalHeight);
-            console.log('Displayed dimensions:', image.width, 'x', image.height);
             
-            // Wait for image to load
-            if (!image.complete || !image.naturalWidth) {
-                console.log('Image not loaded, waiting...');
-                image.onload = () => displayAnnotations();
+            // Wait for all images to load
+            let allLoaded = true;
+            images.forEach(img => {
+                if (!img.complete || !img.naturalWidth) {
+                    allLoaded = false;
+                    img.onload = () => displayAnnotations();
+                }
+            });
+            
+            if (!allLoaded) {
+                console.log('Images not loaded, waiting...');
                 return;
             }
             
-            // Clear existing annotations
+            // Clear existing annotations and icons
             wrapper.querySelectorAll('.annotation').forEach(el => el.remove());
+            wrapper.querySelectorAll('.image-icon').forEach(el => el.remove());
             
-            // Get the current scale factor accounting for zoom
-            const displayScale = image.width / image.naturalWidth;
-            const totalScale = displayScale * currentZoom;
-            console.log('Display scale:', displayScale, 'Zoom:', currentZoom, 'Total scale:', totalScale);
-            
-            // Add new annotations
-            annotations.forEach((annotation, index) => {
-                console.log(`Adding annotation ${index + 1}:`, annotation.title);
-                console.log('Raw coordinates:', annotation.coordinates);
+            // Process each page
+            annotations.forEach(page => {
+                const pageNum = page.pageNumber;
+                const image = document.getElementById(`letterImage${pageNum}`);
+                if (!image) return;
                 
-                const div = document.createElement('div');
-                div.className = `annotation ${annotation.category}`;
+                const displayScale = image.width / image.naturalWidth;
+                let yOffset = 0;
                 
-                // Calculate position based on absolute coordinates scaled to current image size
-                const scaledX = annotation.coordinates.x * displayScale;
-                const scaledY = annotation.coordinates.y * displayScale;
-                const scaledWidth = annotation.coordinates.width * displayScale;
-                const scaledHeight = annotation.coordinates.height * displayScale;
+                // Calculate Y offset for page 2 (position below page 1)
+                if (pageNum === 2) {
+                    const page1Image = document.getElementById('letterImage1');
+                    yOffset = page1Image.offsetTop + page1Image.height - 4; // -4 for margin adjustment
+                }
                 
-                div.style.left = scaledX + 'px';
-                div.style.top = scaledY + 'px';
-                div.style.width = scaledWidth + 'px';
-                div.style.height = scaledHeight + 'px';
+                console.log(`Processing page ${pageNum}, Y offset: ${yOffset}`);
                 
-                console.log(`Scaled position: ${scaledX}px, ${scaledY}px, ${scaledWidth}px x ${scaledHeight}px`);
-                
-                // Add event listeners
-                div.addEventListener('mouseenter', (e) => showTooltip(e, annotation));
-                div.addEventListener('mouseleave', hideTooltip);
-                div.addEventListener('click', (e) => showTooltip(e, annotation, true));
-                
-                wrapper.appendChild(div);
+                // Add annotations for this page
+                page.annotations.forEach((annotation, index) => {
+                    console.log(`Adding annotation ${index + 1}:`, annotation.title);
+                    
+                    // Support both single and multi-rectangle formats
+                    const rectangles = Array.isArray(annotation.coordinates) 
+                        ? annotation.coordinates 
+                        : [annotation.coordinates];
+                    
+                    rectangles.forEach((rect, rectIndex) => {
+                        const div = document.createElement('div');
+                        div.className = `annotation ${annotation.category}`;
+                        div.dataset.annotationId = annotation.id;
+                        
+                        // Calculate position
+                        const scaledX = rect.x * displayScale;
+                        const scaledY = rect.y * displayScale + yOffset;
+                        const scaledWidth = rect.width * displayScale;
+                        const scaledHeight = rect.height * displayScale;
+                        
+                        div.style.left = scaledX + 'px';
+                        div.style.top = scaledY + 'px';
+                        div.style.width = scaledWidth + 'px';
+                        div.style.height = scaledHeight + 'px';
+                    
+                    // Add event listeners
+                    div.addEventListener('mouseenter', (e) => {
+                        // Clear any pending hide timeout
+                        if (tooltipTimeout) {
+                            clearTimeout(tooltipTimeout);
+                            tooltipTimeout = null;
+                        }
+                        
+                        // Always highlight the current annotation (this clears others)
+                        highlightAnnotation(annotation.id);
+                        
+                        // Only reposition tooltip if it's a different annotation
+                        const shouldReposition = currentTooltipAnnotation?.id !== annotation.id;
+                        showTooltip(e, annotation, false, shouldReposition);
+                    });
+                    div.addEventListener('mouseleave', (e) => {
+                        // Check if we're moving to another part of the same annotation
+                        tooltipTimeout = setTimeout(() => {
+                            const hoveredElement = document.elementFromPoint(e.clientX, e.clientY);
+                            const hoveredAnnotation = hoveredElement?.closest('.annotation');
+                            
+                            // If not hovering any annotation, hide everything
+                            if (!hoveredAnnotation) {
+                                hideTooltip();
+                            }
+                        }, 50); // Small delay to allow moving between rectangles
+                    });
+                        div.addEventListener('click', (e) => showTooltip(e, annotation, true, true));
+                        
+                        wrapper.appendChild(div);
+                    });
+                    
+                    // Add image icons for this annotation
+                    if (annotation.imageIcons) {
+                        annotation.imageIcons.forEach((icon) => {
+                            const iconDiv = document.createElement('div');
+                            iconDiv.className = 'image-icon';
+                            iconDiv.style.left = icon.x * displayScale + 'px';
+                            iconDiv.style.top = (icon.y * displayScale + yOffset) + 'px';
+                            
+                            iconDiv.addEventListener('click', (e) => showImagePreview(e, icon));
+                            
+                            wrapper.appendChild(iconDiv);
+                        });
+                    }
+                });
             });
+            
             console.log('All annotations added');
         }
         
-        function showTooltip(event, annotation, isClick = false) {
+        function showTooltip(event, annotation, isClick = false, shouldReposition = true) {
             const tooltip = document.getElementById('tooltip');
             const titleEl = tooltip.querySelector('.tooltip-title');
             const descEl = tooltip.querySelector('.tooltip-description');
+            
+            // Update current annotation tracking
+            currentTooltipAnnotation = annotation;
             
             titleEl.textContent = annotation.title;
             descEl.textContent = annotation.description;
             
             tooltip.classList.add('visible');
+            
+            // Only reposition if needed (not moving between parts of same annotation)
+            if (!shouldReposition && tooltip.classList.contains('visible')) {
+                return;
+            }
             
             // Position tooltip
             const rect = event.target.getBoundingClientRect();
@@ -686,9 +848,30 @@
             }
         }
         
+        function highlightAnnotation(annotationId) {
+            // Clear all highlights
+            document.querySelectorAll('.annotation').forEach(ann => {
+                ann.style.borderColor = '';
+                ann.style.boxShadow = '';
+            });
+            
+            // Apply new highlight if ID provided
+            if (annotationId) {
+                document.querySelectorAll(`[data-annotation-id="${annotationId}"]`).forEach(part => {
+                    part.style.borderColor = 'currentColor';
+                    part.style.boxShadow = '0 0 0 3px rgba(0,0,0,0.1)';
+                });
+                currentHighlightedId = annotationId;
+            } else {
+                currentHighlightedId = null;
+            }
+        }
+        
         function hideTooltip() {
             const tooltip = document.getElementById('tooltip');
             tooltip.classList.remove('visible');
+            currentTooltipAnnotation = null;
+            highlightAnnotation(null); // Clear highlights when hiding tooltip
         }
         
         function hideTooltipOnClick(e) {
@@ -698,13 +881,51 @@
             }
         }
         
+        function showImagePreview(event, imageData) {
+            const preview = document.getElementById('imagePreview');
+            const backdrop = document.getElementById('imageBackdrop');
+            const img = preview.querySelector('img');
+            const caption = preview.querySelector('.image-preview-caption');
+            
+            img.src = imageData.src;
+            img.alt = imageData.alt || '';
+            caption.textContent = imageData.caption || '';
+            
+            backdrop.classList.add('visible');
+            preview.classList.add('visible');
+            
+            // Wait for image to load to get proper dimensions
+            img.onload = () => {
+                const previewRect = preview.getBoundingClientRect();
+                
+                // Center the preview in the viewport
+                let left = (window.innerWidth - previewRect.width) / 2;
+                let top = (window.innerHeight - previewRect.height) / 2;
+                
+                // Ensure minimum margins
+                if (left < 20) left = 20;
+                if (top < 20) top = 20;
+                
+                preview.style.left = left + 'px';
+                preview.style.top = top + 'px';
+            };
+        }
+        
+        function hideImagePreview() {
+            const preview = document.getElementById('imagePreview');
+            const backdrop = document.getElementById('imageBackdrop');
+            preview.classList.remove('visible');
+            backdrop.classList.remove('visible');
+        }
+        
         // Helper function to get coordinates on image click
         function setupCoordinateHelper() {
-            const image = document.getElementById('letterImage');
             const wrapper = document.getElementById('imageWrapper');
             
             wrapper.addEventListener('click', (e) => {
-                if (e.target === image) {
+                if (e.target.classList.contains('letter-page')) {
+                    const image = e.target;
+                    const pageNum = image.dataset.page;
                     const rect = image.getBoundingClientRect();
                     const displayScale = image.width / image.naturalWidth;
                     
@@ -717,6 +938,7 @@
                     const naturalY = relativeY / displayScale;
                     
                     console.log('=== COORDINATE HELPER ===');
+                    console.log(`Page: ${pageNum}`);
                     console.log(`Clicked at: ${Math.round(naturalX)}, ${Math.round(naturalY)} (natural image coordinates)`);
                     console.log(`Display coordinates: ${Math.round(relativeX)}, ${Math.round(relativeY)}`);
                     console.log('To use these coordinates in annotations.json:');
