@@ -185,12 +185,26 @@
             letter-spacing: var(--letter-spacing-tight);
             line-height: var(--line-height-tight);
         }
-        .header p {
+        .header .subtitle {
             margin: 0;
             font-size: var(--font-size-xl);
             opacity: 0.95;
             font-weight: 400;
             letter-spacing: var(--letter-spacing-wide);
+        }
+        .header .divider {
+            display: inline-block;
+            width: 60px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.5);
+            margin: 15px 0;
+            border-radius: 2px;
+        }
+        .header .page-title {
+            font-size: var(--font-size-2xl);
+            font-weight: 600;
+            margin: 0;
+            opacity: 0.95;
         }
         
         /* Updates Page Specific Styles */
@@ -713,8 +727,10 @@
     <a href="index.html" class="back-link">← Back to Main Page</a>
     
     <div class="header">
-        <h1>Recent Updates</h1>
-        <p>Latest developments on the shooting range issue</p>
+        <h1>Boise Foothills Shooting Range Proposal</h1>
+        <p class="subtitle">Community Information & Resources</p>
+        <div class="divider"></div>
+        <p class="page-title">Recent Updates</p>
     </div>
     
     <div class="updates-container">

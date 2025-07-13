@@ -39,25 +39,58 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Header - Simplified version */
+        /* Header - Consistent with main branding */
         .header {
             background: linear-gradient(135deg, #1a2332 0%, #2c3e50 60%, #c9302c 100%);
             color: white;
-            padding: 30px;
+            padding: 40px;
             border-radius: 8px;
             text-align: center;
             margin-bottom: 30px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            height: 4px;
+            background: #c9302c;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
         }
         .header h1 {
             margin: 0 0 10px 0;
-            font-size: var(--font-size-3xl);
+            font-size: var(--font-size-4xl);
             font-weight: 700;
             letter-spacing: var(--letter-spacing-tight);
+            line-height: var(--line-height-tight);
         }
-        .header p {
+        .header .subtitle {
             margin: 0;
-            font-size: var(--font-size-lg);
+            font-size: var(--font-size-xl);
+            opacity: 0.95;
+            font-weight: 400;
+            letter-spacing: var(--letter-spacing-wide);
+        }
+        .header .divider {
+            display: inline-block;
+            width: 60px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.5);
+            margin: 15px 0;
+            border-radius: 2px;
+        }
+        .header .page-title {
+            font-size: var(--font-size-2xl);
+            font-weight: 600;
+            margin: 0;
             opacity: 0.95;
         }
 
@@ -441,8 +474,10 @@
     <a href="index.html" class="back-link">← Back to Main Page</a>
     
     <div class="header">
-        <h1>Let Your Voice Be Heard</h1>
-        <p>Generate a personalized quick draft to Ada County officials in minutes</p>
+        <h1>Boise Foothills Shooting Range Proposal</h1>
+        <p class="subtitle">Community Information & Resources</p>
+        <div class="divider"></div>
+        <p class="page-title">Let Your Voice Be Heard</p>
     </div>
     
     <!-- What is the Quick Draft Tool? -->

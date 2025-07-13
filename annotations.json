@@ -181,7 +181,16 @@
           ],
           "title": "Projectile Containment Failures Documented",
           "description": "Photographic evidence shows shooters firing outside designated lanes, creating risk of rounds leaving the property. The application's containment claims are contradicted by photographic evidence.",
-          "category": "critical"
+          "category": "critical",
+          "imageIcons": [
+            {
+              "x": 1512,
+              "y": 457,
+              "src": "images/sage_rocks.png",
+              "alt": "Photo showing exposed rocks in the backstop area",
+              "caption": "Site photos reveal natural terrain with exposed rock surfaces."
+            }
+          ]
         },
         {
           "id": "backstops-claim",

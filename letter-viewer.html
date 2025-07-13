@@ -130,11 +130,47 @@
             position: relative;
             overflow: hidden;
         }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            height: 4px;
+            background: #c9302c;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
         .header h1 {
-            margin: 0;
-            font-size: var(--font-size-3xl);
+            margin: 0 0 10px 0;
+            font-size: var(--font-size-4xl);
             font-weight: 700;
             letter-spacing: var(--letter-spacing-tight);
+            line-height: var(--line-height-tight);
+        }
+        .header .subtitle {
+            margin: 0;
+            font-size: var(--font-size-xl);
+            opacity: 0.95;
+            font-weight: 400;
+            letter-spacing: var(--letter-spacing-wide);
+        }
+        .header .divider {
+            display: inline-block;
+            width: 60px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.5);
+            margin: 15px 0;
+            border-radius: 2px;
+        }
+        .header .page-title {
+            font-size: var(--font-size-2xl);
+            font-weight: 600;
+            margin: 0;
+            opacity: 0.95;
         }
         .header p {
             margin: 10px 0 0;
@@ -154,9 +190,10 @@
         .viewer-controls {
             margin-bottom: 20px;
             display: flex;
-            justify-content: center;
+            justify-content: flex-end;
             align-items: center;
             gap: 15px;
+            padding-right: 15px;
         }
         
         .zoom-controls {
@@ -200,6 +237,13 @@
             border: 1px solid #ddd;
             border-radius: 4px;
             background: #fafafa;
+        }
+        
+        /* Account for scrollbar width on desktop */
+        @media (min-width: 768px) {
+            .viewer-controls {
+                padding-right: 25px;
+            }
         }
         
         .letter-image-wrapper {
@@ -386,23 +430,63 @@
         
         /* Instructions */
         .instructions {
-            background: #f8f9fa;
-            border-left: 4px solid #17a2b8;
-            padding: 15px 20px;
-            margin-bottom: 20px;
-            border-radius: 4px;
+            background: #fff;
+            border: 2px solid #17a2b8;
+            padding: 20px 25px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
         
-        .instructions h3 {
-            margin: 0 0 10px;
-            color: #1a2332;
-            font-size: var(--font-size-lg);
-        }
         
-        .instructions p {
+        .instructions ul {
             margin: 0;
-            font-size: var(--font-size-sm);
+            padding-left: 25px;
+            list-style: none;
+        }
+        
+        .instructions li {
+            position: relative;
+            margin-bottom: 10px;
+            font-size: var(--font-size-lg);
             color: #2c3e50;
+            line-height: 1.5;
+        }
+        
+        .instructions li:last-child {
+            margin-bottom: 0;
+        }
+        
+        .instructions li::before {
+            content: '•';
+            position: absolute;
+            left: -20px;
+            color: #17a2b8;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .color-guide {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #e9ecef;
+            flex-wrap: wrap;
+        }
+        
+        .color-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: var(--font-size-sm);
+        }
+        
+        .color-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 1px solid rgba(0,0,0,0.1);
         }
         
         /* Mobile styles */
@@ -430,6 +514,11 @@
             
             /* Hide annotations on mobile */
             .annotation {
+                display: none !important;
+            }
+            
+            /* Hide image icons on mobile */
+            .image-icon {
                 display: none !important;
             }
             
@@ -492,6 +581,22 @@
                 display: block;
             }
         }
+        
+        /* Back to Home Link */
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #2c5282;
+            text-decoration: none;
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        
+        .back-link:hover {
+            color: #1a365d;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -513,17 +618,26 @@
             </div>
         </nav>
     </div>
+    
+    <a href="index.html" class="back-link">← Back to Main Page</a>
 
     <!-- Header -->
     <div class="header">
-        <h1>Detailed Letter Analysis</h1>
-        <p>Interactive review of the conditional use permit application</p>
+        <h1>Boise Foothills Shooting Range Proposal</h1>
+        <p class="subtitle">Community Information & Resources</p>
+        <div class="divider"></div>
+        <p class="page-title">Detailed Letter Analysis</p>
     </div>
 
     <!-- Instructions -->
     <div class="instructions">
-        <h3>How to use this viewer</h3>
-        <p>Hover over or click the highlighted areas to see detailed commentary about specific sections of the letter. Different colors indicate different types of issues or points of interest.</p>
+        <p style="margin: 0 0 15px 0; font-size: var(--font-size-lg); color: #2c3e50; line-height: 1.6;">
+            You're viewing the actual permit application letter submitted for the proposed shooting range, where the applicant was required to detail their plans and safety measures. Click on highlighted text to see technical analysis and fact-checking of their claims.
+        </p>
+        <ul>
+            <li><strong>Click or hover</strong> on highlighted areas to see detailed commentary</li>
+            <li><strong>Click the camera icon</strong> for related images</li>
+        </ul>
     </div>
 
     <!-- Mobile Notice -->
