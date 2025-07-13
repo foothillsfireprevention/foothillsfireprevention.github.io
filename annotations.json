@@ -8,8 +8,8 @@
         {
           "id": "no-permit-belief",
           "coordinates": { "x": 215, "y": 357, "width": 1270, "height": 96 },
-          "title": "Does Not Believe He Even Needs a Permit",
-          "description": "The dismissiviness of the applicant's response to the permit requirement is a critical issue. It shows a fundamental misunderstanding or disregard for county regulations.  It is also likely that this statement is directed to the Ada County Prosecurtor's office who have an active lawsuit against the applicant for failure to obtain a permit.",
+          "title": "Dismissal of Permit Requirements",
+          "description": "The applicant's statement suggests a fundamental disagreement with county permit requirements. This position is particularly concerning given the ongoing litigation with the Ada County Prosecutor's office regarding permit compliance.",
           "category": "warning"
         },
       
@@ -19,8 +19,8 @@
             { "x": 215, "y": 615, "width": 1264, "height": 28 },
             { "x": 215, "y": 650, "width": 1109, "height": 23 }
           ],
-          "title": "Unbounded Use",
-          "description": "What does this mean? The applicant can do whatever they want without regard for regulations? They had to be dragged into the process this time, and right here they say clearly that they won't do the right thing next time, either.",
+          "title": "Undefined Scope of Operations",
+          "description": "The term 'unbounded use' lacks specificity and raises questions about operational limits. Given the applicant's stated reluctance to obtain permits, this vague language suggests potential for scope expansion without regulatory oversight.",
           "category": "critical"
         },
         {
@@ -29,8 +29,8 @@
             { "x": 887, "y": 719, "width": 597, "height": 30 },
             { "x": 215, "y": 762, "width": 400, "height": 30 }
           ],
-          "title": "Incorrect Claim",
-          "description": "It takes 2 minutes to measure the distance from the shooting range to the nearest residence.  It's 500 yards away, not 600.  If the applicant cannot measure distances accurately, why should we trust their other claims?",
+          "title": "Measurement Discrepancy",
+          "description": "Aerial measurement tools indicate the actual distance to the nearest residence is approximately 524 yards, not the claimed 600+ yards. This 15% discrepancy raises questions about the accuracy of other technical claims in the application.",
           "category": "warning",
           "imageIcons": [
             {
@@ -38,7 +38,7 @@
               "y": 720,
               "src": "images/distance_to_property.png",
               "alt": "Aerial measurement showing actual distance",
-              "caption": "Actual distance: 524 yards to the walls of a house, not \"exceeds 600 yards\" as claimed"
+              "caption": "Measured distance: 524 yards to nearest residence"
             }
           ]
         },
@@ -48,8 +48,8 @@
             { "x": 1243, "y": 760, "width": 235, "height": 28 },
             { "x": 215, "y": 799, "width": 1018, "height": 28 }
           ],
-          "title": "Unsubstantiated Claims",
-          "description": "The photographs on display from Valiance clearly show this is not accurate.",
+          "title": "Backstop Height Inconsistency",
+          "description": "Photographic evidence from site visits appears to contradict the stated 100-foot backstop height. Without engineering drawings or certified measurements, this claim cannot be verified.",
           "category": "critical",
           "imageIcons": [
             {
@@ -57,7 +57,7 @@
               "y": 795,
               "src": "images/little_backstop.png",
               "alt": "Photo showing inadequate backstop",
-              "caption": "Clearly this is not a 100' backstop."
+              "caption": "Visual evidence suggests backstop height is significantly less than claimed."
             }
           ]
         },
@@ -67,8 +67,8 @@
             { "x": 503, "y": 888, "width": 970, "height": 28 },
             { "x": 216, "y": 926, "width": 937, "height": 24 }
           ],
-          "title": "Overly Generalized Statements",
-          "description": "Tires do not backstop all rounds as evidenced from Valiance pictures.  Rocks are clearly visible in the first and absolutely capable of sparking on impact from a round.",
+          "title": "Incomplete Backstop Description",
+          "description": "Site photographs show exposed rock formations within the impact area, which contradicts claims of complete tire coverage. Rock surfaces present documented ricochet and spark risks not addressed in the application.",
           "category": "warning",
           "imageIcons": [
             {
@@ -76,7 +76,7 @@
               "y": 900,
               "src": "images/sage_rocks.png",
               "alt": "Photo showing exposed rocks in the backstop area",
-              "caption": "Valiance pictures shows shooting natural terrain, not dirt and tires."
+              "caption": "Site photos reveal natural terrain with exposed rock surfaces."
             }
           ]
         },
@@ -85,17 +85,17 @@
           "coordinates": [
             { "x": 357, "y": 1141, "width": 718, "height": 30 }
           ],
-          "title": "It Takes Only One Round",
-          "description": "Paying members load their clips, one small mistake and a fire will start.",
+          "title": "Ammunition Type Enforcement Gap",
+          "description": "While steel core and tracer rounds are prohibited, the application provides no inspection or verification procedures for customer ammunition. Without round-by-round inspection, customers could unknowingly or accidentally load prohibited ammunition types. A single tracer or steel core round striking rocks could ignite the surrounding high-risk fire zone.",
           "category": "critical"
         },
         {
-          "id": "pressureized-water",
+          "id": "pressurized-water",
           "coordinates": [
             { "x": 315, "y": 1543, "width": 1055, "height": 30 }
           ],
-          "title": "No pressurized water on site",
-          "description": "The shooting range is operating on land that is in the 98th percentile for fire risk.  If pressurized water is not required, we should expect expert testimony saying so, not simply a claim from the landowner.",
+          "title": "Fire Suppression Capabilities",
+          "description": "The site is located in an area with extreme wildfire risk (98th percentile). Industry standards typically require pressurized water systems for ranges in high-risk zones. No expert assessment supporting the absence of such systems has been provided.",
           "category": "warning",
           "imageIcons": [
             {
@@ -103,7 +103,7 @@
               "y": 1535,
               "src": "images/wildfire_risk.png",
               "alt": "Wildfire risk map showing extreme danger level",
-              "caption": "Area is in the 98th percentile for wildfire risk"
+              "caption": "Site location: 98th percentile wildfire risk zone"
             }
           ]
         },
@@ -113,8 +113,8 @@
             { "x": 315, "y": 1660, "width": 1172, "height": 19 },
             { "x": 315, "y": 1692, "width": 223, "height": 30 }
           ],
-          "title": "Lead Contamination Ignored",
-          "description": "No plan for lead remediation or contamination control. Lead from bullets accumulates in soil and can contaminate groundwater. EPA guidelines require proper management of lead at shooting ranges. Currant Creek flows through the property.",
+          "title": "Environmental Remediation Plan Absent",
+          "description": "The application lacks a lead management plan despite EPA requirements for shooting ranges. With Currant Creek traversing the property, groundwater contamination risk assessment and mitigation strategies should be addressed.",
           "category": "critical"
         },
         {
@@ -122,8 +122,8 @@
           "coordinates": [
             { "x": 315, "y": 1766, "width": 1093, "height": 30 }
           ],
-          "title": "Ignores Sensitive Species",
-          "description": "The Boise Foothills near Hidden Springs are home to multiple rare and sensitive species, including Aases onion, burrowing owls, sagebrush songbirds, and Townsends big-eared bats. These species depend on quiet, undisturbed sagebrush habitat to survive. No environmental impact assessment or wildlife surveys were conducted to evaluate disruption from gunfire noise.",
+          "title": "Wildlife Impact Assessment Missing",
+          "description": "The Boise Foothills support several sensitive species including burrowing owls and Townsends big-eared bats. No biological survey or noise impact study on these species has been provided, as typically required for habitat disruption.",
           "category": "warning"
         },
         {
@@ -132,8 +132,37 @@
             { "x": 1388, "y": 1883, "width": 91, "height": 22 },
             { "x": 315, "y": 1924, "width": 802, "height": 27 }
           ],
-          "title": "Sound Impact Minimized",
-          "description": "Dismisses noise concerns by claiming distance and natural landscape features mitigates sound, ignoring that gunfire can be heard for miles and disturbs wildlife, residents, and recreational users throughout the foothills. No acoustic analysis was conducted.  Public nuisance alone is a valid reason to deny a permit.",
+          "title": "Acoustic Analysis Not Provided",
+          "description": "Claims about natural sound mitigation lack supporting acoustic modeling. Professional sound studies typically accompany range applications to quantify impacts on surrounding properties and recreational areas.",
+          "category": "warning"
+        },
+        {
+          "id": "traffic-emergency-evacuation",
+          "coordinates": [
+            { "x": 315, "y": 1887, "width": 365, "height": 25 }
+          ],
+          "title": "Traffic, Emergency Access, Evacuation",
+          "description": "While claiming 'no landscaping required,' the application ignores critical access infrastructure needs. No emergency vehicle turnaround areas, evacuation routes, or incident command staging areas are designated. The single access road through residential areas could become blocked, trapping visitors during emergencies. Fire apparatus requires specific road widths and grades not addressed. Mass casualty or wildfire evacuation protocols are essential for remote commercial facilities.",
+          "category": "critical"
+        },
+        {
+          "id": "no-parking-traffic",
+          "coordinates": [
+            { "x": 315, "y": 1471, "width": 1012, "height": 22 }
+          ],
+          "title": "No Parking / Traffic Plan",
+          "description": "The application lacks any parking area designation, traffic flow planning, or discussion of access road capacity. Commercial facilities require adequate parking and emergency vehicle turnaround areas. Without infrastructure planning, vehicles may block emergency access or damage surrounding terrain.",
+          "category": "warning"
+        },
+        {
+          "id": "water-runoff-erosion",
+          "coordinates": [
+            { "x": 315, "y": 1587, "width": 1168, "height": 21 },
+            { "x": 315, "y": 1622, "width": 167, "height": 32 },
+            { "x": 315, "y": 1734, "width": 567, "height": 28 }
+          ],
+          "title": "Water Runoff and Erosion Control",
+          "description": "The application dismisses hydrology concerns without providing drainage plans or erosion control measures. Range operations typically compact soil and concentrate runoff, requiring engineered stormwater management to prevent downstream impacts.",
           "category": "warning"
         }
       ]
@@ -150,8 +179,8 @@
             { "x": 213, "y": 469, "width": 1265, "height": 27 },
             { "x": 213, "y": 498, "width": 640, "height": 27 }
           ],
-          "title": "Leaving Range Unsupervised",
-          "description": "This is clearly overstated given photographic evidence from Valiance.",
+          "title": "Projectile Containment Failures Documented",
+          "description": "Photographic evidence shows shooters firing outside designated lanes, creating risk of rounds leaving the property. The application's containment claims are contradicted by photographic evidence.",
           "category": "critical"
         },
         {
@@ -159,8 +188,8 @@
           "coordinates": [
             { "x": 915, "y": 740, "width": 487, "height": 26 }
           ],
-          "title": "Inadequate Backstops",
-          "description": "Claims of '100 foot backstops' are contradicted by photographic evidence showing much smaller berms with exposed rocks that create spark and ricochet hazards.",
+          "title": "Technical Specifications Lacking",
+          "description": "The repeated claim of '100 foot backstops' requires engineering documentation. Visual evidence suggests significantly smaller berms. Professional range design typically includes certified height measurements and construction specifications.",
           "category": "critical",
           "imageIcons": [
             {
@@ -168,9 +197,29 @@
               "y": 751,
               "src": "images/little_backstop.png",
               "alt": "Photo showing actual backstop height",
-              "caption": "Actual backstop is far less than 100 feet claimed"
+              "caption": "Visual scale suggests backstop dimensions require professional verification"
             }
           ]
+        },
+        {
+          "id": "no-measurable-standards",
+          "coordinates": [
+            { "x": 207, "y": 1076, "width": 1273, "height": 206 },
+            { "x": 207, "y": 1288, "width": 685, "height": 27 }
+          ],
+          "title": "No Measurable Standards of Operations",
+          "description": "The repeated use of 'generally,' 'may be,' and 'though' throughout the hours section creates no enforceable limits. A conditional use permit requires specific, binding operational parameters, not suggestions. Terms like 'generally less than 3 hours' and 'generally limited' provide no measurable standards for compliance or enforcement.",
+          "category": "critical"
+        },
+        {
+          "id": "usage-claims",
+          "coordinates": [
+            { "x": 742, "y": 1361, "width": 742, "height": 31 },
+            { "x": 205, "y": 1403, "width": 957, "height": 64 }
+          ],
+          "title": "Usage Claims",
+          "description": "The claim of '0.05% of hours in any given week' equals approximately 5 minutes of use per week (0.0005 × 168 hours). This conflicts with stated 3-hour sessions and commercial operation plans. Such mathematical errors raise questions about the accuracy of other operational projections in the application.  Further, why should future use be patterned on present use?",
+          "category": "warning"
         }
       ]
     }

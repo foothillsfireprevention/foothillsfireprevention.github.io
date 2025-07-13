@@ -154,30 +154,9 @@
         .viewer-controls {
             margin-bottom: 20px;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            flex-wrap: wrap;
             gap: 15px;
-        }
-        
-        .legend {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-        
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: var(--font-size-sm);
-        }
-        
-        .legend-color {
-            width: 20px;
-            height: 20px;
-            border-radius: 4px;
-            border: 1px solid rgba(0,0,0,0.2);
         }
         
         .zoom-controls {
@@ -255,24 +234,15 @@
         }
         
         
-        .annotation.critical {
-            background: rgba(220, 53, 69, 0.2);
-            color: #dc3545;
+        /* Alternating annotation colors - pale yellow and light blue-gray */
+        .annotation.color-a {
+            background: rgba(255, 246, 143, 0.25);  /* Pale yellow */
+            color: #8B7500;
         }
         
-        .annotation.warning {
-            background: rgba(255, 193, 7, 0.2);
-            color: #ffc107;
-        }
-        
-        .annotation.info {
-            background: rgba(23, 162, 184, 0.2);
-            color: #17a2b8;
-        }
-        
-        .annotation.success {
-            background: rgba(40, 167, 69, 0.2);
-            color: #28a745;
+        .annotation.color-b {
+            background: rgba(173, 216, 230, 0.25);  /* Light blue-gray */
+            color: #4682B4;
         }
         
         /* Tooltip */
@@ -564,31 +534,10 @@
     <!-- Letter Viewer -->
     <div class="letter-viewer">
         <div class="viewer-controls">
-            <div class="legend">
-                <div class="legend-item">
-                    <div class="legend-color" style="background: rgba(220, 53, 69, 0.3);"></div>
-                    <span>Critical Issues</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-color" style="background: rgba(255, 193, 7, 0.3);"></div>
-                    <span>Concerns</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-color" style="background: rgba(23, 162, 184, 0.3);"></div>
-                    <span>Information</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-color" style="background: rgba(40, 167, 69, 0.3);"></div>
-                    <span>Key Points</span>
-                </div>
-            </div>
-            
             <div class="zoom-controls">
                 <button onclick="zoomOut()">Zoom Out</button>
-                <span class="zoom-level">100%</span>
                 <button onclick="zoomIn()">Zoom In</button>
-                <button onclick="resetZoom()">Reset</button>
-                <button onclick="toggleCoordinateMode()" style="margin-left: 10px; background: #17a2b8;">Coordinate Mode</button>
+                <button id="coordinateModeBtn" onclick="toggleCoordinateMode()" style="margin-left: 10px; background: #17a2b8; display: none;">Coordinate Mode</button>
             </div>
         </div>
         
@@ -626,11 +575,10 @@
         function updateZoom() {
             const wrapper = document.getElementById('imageWrapper');
             wrapper.style.transform = `scale(${currentZoom})`;
-            document.querySelector('.zoom-level').textContent = Math.round(currentZoom * 100) + '%';
             
             // Update button states
             document.querySelector('.zoom-controls button:first-child').disabled = currentZoom <= minZoom;
-            document.querySelector('.zoom-controls button:nth-child(3)').disabled = currentZoom >= maxZoom;
+            document.querySelector('.zoom-controls button:nth-child(2)').disabled = currentZoom >= maxZoom;
             
             // Redisplay annotations to account for zoom
             if (annotations.length > 0) {
@@ -650,11 +598,6 @@
                 currentZoom = Math.max(currentZoom - zoomStep, minZoom);
                 updateZoom();
             }
-        }
-        
-        function resetZoom() {
-            currentZoom = 1;
-            updateZoom();
         }
         
         function toggleCoordinateMode() {
@@ -746,6 +689,8 @@
             wrapper.querySelectorAll('.image-icon').forEach(el => el.remove());
             
             // Process each page
+            let globalAnnotationIndex = 0; // Track annotation count across all pages
+            
             annotations.forEach(page => {
                 const pageNum = page.pageNumber;
                 const image = document.getElementById(`letterImage${pageNum}`);
@@ -766,6 +711,10 @@
                 page.annotations.forEach((annotation, index) => {
                     console.log(`Adding annotation ${index + 1}:`, annotation.title);
                     
+                    // Determine color class based on global index (alternating)
+                    const colorClass = globalAnnotationIndex % 2 === 0 ? 'color-a' : 'color-b';
+                    globalAnnotationIndex++; // Increment for next annotation
+                    
                     // Support both single and multi-rectangle formats
                     const rectangles = Array.isArray(annotation.coordinates) 
                         ? annotation.coordinates 
@@ -773,7 +722,7 @@
                     
                     rectangles.forEach((rect, rectIndex) => {
                         const div = document.createElement('div');
-                        div.className = `annotation ${annotation.category}`;
+                        div.className = `annotation ${colorClass}`;
                         div.dataset.annotationId = annotation.id;
                         
                         // Calculate position
@@ -991,6 +940,15 @@
         
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
+            // Check URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const showCoordinateMode = urlParams.get('showc') === 'true';
+            
+            // Show coordinate mode button if parameter is set
+            if (showCoordinateMode) {
+                document.getElementById('coordinateModeBtn').style.display = 'inline-block';
+            }
+            
             loadAnnotations();
             updateZoom();
             setupCoordinateHelper();
