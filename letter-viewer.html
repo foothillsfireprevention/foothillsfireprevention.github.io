@@ -298,7 +298,7 @@
         
         /* Tooltip */
         .tooltip {
-            position: absolute;
+            position: fixed;
             background: white;
             border: 1px solid #ddd;
             border-radius: 8px;
@@ -306,8 +306,10 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             z-index: 100;
             max-width: 300px;
+            min-width: 200px;
             display: none;
             pointer-events: none;
+            transform: translateZ(0);
         }
         
         .tooltip.visible {
@@ -350,6 +352,22 @@
             margin-left: -5px;
             border-bottom: none;
             border-right: none;
+        }
+        
+        .tooltip-arrow.left {
+            right: -6px;
+            top: 50%;
+            margin-top: -5px;
+            border-left: none;
+            border-bottom: none;
+        }
+        
+        .tooltip-arrow.right {
+            left: -6px;
+            top: 50%;
+            margin-top: -5px;
+            border-right: none;
+            border-top: none;
         }
         
         /* Image icon markers */
@@ -1011,37 +1029,90 @@
                 return;
             }
             
-            // Position tooltip
+            // Get positions and dimensions
             const rect = event.target.getBoundingClientRect();
             const tooltipRect = tooltip.getBoundingClientRect();
             const arrow = tooltip.querySelector('.tooltip-arrow');
+            const container = document.getElementById('letterContainer');
+            const containerRect = container.getBoundingClientRect();
             
-            let left = rect.left + rect.width / 2 - tooltipRect.width / 2;
-            let top = rect.bottom + 10;
+            // Calculate available space in each direction
+            const spaceAbove = rect.top - containerRect.top;
+            const spaceBelow = containerRect.bottom - rect.bottom;
+            const spaceLeft = rect.left - containerRect.left;
+            const spaceRight = containerRect.right - rect.right;
             
-            // Check if tooltip goes off screen
-            if (left < 10) left = 10;
-            if (left + tooltipRect.width > window.innerWidth - 10) {
-                left = window.innerWidth - tooltipRect.width - 10;
+            // Determine best position based on available space
+            let position = 'bottom'; // default
+            let left, top;
+            
+            const tooltipHeight = tooltipRect.height;
+            const tooltipWidth = tooltipRect.width;
+            const margin = 10;
+            
+            // Priority: bottom > top > right > left
+            if (spaceBelow >= tooltipHeight + margin && rect.bottom + tooltipHeight + margin < window.innerHeight) {
+                // Position below
+                position = 'bottom';
+                top = rect.bottom + margin;
+                left = rect.left + rect.width / 2 - tooltipWidth / 2;
+                arrow.className = 'tooltip-arrow top';
+            } else if (spaceAbove >= tooltipHeight + margin && rect.top - tooltipHeight - margin > 0) {
+                // Position above
+                position = 'top';
+                top = rect.top - tooltipHeight - margin;
+                left = rect.left + rect.width / 2 - tooltipWidth / 2;
+                arrow.className = 'tooltip-arrow bottom';
+            } else if (spaceRight >= tooltipWidth + margin && rect.right + tooltipWidth + margin < window.innerWidth) {
+                // Position to the right
+                position = 'right';
+                left = rect.right + margin;
+                top = rect.top + rect.height / 2 - tooltipHeight / 2;
+                arrow.className = 'tooltip-arrow left';
+            } else if (spaceLeft >= tooltipWidth + margin && rect.left - tooltipWidth - margin > 0) {
+                // Position to the left
+                position = 'left';
+                left = rect.left - tooltipWidth - margin;
+                top = rect.top + rect.height / 2 - tooltipHeight / 2;
+                arrow.className = 'tooltip-arrow right';
+            } else {
+                // Fallback: position in viewport center if no good position found
+                position = 'center';
+                left = (window.innerWidth - tooltipWidth) / 2;
+                top = (window.innerHeight - tooltipHeight) / 2;
+                arrow.style.display = 'none';
+                
+                // Ensure annotation is visible
+                event.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
             
-            // If tooltip would go below viewport, show above
-            if (top + tooltipRect.height > window.innerHeight - 10) {
-                top = rect.top - tooltipRect.height - 10;
-                arrow.className = 'tooltip-arrow bottom';
-                
-                // But if showing above would go off top, show below anyway
-                if (top < 10) {
-                    top = rect.bottom + 10;
-                    arrow.className = 'tooltip-arrow top';
-                    
-                    // If annotation is near top of viewport, scroll it into better view
-                    if (rect.top < 100) {
-                        event.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }
+            // Adjust horizontal position to stay within viewport
+            if (position === 'bottom' || position === 'top') {
+                if (left < margin) left = margin;
+                if (left + tooltipWidth > window.innerWidth - margin) {
+                    left = window.innerWidth - tooltipWidth - margin;
                 }
-            } else {
-                arrow.className = 'tooltip-arrow top';
+                
+                // Update arrow position if tooltip was shifted
+                const arrowLeft = rect.left + rect.width / 2 - left;
+                arrow.style.left = Math.max(10, Math.min(arrowLeft, tooltipWidth - 10)) + 'px';
+            }
+            
+            // Adjust vertical position to stay within viewport
+            if (position === 'left' || position === 'right') {
+                if (top < margin) top = margin;
+                if (top + tooltipHeight > window.innerHeight - margin) {
+                    top = window.innerHeight - tooltipHeight - margin;
+                }
+                
+                // Update arrow position if tooltip was shifted
+                const arrowTop = rect.top + rect.height / 2 - top;
+                arrow.style.top = Math.max(10, Math.min(arrowTop, tooltipHeight - 10)) + 'px';
+            }
+            
+            // Show arrow only for non-center positions
+            if (position !== 'center') {
+                arrow.style.display = '';
             }
             
             tooltip.style.left = left + 'px';
@@ -1169,6 +1240,15 @@
             loadAnnotations();
             updateZoom();
             setupCoordinateHelper();
+            
+            // Hide tooltip on scroll to prevent positioning issues
+            const letterContainer = document.getElementById('letterContainer');
+            let scrollTimeout;
+            letterContainer.addEventListener('scroll', () => {
+                if (currentTooltipAnnotation) {
+                    hideTooltip();
+                }
+            });
         });
         
         // Handle window resize
