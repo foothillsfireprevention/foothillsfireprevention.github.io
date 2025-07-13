@@ -449,13 +449,31 @@
                 font-size: var(--font-size-2xl);
             }
             
+            /* Hide interactive controls on mobile */
             .viewer-controls {
-                flex-direction: column;
-                align-items: flex-start;
+                display: none;
             }
             
-            .legend {
-                flex-wrap: wrap;
+            .instructions {
+                display: none;
+            }
+            
+            /* Hide annotations on mobile */
+            .annotation {
+                display: none !important;
+            }
+            
+            .letter-viewer {
+                padding: 10px;
+            }
+            
+            .letter-container {
+                max-height: none;
+                overflow: visible;
+            }
+            
+            .letter-image-wrapper {
+                transform: none !important;
             }
             
             .mobile-menu-toggle {
@@ -483,7 +501,25 @@
             }
             
             .tooltip {
-                max-width: 250px;
+                display: none !important;
+            }
+        }
+        
+        /* Add mobile notice */
+        .mobile-notice {
+            display: none;
+            background: #17a2b8;
+            color: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            text-align: center;
+            font-size: var(--font-size-sm);
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-notice {
+                display: block;
             }
         }
     </style>
@@ -518,6 +554,11 @@
     <div class="instructions">
         <h3>How to use this viewer</h3>
         <p>Hover over or click the highlighted areas to see detailed commentary about specific sections of the letter. Different colors indicate different types of issues or points of interest.</p>
+    </div>
+
+    <!-- Mobile Notice -->
+    <div class="mobile-notice">
+        For the best experience with interactive annotations, please view this on a tablet or desktop device.
     </div>
 
     <!-- Letter Viewer -->
