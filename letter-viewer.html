@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detailed Letter Analysis - Boise Foothills Shooting Range</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <style>
+        /* Typography System */
+        :root {
+            --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-size-base: 16px;
+            --font-size-sm: 0.875rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 2rem;
+            --font-size-4xl: 2.5rem;
+            --line-height-tight: 1.25;
+            --line-height-base: 1.6;
+            --line-height-relaxed: 1.75;
+            --letter-spacing-tight: -0.025em;
+            --letter-spacing-wide: 0.025em;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            font-size: var(--font-size-base);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: var(--line-height-base);
+            color: #2c3e50;
+            background: #f8f9fa;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Navigation Bar */
+        .nav-container {
+            position: fixed;
+            top: -60px;
+            left: 0;
+            right: 0;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: top 0.3s ease;
+        }
+        .nav-container.visible {
+            top: 0;
+        }
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+        .nav-brand {
+            font-weight: 600;
+            color: #1a2332;
+            font-size: 1.1em;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .nav-brand:hover {
+            color: #c9302c;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        .nav-links a {
+            color: #1a2332;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+            font-size: 0.95em;
+        }
+        .nav-links a:hover {
+            color: #c9302c;
+        }
+        .nav-links .active {
+            color: #c9302c;
+            position: relative;
+        }
+        .nav-links .active::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #c9302c;
+        }
+        
+        /* Mobile menu toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+        .mobile-menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: #1a2332;
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1a2332 0%, #2c3e50 60%, #c9302c 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 30px;
+            margin-top: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: -200px;
+            z-index: 50;
+            overflow: hidden;
+            transition: top 0.3s ease;
+        }
+        
+        .header.visible {
+            top: 20px;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            height: 4px;
+            background: #c9302c;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+        .header h1 {
+            margin: 0 0 10px 0;
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            letter-spacing: var(--letter-spacing-tight);
+            line-height: var(--line-height-tight);
+        }
+        .header .subtitle {
+            margin: 0;
+            font-size: var(--font-size-xl);
+            opacity: 0.95;
+            font-weight: 400;
+            letter-spacing: var(--letter-spacing-wide);
+        }
+        .header .divider {
+            display: inline-block;
+            width: 60px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.5);
+            margin: 15px 0;
+            border-radius: 2px;
+        }
+        .header .page-title {
+            font-size: var(--font-size-2xl);
+            font-weight: 600;
+            margin: 0;
+            opacity: 0.95;
+        }
+        .header p {
+            margin: 10px 0 0;
+            font-size: var(--font-size-lg);
+            opacity: 0.9;
+        }
+        
+        /* Letter viewer container */
+        .letter-viewer {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .viewer-controls {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 15px;
+            padding-right: 15px;
+        }
+        
+        .zoom-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .zoom-controls button {
+            background: #1a2332;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: var(--font-size-sm);
+            transition: background-color 0.2s ease;
+        }
+        
+        .zoom-controls button:hover {
+            background: #2c3e50;
+        }
+        
+        .zoom-controls button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .zoom-level {
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            min-width: 50px;
+            text-align: center;
+        }
+        
+        /* Letter container */
+        .letter-container {
+            position: relative;
+            overflow: auto;
+            max-height: 80vh;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: #fafafa;
+        }
+        
+        /* Account for scrollbar width on desktop */
+        @media (min-width: 768px) {
+            .viewer-controls {
+                padding-right: 25px;
+            }
+        }
+        
+        .letter-image-wrapper {
+            position: relative;
+            display: inline-block;
+            transform-origin: top left;
+            transition: transform 0.3s ease;
+        }
+        
+        .letter-image {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* Annotation overlays */
+        .annotation {
+            position: absolute;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .annotation.coordinate-mode {
+            pointer-events: none;
+            opacity: 0.3;
+        }
+        
+        .annotation:hover {
+            border-color: currentColor;
+            box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
+        }
+        
+        
+        /* Alternating annotation colors - pale yellow and light blue-gray */
+        .annotation.color-a {
+            background: rgba(255, 246, 143, 0.25);  /* Pale yellow */
+            color: #8B7500;
+        }
+        
+        .annotation.color-b {
+            background: rgba(173, 216, 230, 0.25);  /* Light blue-gray */
+            color: #4682B4;
+        }
+        
+        /* Tooltip */
+        .tooltip {
+            position: fixed;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 100;
+            max-width: 300px;
+            min-width: 200px;
+            display: none;
+            pointer-events: none;
+            transform: translateZ(0);
+        }
+        
+        .tooltip.visible {
+            display: block;
+        }
+        
+        .tooltip-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: var(--font-size-base);
+            color: #1a2332;
+        }
+        
+        .tooltip-description {
+            font-size: var(--font-size-sm);
+            line-height: var(--line-height-base);
+            color: #2c3e50;
+        }
+        
+        .tooltip-arrow {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: white;
+            border: 1px solid #ddd;
+            transform: rotate(45deg);
+        }
+        
+        .tooltip-arrow.top {
+            bottom: -6px;
+            left: 50%;
+            margin-left: -5px;
+            border-top: none;
+            border-left: none;
+        }
+        
+        .tooltip-arrow.bottom {
+            top: -6px;
+            left: 50%;
+            margin-left: -5px;
+            border-bottom: none;
+            border-right: none;
+        }
+        
+        .tooltip-arrow.left {
+            right: -6px;
+            top: 50%;
+            margin-top: -5px;
+            border-left: none;
+            border-bottom: none;
+        }
+        
+        .tooltip-arrow.right {
+            left: -6px;
+            top: 50%;
+            margin-top: -5px;
+            border-right: none;
+            border-top: none;
+        }
+        
+        /* Image icon markers */
+        .image-icon {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background: #17a2b8;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            z-index: 10;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .image-icon:hover {
+            transform: scale(1.1);
+            background: #138496;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+        }
+        
+        .image-icon::after {
+            content: '📷';
+            font-size: 12px;
+        }
+        
+        /* Image preview backdrop */
+        .image-preview-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 100;
+            display: none;
+            cursor: pointer;
+        }
+        
+        .image-preview-backdrop.visible {
+            display: block;
+        }
+        
+        /* Image preview tooltip */
+        .image-preview {
+            position: fixed;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+            z-index: 101;
+            display: none;
+            max-width: 80vw;
+            max-height: 80vh;
+            overflow: auto;
+            cursor: default;
+        }
+        
+        .image-preview.visible {
+            display: block;
+        }
+        
+        .image-preview img {
+            max-width: 100%;
+            max-height: calc(80vh - 80px);
+            height: auto;
+            border-radius: 4px;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .image-preview-caption {
+            margin-top: 8px;
+            font-size: var(--font-size-sm);
+            color: #6c757d;
+            text-align: center;
+        }
+        
+        /* Instructions */
+        .instructions {
+            background: #fff;
+            border: 2px solid #17a2b8;
+            padding: 20px 25px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .instructions.hidden {
+            display: none;
+        }
+        
+        .instructions {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .instructions-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #6c757d;
+            line-height: 1;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+        
+        .instructions-close:hover {
+            background: #f8f9fa;
+            color: #495057;
+        }
+        
+        
+        .instructions ul {
+            margin: 0;
+            padding-left: 25px;
+            list-style: none;
+        }
+        
+        .instructions li {
+            position: relative;
+            margin-bottom: 10px;
+            font-size: var(--font-size-lg);
+            color: #2c3e50;
+            line-height: 1.5;
+        }
+        
+        .instructions li:last-child {
+            margin-bottom: 0;
+        }
+        
+        .instructions li::before {
+            content: '•';
+            position: absolute;
+            left: -20px;
+            color: #17a2b8;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .color-guide {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #e9ecef;
+            flex-wrap: wrap;
+        }
+        
+        .color-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: var(--font-size-sm);
+        }
+        
+        .color-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        /* Mobile styles */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .header h1 {
+                font-size: var(--font-size-2xl);
+            }
+            
+            /* Hide interactive controls on mobile */
+            .viewer-controls {
+                display: none;
+            }
+            
+            .instructions {
+                display: none;
+            }
+            
+            /* Hide annotations on mobile */
+            .annotation {
+                display: none !important;
+            }
+            
+            /* Hide image icons on mobile */
+            .image-icon {
+                display: none !important;
+            }
+            
+            .letter-viewer {
+                padding: 10px;
+            }
+            
+            .letter-container {
+                max-height: none;
+                overflow: visible;
+            }
+            
+            .letter-image-wrapper {
+                transform: none !important;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: #fff;
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all 0.3s ease;
+            }
+            
+            .nav-links.mobile-visible {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            .tooltip {
+                display: none !important;
+            }
+        }
+        
+        /* Add mobile notice */
+        .mobile-notice {
+            display: none;
+            background: #17a2b8;
+            color: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            text-align: center;
+            font-size: var(--font-size-sm);
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-notice {
+                display: block;
+            }
+        }
+        
+        /* Back to Home Link */
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #2c5282;
+            text-decoration: none;
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        
+        .back-link:hover {
+            color: #1a365d;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="nav-container">
+        <nav>
+            <a href="index.html" class="nav-brand">Foothills Fire Prevention</a>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="updates.html">Updates</a>
+                <a href="letter-viewer.html" class="active">Letter Analysis</a>
+                <a href="email-generator.html">Take Action</a>
+                <a href="signup.html">Newsletter</a>
+            </div>
+        </nav>
+    </div>
+    
+    <a href="index.html" class="back-link">← Back to Main Page</a>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>Boise Foothills Shooting Range Proposal</h1>
+        <p class="subtitle">Community Information & Resources</p>
+        <div class="divider"></div>
+        <p class="page-title">Detailed Letter Analysis</p>
+    </div>
+
+    <!-- Instructions -->
+    <div class="instructions" id="instructions">
+        <button class="instructions-close" onclick="dismissInstructions()" aria-label="Dismiss instructions">&times;</button>
+        <p style="margin: 0 0 15px 0; font-size: var(--font-size-lg); color: #2c3e50; line-height: 1.6;">
+            You're viewing the actual permit application letter submitted for the proposed shooting range, where the applicant was required to detail their plans and safety measures. Click on highlighted text to see technical analysis and fact-checking of their claims.
+        </p>
+        <ul>
+            <li><strong>Click or hover</strong> on highlighted areas to see detailed commentary</li>
+            <li><strong>Click the camera icon</strong> for related images</li>
+        </ul>
+    </div>
+
+    <!-- Mobile Notice -->
+    <div class="mobile-notice">
+        For the best experience with interactive annotations, please view this on a tablet or desktop device.
+    </div>
+
+    <!-- Letter Viewer -->
+    <div class="letter-viewer">
+        <div class="viewer-controls">
+            <div class="zoom-controls">
+                <button onclick="zoomOut()">Zoom Out</button>
+                <button onclick="zoomIn()">Zoom In</button>
+                <button id="coordinateModeBtn" onclick="toggleCoordinateMode()" style="margin-left: 10px; background: #17a2b8; display: none;">Coordinate Mode</button>
+            </div>
+        </div>
+        
+        <div class="letter-container" id="letterContainer">
+            <div class="letter-image-wrapper" id="imageWrapper">
+                <img src="images/DetailedLetter.jpeg" alt="Detailed Letter Page 1" class="letter-image letter-page" id="letterImage1" data-page="1">
+                <img src="images/DetailedLetter2.jpg" alt="Detailed Letter Page 2" class="letter-image letter-page" id="letterImage2" data-page="2" style="display: block; margin-top: -4px;">
+                <!-- Annotations will be added here dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Tooltip -->
+    <div class="tooltip" id="tooltip">
+        <div class="tooltip-title"></div>
+        <div class="tooltip-description"></div>
+        <div class="tooltip-arrow"></div>
+    </div>
+    
+    <!-- Image Preview -->
+    <div class="image-preview-backdrop" id="imageBackdrop" onclick="hideImagePreview()"></div>
+    <div class="image-preview" id="imagePreview">
+        <img src="" alt="">
+        <div class="image-preview-caption"></div>
+    </div>
+
+    <script>
+        // Header hide-on-scroll functionality
+        let lastScrollTop = 0;
+        let ticking = false;
+        const header = document.querySelector('.header');
+        
+        function updateHeaderVisibility() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                // Scrolling down & past threshold
+                header.classList.remove('visible');
+            } else if (scrollTop < lastScrollTop - 5) {
+                // Scrolling up with small threshold to prevent jitter
+                header.classList.add('visible');
+            }
+            
+            lastScrollTop = scrollTop;
+            ticking = false;
+        }
+        
+        // Initialize header as visible
+        header.classList.add('visible');
+        
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                window.requestAnimationFrame(updateHeaderVisibility);
+                ticking = true;
+            }
+        });
+        
+        // Dismiss instructions
+        function dismissInstructions() {
+            const instructions = document.getElementById('instructions');
+            instructions.style.opacity = '0';
+            instructions.style.transform = 'translateY(-10px)';
+            setTimeout(() => {
+                instructions.classList.add('hidden');
+            }, 300);
+            
+            // Save preference
+            localStorage.setItem('letterViewerInstructionsDismissed', 'true');
+        }
+        
+        // Check if instructions were previously dismissed
+        if (localStorage.getItem('letterViewerInstructionsDismissed') === 'true') {
+            document.getElementById('instructions').classList.add('hidden');
+        }
+        
+        // Zoom functionality
+        let currentZoom = 1;
+        const zoomStep = 0.1;
+        const maxZoom = 3;
+        const minZoom = 0.5;
+        let coordinateMode = false;
+        
+        function updateZoom() {
+            const wrapper = document.getElementById('imageWrapper');
+            wrapper.style.transform = `scale(${currentZoom})`;
+            
+            // Update button states
+            document.querySelector('.zoom-controls button:first-child').disabled = currentZoom <= minZoom;
+            document.querySelector('.zoom-controls button:nth-child(2)').disabled = currentZoom >= maxZoom;
+            
+            // Redisplay annotations to account for zoom
+            if (annotations.length > 0) {
+                displayAnnotations();
+            }
+        }
+        
+        function zoomIn() {
+            if (currentZoom < maxZoom) {
+                currentZoom = Math.min(currentZoom + zoomStep, maxZoom);
+                updateZoom();
+            }
+        }
+        
+        function zoomOut() {
+            if (currentZoom > minZoom) {
+                currentZoom = Math.max(currentZoom - zoomStep, minZoom);
+                updateZoom();
+            }
+        }
+        
+        function toggleCoordinateMode() {
+            coordinateMode = !coordinateMode;
+            const button = event.target;
+            const annotations = document.querySelectorAll('.annotation');
+            
+            if (coordinateMode) {
+                button.style.background = '#dc3545';
+                button.textContent = 'Exit Coordinate Mode';
+                annotations.forEach(ann => ann.classList.add('coordinate-mode'));
+                console.log('=== COORDINATE MODE ENABLED ===');
+                console.log('Click anywhere on the image to get coordinates');
+                console.log('Annotations are dimmed and click-through');
+            } else {
+                button.style.background = '#17a2b8';
+                button.textContent = 'Coordinate Mode';
+                annotations.forEach(ann => ann.classList.remove('coordinate-mode'));
+                console.log('=== COORDINATE MODE DISABLED ===');
+            }
+        }
+        
+        // Navigation functionality
+        let lastScrollY = window.scrollY;
+        const navContainer = document.querySelector('.nav-container');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                if (window.scrollY < lastScrollY) {
+                    navContainer.classList.add('visible');
+                } else {
+                    navContainer.classList.remove('visible');
+                }
+            } else {
+                navContainer.classList.remove('visible');
+            }
+            lastScrollY = window.scrollY;
+        });
+        
+        function toggleMobileMenu() {
+            document.querySelector('.nav-links').classList.toggle('mobile-visible');
+        }
+        
+        // Load and display annotations
+        let annotations = [];
+        let currentTooltipAnnotation = null;
+        let tooltipTimeout = null;
+        let currentHighlightedId = null;
+        
+        async function loadAnnotations() {
+            try {
+                console.log('Loading annotations...');
+                const response = await fetch('annotations.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                console.log('Annotations data loaded:', data);
+                annotations = data.pages;
+                console.log(`Found ${annotations.length} pages`);
+                displayAnnotations();
+            } catch (error) {
+                console.error('Error loading annotations:', error);
+            }
+        }
+        
+        function displayAnnotations() {
+            const wrapper = document.getElementById('imageWrapper');
+            const images = document.querySelectorAll('.letter-page');
+            
+            console.log('Display annotations called');
+            
+            // Wait for all images to load
+            let allLoaded = true;
+            images.forEach(img => {
+                if (!img.complete || !img.naturalWidth) {
+                    allLoaded = false;
+                    img.onload = () => displayAnnotations();
+                }
+            });
+            
+            if (!allLoaded) {
+                console.log('Images not loaded, waiting...');
+                return;
+            }
+            
+            // Clear existing annotations and icons
+            wrapper.querySelectorAll('.annotation').forEach(el => el.remove());
+            wrapper.querySelectorAll('.image-icon').forEach(el => el.remove());
+            
+            // Process each page
+            let globalAnnotationIndex = 0; // Track annotation count across all pages
+            
+            annotations.forEach(page => {
+                const pageNum = page.pageNumber;
+                const image = document.getElementById(`letterImage${pageNum}`);
+                if (!image) return;
+                
+                const displayScale = image.width / image.naturalWidth;
+                let yOffset = 0;
+                
+                // Calculate Y offset for page 2 (position below page 1)
+                if (pageNum === 2) {
+                    const page1Image = document.getElementById('letterImage1');
+                    yOffset = page1Image.offsetTop + page1Image.height - 4; // -4 for margin adjustment
+                }
+                
+                console.log(`Processing page ${pageNum}, Y offset: ${yOffset}`);
+                
+                // Add annotations for this page
+                page.annotations.forEach((annotation, index) => {
+                    console.log(`Adding annotation ${index + 1}:`, annotation.title);
+                    
+                    // Determine color class based on global index (alternating)
+                    const colorClass = globalAnnotationIndex % 2 === 0 ? 'color-a' : 'color-b';
+                    globalAnnotationIndex++; // Increment for next annotation
+                    
+                    // Support both single and multi-rectangle formats
+                    const rectangles = Array.isArray(annotation.coordinates) 
+                        ? annotation.coordinates 
+                        : [annotation.coordinates];
+                    
+                    rectangles.forEach((rect, rectIndex) => {
+                        const div = document.createElement('div');
+                        div.className = `annotation ${colorClass}`;
+                        div.dataset.annotationId = annotation.id;
+                        
+                        // Calculate position
+                        const scaledX = rect.x * displayScale;
+                        const scaledY = rect.y * displayScale + yOffset;
+                        const scaledWidth = rect.width * displayScale;
+                        const scaledHeight = rect.height * displayScale;
+                        
+                        div.style.left = scaledX + 'px';
+                        div.style.top = scaledY + 'px';
+                        div.style.width = scaledWidth + 'px';
+                        div.style.height = scaledHeight + 'px';
+                    
+                    // Add event listeners
+                    div.addEventListener('mouseenter', (e) => {
+                        // Clear any pending hide timeout
+                        if (tooltipTimeout) {
+                            clearTimeout(tooltipTimeout);
+                            tooltipTimeout = null;
+                        }
+                        
+                        // Always highlight the current annotation (this clears others)
+                        highlightAnnotation(annotation.id);
+                        
+                        // Only reposition tooltip if it's a different annotation
+                        const shouldReposition = currentTooltipAnnotation?.id !== annotation.id;
+                        showTooltip(e, annotation, false, shouldReposition);
+                    });
+                    div.addEventListener('mouseleave', (e) => {
+                        // Check if we're moving to another part of the same annotation
+                        tooltipTimeout = setTimeout(() => {
+                            const hoveredElement = document.elementFromPoint(e.clientX, e.clientY);
+                            const hoveredAnnotation = hoveredElement?.closest('.annotation');
+                            
+                            // If not hovering any annotation, hide everything
+                            if (!hoveredAnnotation) {
+                                hideTooltip();
+                            }
+                        }, 50); // Small delay to allow moving between rectangles
+                    });
+                        div.addEventListener('click', (e) => showTooltip(e, annotation, true, true));
+                        
+                        wrapper.appendChild(div);
+                    });
+                    
+                    // Add image icons for this annotation
+                    if (annotation.imageIcons) {
+                        annotation.imageIcons.forEach((icon) => {
+                            const iconDiv = document.createElement('div');
+                            iconDiv.className = 'image-icon';
+                            iconDiv.style.left = icon.x * displayScale + 'px';
+                            iconDiv.style.top = (icon.y * displayScale + yOffset) + 'px';
+                            
+                            iconDiv.addEventListener('click', (e) => showImagePreview(e, icon));
+                            
+                            wrapper.appendChild(iconDiv);
+                        });
+                    }
+                });
+            });
+            
+            console.log('All annotations added');
+        }
+        
+        function showTooltip(event, annotation, isClick = false, shouldReposition = true) {
+            const tooltip = document.getElementById('tooltip');
+            const titleEl = tooltip.querySelector('.tooltip-title');
+            const descEl = tooltip.querySelector('.tooltip-description');
+            
+            // Update current annotation tracking
+            currentTooltipAnnotation = annotation;
+            
+            titleEl.textContent = annotation.title;
+            descEl.textContent = annotation.description;
+            
+            tooltip.classList.add('visible');
+            
+            // Only reposition if needed (not moving between parts of same annotation)
+            if (!shouldReposition && tooltip.classList.contains('visible')) {
+                return;
+            }
+            
+            // Get positions and dimensions
+            const rect = event.target.getBoundingClientRect();
+            const tooltipRect = tooltip.getBoundingClientRect();
+            const arrow = tooltip.querySelector('.tooltip-arrow');
+            const container = document.getElementById('letterContainer');
+            const containerRect = container.getBoundingClientRect();
+            
+            // Calculate available space in each direction
+            const spaceAbove = rect.top - containerRect.top;
+            const spaceBelow = containerRect.bottom - rect.bottom;
+            const spaceLeft = rect.left - containerRect.left;
+            const spaceRight = containerRect.right - rect.right;
+            
+            // Determine best position based on available space
+            let position = 'bottom'; // default
+            let left, top;
+            
+            const tooltipHeight = tooltipRect.height;
+            const tooltipWidth = tooltipRect.width;
+            const margin = 10;
+            
+            // Priority: bottom > top > right > left
+            if (spaceBelow >= tooltipHeight + margin && rect.bottom + tooltipHeight + margin < window.innerHeight) {
+                // Position below
+                position = 'bottom';
+                top = rect.bottom + margin;
+                left = rect.left + rect.width / 2 - tooltipWidth / 2;
+                arrow.className = 'tooltip-arrow top';
+            } else if (spaceAbove >= tooltipHeight + margin && rect.top - tooltipHeight - margin > 0) {
+                // Position above
+                position = 'top';
+                top = rect.top - tooltipHeight - margin;
+                left = rect.left + rect.width / 2 - tooltipWidth / 2;
+                arrow.className = 'tooltip-arrow bottom';
+            } else if (spaceRight >= tooltipWidth + margin && rect.right + tooltipWidth + margin < window.innerWidth) {
+                // Position to the right
+                position = 'right';
+                left = rect.right + margin;
+                top = rect.top + rect.height / 2 - tooltipHeight / 2;
+                arrow.className = 'tooltip-arrow left';
+            } else if (spaceLeft >= tooltipWidth + margin && rect.left - tooltipWidth - margin > 0) {
+                // Position to the left
+                position = 'left';
+                left = rect.left - tooltipWidth - margin;
+                top = rect.top + rect.height / 2 - tooltipHeight / 2;
+                arrow.className = 'tooltip-arrow right';
+            } else {
+                // Fallback: position in viewport center if no good position found
+                position = 'center';
+                left = (window.innerWidth - tooltipWidth) / 2;
+                top = (window.innerHeight - tooltipHeight) / 2;
+                arrow.style.display = 'none';
+                
+                // Ensure annotation is visible
+                event.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            
+            // Adjust horizontal position to stay within viewport
+            if (position === 'bottom' || position === 'top') {
+                if (left < margin) left = margin;
+                if (left + tooltipWidth > window.innerWidth - margin) {
+                    left = window.innerWidth - tooltipWidth - margin;
+                }
+                
+                // Update arrow position if tooltip was shifted
+                const arrowLeft = rect.left + rect.width / 2 - left;
+                arrow.style.left = Math.max(10, Math.min(arrowLeft, tooltipWidth - 10)) + 'px';
+            }
+            
+            // Adjust vertical position to stay within viewport
+            if (position === 'left' || position === 'right') {
+                if (top < margin) top = margin;
+                if (top + tooltipHeight > window.innerHeight - margin) {
+                    top = window.innerHeight - tooltipHeight - margin;
+                }
+                
+                // Update arrow position if tooltip was shifted
+                const arrowTop = rect.top + rect.height / 2 - top;
+                arrow.style.top = Math.max(10, Math.min(arrowTop, tooltipHeight - 10)) + 'px';
+            }
+            
+            // Show arrow only for non-center positions
+            if (position !== 'center') {
+                arrow.style.display = '';
+            }
+            
+            tooltip.style.left = left + 'px';
+            tooltip.style.top = top + 'px';
+            
+            // For clicks on mobile, add a close handler
+            if (isClick) {
+                setTimeout(() => {
+                    document.addEventListener('click', hideTooltipOnClick);
+                }, 100);
+            }
+        }
+        
+        function highlightAnnotation(annotationId) {
+            // Clear all highlights
+            document.querySelectorAll('.annotation').forEach(ann => {
+                ann.style.borderColor = '';
+                ann.style.boxShadow = '';
+            });
+            
+            // Apply new highlight if ID provided
+            if (annotationId) {
+                document.querySelectorAll(`[data-annotation-id="${annotationId}"]`).forEach(part => {
+                    part.style.borderColor = 'currentColor';
+                    part.style.boxShadow = '0 0 0 3px rgba(0,0,0,0.1)';
+                });
+                currentHighlightedId = annotationId;
+            } else {
+                currentHighlightedId = null;
+            }
+        }
+        
+        function hideTooltip() {
+            const tooltip = document.getElementById('tooltip');
+            tooltip.classList.remove('visible');
+            currentTooltipAnnotation = null;
+            highlightAnnotation(null); // Clear highlights when hiding tooltip
+        }
+        
+        function hideTooltipOnClick(e) {
+            if (!e.target.closest('.annotation')) {
+                hideTooltip();
+                document.removeEventListener('click', hideTooltipOnClick);
+            }
+        }
+        
+        function showImagePreview(event, imageData) {
+            const preview = document.getElementById('imagePreview');
+            const backdrop = document.getElementById('imageBackdrop');
+            const img = preview.querySelector('img');
+            const caption = preview.querySelector('.image-preview-caption');
+            
+            img.src = imageData.src;
+            img.alt = imageData.alt || '';
+            caption.textContent = imageData.caption || '';
+            
+            backdrop.classList.add('visible');
+            preview.classList.add('visible');
+            
+            // Wait for image to load to get proper dimensions
+            img.onload = () => {
+                const previewRect = preview.getBoundingClientRect();
+                
+                // Center the preview in the viewport
+                let left = (window.innerWidth - previewRect.width) / 2;
+                let top = (window.innerHeight - previewRect.height) / 2;
+                
+                // Ensure minimum margins
+                if (left < 20) left = 20;
+                if (top < 20) top = 20;
+                
+                preview.style.left = left + 'px';
+                preview.style.top = top + 'px';
+            };
+        }
+        
+        function hideImagePreview() {
+            const preview = document.getElementById('imagePreview');
+            const backdrop = document.getElementById('imageBackdrop');
+            preview.classList.remove('visible');
+            backdrop.classList.remove('visible');
+        }
+        
+        // Helper function to get coordinates on image click
+        function setupCoordinateHelper() {
+            const wrapper = document.getElementById('imageWrapper');
+            
+            wrapper.addEventListener('click', (e) => {
+                if (e.target.classList.contains('letter-page')) {
+                    const image = e.target;
+                    const pageNum = image.dataset.page;
+                    const rect = image.getBoundingClientRect();
+                    const displayScale = image.width / image.naturalWidth;
+                    
+                    // Get click position relative to image
+                    const relativeX = e.clientX - rect.left;
+                    const relativeY = e.clientY - rect.top;
+                    
+                    // Convert to natural image coordinates
+                    const naturalX = relativeX / displayScale;
+                    const naturalY = relativeY / displayScale;
+                    
+                    console.log('=== COORDINATE HELPER ===');
+                    console.log(`Page: ${pageNum}`);
+                    console.log(`Clicked at: ${Math.round(naturalX)}, ${Math.round(naturalY)} (natural image coordinates)`);
+                    console.log(`Display coordinates: ${Math.round(relativeX)}, ${Math.round(relativeY)}`);
+                    console.log('To use these coordinates in annotations.json:');
+                    console.log(`"x": ${Math.round(naturalX)}, "y": ${Math.round(naturalY)}`);
+                    console.log('========================');
+                }
+            });
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const showCoordinateMode = urlParams.get('showc') === 'true';
+            
+            // Show coordinate mode button if parameter is set
+            if (showCoordinateMode) {
+                document.getElementById('coordinateModeBtn').style.display = 'inline-block';
+            }
+            
+            loadAnnotations();
+            updateZoom();
+            setupCoordinateHelper();
+            
+            // Hide tooltip on scroll to prevent positioning issues
+            const letterContainer = document.getElementById('letterContainer');
+            let scrollTimeout;
+            letterContainer.addEventListener('scroll', () => {
+                if (currentTooltipAnnotation) {
+                    hideTooltip();
+                }
+            });
+        });
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            if (annotations.length > 0) {
+                displayAnnotations();
+            }
+        });
+    </script>
+    
+    <div style="background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 6px; padding: 15px 20px; margin: 40px auto 20px auto; font-size: 0.75rem; line-height: 1.4; color: #6c757d; max-width: 1100px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #495057;">Disclaimer:</p>
+        <p style="margin: 0 0 8px 0;">This site is maintained by concerned Boise-Foothills residents and is provided for informational purposes only.</p>
+        <ul style="margin: 8px 0 8px 20px; padding-left: 0; list-style-type: disc; list-style-position: outside; text-align: left;">
+            <li style="margin-bottom: 4px; text-align: left;">All content is drawn from publicly available records, news reports, and Ada County official documents.</li>
+            <li style="margin-bottom: 4px; text-align: left;">We do not guarantee completeness, accuracy, or timeliness. Users should verify details against primary sources.</li>
+            <li style="margin-bottom: 4px; text-align: left;">Nothing on this site constitutes legal, financial, or professional advice. For guidance specific to your situation, please consult a qualified attorney or other professional.</li>
+            <li style="margin-bottom: 4px; text-align: left;">No attorney–client relationship is formed by use of this site or by any communication via this site.</li>
+            <li style="margin-bottom: 4px; text-align: left;">All opinions expressed herein are our own and are not endorsed by any government agency.</li>
+            <li style="margin-bottom: 0; text-align: left;">Last updated: July 2025</li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up for Updates - Boise Foothills Shooting Range</title>
+    <style>
+        /* Typography System */
+        :root {
+            --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-size-base: 16px;
+            --font-size-sm: 0.875rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 2rem;
+            --font-size-4xl: 2.5rem;
+            --line-height-tight: 1.25;
+            --line-height-base: 1.6;
+            --line-height-relaxed: 1.75;
+            --letter-spacing-tight: -0.025em;
+            --letter-spacing-wide: 0.025em;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            font-size: var(--font-size-base);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: var(--line-height-base);
+            color: #2c3e50;
+            background: #f8f9fa;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1a2332 0%, #2c3e50 60%, #c9302c 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            height: 4px;
+            background: #c9302c;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+        .header h1 {
+            margin: 0 0 10px 0;
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            letter-spacing: var(--letter-spacing-tight);
+            line-height: var(--line-height-tight);
+        }
+        .header .subtitle {
+            margin: 0;
+            font-size: var(--font-size-xl);
+            opacity: 0.95;
+            font-weight: 400;
+            letter-spacing: var(--letter-spacing-wide);
+        }
+        .header .divider {
+            display: inline-block;
+            width: 60px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.5);
+            margin: 15px 0;
+            border-radius: 2px;
+        }
+        .header .page-title {
+            font-size: var(--font-size-2xl);
+            font-weight: 600;
+            margin: 0;
+            opacity: 0.95;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #2c5282;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        .back-link:hover {
+            color: #c9302c;
+        }
+        
+        .signup-container {
+            background: white;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            flex: 1;
+        }
+        
+        .signup-intro {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .signup-intro h2 {
+            font-size: var(--font-size-2xl);
+            color: #1a2332;
+            margin-bottom: 15px;
+        }
+        .signup-intro p {
+            font-size: var(--font-size-lg);
+            color: #555;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: var(--line-height-relaxed);
+        }
+        
+        .form-wrapper {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .form-wrapper iframe {
+            max-width: 100%;
+            border: none;
+            border-radius: 4px;
+        }
+        
+        .alternative-section {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 30px;
+            margin-top: 40px;
+            text-align: center;
+        }
+        .alternative-section h3 {
+            color: #1a2332;
+            margin-bottom: 15px;
+        }
+        .alternative-section p {
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .alternative-section a {
+            color: #2c5282;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .alternative-section a:hover {
+            text-decoration: underline;
+        }
+        
+        .footer-simple {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+            color: #666;
+            font-size: var(--font-size-sm);
+        }
+        
+        @media (max-width: 768px) {
+            .header-simple {
+                padding: 25px 20px;
+            }
+            .header-simple h1 {
+                font-size: var(--font-size-2xl);
+            }
+            .signup-container {
+                padding: 30px;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            .header-simple {
+                padding: 20px 15px;
+                margin-bottom: 20px;
+            }
+            .header-simple h1 {
+                font-size: 1.5rem;
+            }
+            .signup-container {
+                padding: 20px;
+            }
+            .signup-intro h2 {
+                font-size: var(--font-size-xl);
+            }
+            .signup-intro p {
+                font-size: var(--font-size-base);
+            }
+            .form-wrapper iframe {
+                height: 600px;
+            }
+            .alternative-section {
+                padding: 20px;
+                margin-top: 30px;
+            }
+            .back-link {
+                padding: 10px 0;
+                font-size: var(--font-size-base);
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← Back to main page</a>
+    
+    <div class="header">
+        <h1>Boise Foothills Shooting Range Proposal</h1>
+        <p class="subtitle">Community Information & Resources</p>
+        <div class="divider"></div>
+        <p class="page-title">Sign Up for Updates</p>
+    </div>
+    
+    <div class="signup-container">
+        <div class="signup-intro">
+            <h2>Stay Informed</h2>
+            <p>Join our mailing list to receive important updates about the shooting range permit application, public hearing dates, and opportunities to make your voice heard.</p>
+        </div>
+        
+        <div class="form-wrapper">
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdwMiyXhBGAYUTuyqWdzs2R77TMRK_HOvvCAJho3qiM6htp_g/viewform?embedded=true" 
+                    width="640" 
+                    height="800" 
+                    frameborder="0" 
+                    marginheight="0" 
+                    marginwidth="0">
+              Loading…
+            </iframe>
+        </div>
+        
+        <div class="alternative-section">
+            <h3>Prefer Email?</h3>
+            <p>You can also reach us directly at:</p>
+            <a href="mailto:foothillsfire@protonmail.com?subject=Sign me up for updates">foothillsfire@protonmail.com</a>
+        </div>
+    </div>
+    
+    <div class="footer-simple">
+        <p>This page is maintained by concerned Boise foothills residents.</p>
+    </div>
+    
+    <div style="background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 6px; padding: 15px 20px; margin: 40px auto 20px; font-size: 0.75rem; line-height: 1.4; color: #6c757d; max-width: 700px; text-align: left;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #495057;">Disclaimer:</p>
+        <p style="margin: 0 0 8px 0;">This site is maintained by concerned Boise-Foothills residents and is provided for informational purposes only.</p>
+        <ul style="margin: 8px 0 8px 20px; padding-left: 0; list-style-type: disc; list-style-position: outside; text-align: left;">
+            <li style="margin-bottom: 4px; text-align: left;">All content is drawn from publicly available records, news reports, and Ada County official documents.</li>
+            <li style="margin-bottom: 4px; text-align: left;">We do not guarantee completeness, accuracy, or timeliness. Users should verify details against primary sources.</li>
+            <li style="margin-bottom: 4px; text-align: left;">Nothing on this site constitutes legal, financial, or professional advice. For guidance specific to your situation, please consult a qualified attorney or other professional.</li>
+            <li style="margin-bottom: 4px; text-align: left;">No attorney–client relationship is formed by use of this site or by any communication via this site.</li>
+            <li style="margin-bottom: 4px; text-align: left;">All opinions expressed herein are our own and are not endorsed by any government agency.</li>
+            <li style="margin-bottom: 0; text-align: left;">Last updated: July 2025</li>
+        </ul>
+    </div>
+</body>
+</html>

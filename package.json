@@ -1,0 +1,12 @@
+{
+  "name": "foothills-fire-prevention",
+  "version": "1.0.0",
+  "description": "Email generation function for Foothills Fire Prevention",
+  "private": true,
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.20.9"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0"
+  }
+}
