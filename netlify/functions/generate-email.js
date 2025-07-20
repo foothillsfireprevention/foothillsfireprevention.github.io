@@ -55,7 +55,7 @@ exports.handler = async (event, context) => {
           subject: 'Urgent Action Needed: Illegal Shooting Range Threatening Our Community',
           email: `Dear Representative Letson and Commissioners,
 
-My home in Eagle sits just 2 miles from the unpermitted shooting range at 15401 N. Cartwright Road, and the constant gunfire has made our once-peaceful neighborhood feel like a war zone. Yesterday afternoon, while my children were playing in our backyard, rapid-fire shooting erupted and continued for over an hour. They were terrified.
+My home in Eagle sits just 2 miles from the unpermitted shooting range at 2250 W. Ourada Ranch Rd., and the constant gunfire has made our once-peaceful neighborhood feel like a war zone. Yesterday afternoon, while my children were playing in our backyard, rapid-fire shooting erupted and continued for over an hour. They were terrified.
 
 What's most concerning is that this facility has been operating without permits for years, blatantly disregarding county regulations designed to protect residents like us. During the current extreme fire conditions, I'm losing sleep knowing that one stray bullet or spark could ignite a wildfire that would devastate our entire community.
 
@@ -70,7 +70,7 @@ Test User`
           subject: 'Hidden Springs Resident Demanding Action on Dangerous Gun Range',
           email: `Dear Representative Letson and Commissioners,
 
-The shooting echoes through our Hidden Springs neighborhood at all hours, disrupting our peaceful community and putting lives at risk. As someone who moved here specifically for the quiet mountain lifestyle, I'm appalled that an illegal commercial gun range has been allowed to operate unchecked at 15401 N. Cartwright Road.
+The shooting echoes through our Hidden Springs neighborhood at all hours, disrupting our peaceful community and putting lives at risk. As someone who moved here specifically for the quiet mountain lifestyle, I'm appalled that an illegal commercial gun range has been allowed to operate unchecked at 2250 W. Ourada Ranch Rd.
 
 I've documented over 50 instances of shooting in just the past month, often lasting hours. The noise carries for miles through our canyon, and with the current drought conditions, I fear it's only a matter of time before a spark ignites a catastrophic wildfire. This unpermitted facility poses an immediate threat to thousands of homes and families.
 
@@ -85,7 +85,7 @@ Test User`
           subject: 'Boise Foothills at Risk: Shut Down Illegal Shooting Range Now',
           email: `Dear Representative Letson and Commissioners,
 
-I just learned about the illegal shooting range operating at 15401 N. Cartwright Road and I'm alarmed that this has been allowed to continue for so long. Here in the 83714 area, we can hear the gunfire clearly, especially on weekends when it seems to go on for hours without pause.
+I just learned about the illegal shooting range operating at 2250 W. Ourada Ranch Rd. and I'm alarmed that this has been allowed to continue for so long. Here in the 83714 area, we can hear the gunfire clearly, especially on weekends when it seems to go on for hours without pause.
 
 As a frequent hiker on the Ridge to Rivers trails, I'm deeply concerned about stray bullets and the extreme fire risk this poses. The facility is operating without any permits or safety oversight, in direct violation of county zoning laws. How many more red flag fire warnings do we need before taking action?
 
@@ -233,7 +233,7 @@ Vary how this is incorporated to avoid templates.
 Opening examples:
 - "I just learned about the illegal shooting range and I'm alarmed..."
 - "As someone who [bikes/lives/hikes] in Hidden Springs..."
-- "The ongoing violations at 15401 N. Cartwright concern me because..."
+- "The ongoing violations at 2250 W. Ourada Ranch Rd. concern me because..."
 - "My family and I were shocked to discover..."
 - "Yesterday I realized I have been hearing gunshots, not noise from construction..."`,
       messages: [
@@ -256,7 +256,7 @@ Opening examples:
         headers,
         body: JSON.stringify({
           email: responseText,
-          subject: 'Concern Regarding Non-compliant Shooting Range at 15401 N. Cartwright Rd',
+          subject: 'Concern Regarding Non-compliant Shooting Range at 2250 W. Ourada Ranch Rd.',
         }),
       };
     }
