@@ -305,6 +305,68 @@
             font-style: italic;
             border-radius: 0 6px 6px 0;
         }
+        
+        /* Accordion Styles */
+        .accordion {
+            margin-top: 20px;
+        }
+        .accordion-toggle {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            padding: 12px 20px;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            font-size: var(--font-size-base);
+            color: #2c3e50;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .accordion-toggle:hover {
+            background: #e9ecef;
+            border-color: #d4d4d8;
+        }
+        .accordion-icon {
+            display: inline-block;
+            transition: transform 0.3s ease;
+            font-size: 0.9em;
+        }
+        .accordion-toggle.active .accordion-icon {
+            transform: rotate(90deg);
+        }
+        .accordion-content {
+            display: none;
+            background: #fff;
+            border: 1px solid #e9ecef;
+            border-top: none;
+            border-radius: 0 0 6px 6px;
+            padding: 20px;
+            margin-top: -1px;
+        }
+        .accordion-content.show {
+            display: block;
+        }
+        .accordion-content p {
+            margin-bottom: 12px;
+        }
+        .accordion-content ul, .accordion-content ol {
+            margin-left: 20px;
+            margin-bottom: 12px;
+        }
+        .accordion-content li {
+            margin-bottom: 8px;
+        }
+        .accordion-content code {
+            background: #f8f9fa;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
         .source-link {
             font-size: var(--font-size-sm);
             color: #6c757d;
@@ -1195,12 +1257,54 @@
         
         <div class="faq-item">
             <div class="faq-question">What's happening?</div>
-            <div class="faq-answer">An unpermitted commercial shooting range has been operating less than a mile from the Hidden Springs development since 2024. Only after Ada County threatened legal action against the owners did they begin the permitting process. Starting the permitting process does not mean they are allowed to operate, but rather than stop, the activity is increasing.  </div>
+            <div class="faq-answer">An unpermitted <b>commercial</b> shooting range has been operating less than a mile from the Hidden Springs development since 2024. Only after Ada County threatened legal action against the owners did they begin the permitting process. Starting the permitting process does not mean they are allowed to operate, but rather than stop, the activity is increasing.
+                
+                <div class="gallery-widget">
+                    <h4>Related Images:</h4>
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <img src="images/range.png" loading="lazy" alt="Shooting range">
+                            <div class="gallery-caption">Shooting range</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/range2.png" loading="lazy" alt="Shooting range">
+                            <div class="gallery-caption">Shooting range</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/range3.png" loading="lazy" alt="Shooting range">
+                            <div class="gallery-caption">Shooting range</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/range4.png" loading="lazy" alt="Shooting range">
+                            <div class="gallery-caption">Shooting range</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="faq-item">
             <div class="faq-question">Where exactly is this located?</div>
-            <div class="faq-answer"><a href="#" onclick="openMapImage(); return false;" style="color: #2c5282; text-decoration: underline;">2250 W. Ourada Ranch Rd. (GPS: 43.7353, -116.2211)</a>. The range sits in the open foothills area just north of Rolling Hills in Hidden Springs.</div>
+            <div class="faq-answer"><a href="#" onclick="openMapImage(); return false;" style="color: #2c5282; text-decoration: underline;">2250 W. Ourada Ranch Rd. (GPS: 43.7353, -116.2211)</a>. The range sits in the open foothills area just north of Rolling Hills in Hidden Springs.
+                
+                <div class="gallery-widget">
+                    <h4>Related Images:</h4>
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <img src="images/region.png" loading="lazy" alt="Regional view">
+                            <div class="gallery-caption">Regional view</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/v2.png" loading="lazy" alt="Above the range">
+                            <div class="gallery-caption">Looking down to the shooting range.</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/range_sat.png" loading="lazy" alt="Satellite view of shooting range location">
+                            <div class="gallery-caption">Satellite view</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="faq-item">
@@ -1217,18 +1321,21 @@
                 <h4>Related Images:</h4>
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <img src="images/v4.png" alt="Advertising">
+                        <img src="images/v4.png" loading="lazy" alt="Advertising">
                         <div class="gallery-caption">Advertising.</div>
                     </div>
-                    <div class="gallery-item">
-                        <img src="images/v2.png" alt="Above the range">
-                        <div class="gallery-caption">Looking down to the shooting range.</div>
-                    </div>
-
                    
                     <div class="gallery-item">
-                        <img src="images/v1.png" alt="Targets outside of the shooting range.">
+                        <img src="images/v1.png" loading="lazy" alt="Targets outside of the shooting range.">
                         <div class="gallery-caption">1000 yard targets - not in the range</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/high_cal.png" loading="lazy" alt="High caliber weapons">
+                        <div class="gallery-caption">High caliber weapons</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/bachelor.png" loading="lazy" alt="Bachelor party events">
+                        <div class="gallery-caption">Bachelor party events</div>
                     </div>
                     
                 </div>
@@ -1239,16 +1346,20 @@
 
         <div class="faq-item">
             <div class="faq-question">What makes this a commercial operation vs. personal use?</div>
-            <div class="faq-answer">The Ada County Prosecutor documented that people "sign up and pay to attend" organized training courses and purchase monthly memberships.  This is not a case of using private land for personal shooting activity.  This is a commericial enterprise with <a href="https://www.instagram.com/p/DKW-zyQRt9P/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank">advertising</a>, <a href=""https://www.valiancetraining.com/memberships" target="_blank">memberships</a> and <a href="https://www.valiancetraining.com/product-page/2-day-tactical-survival-course" target="_blank">pay-to-play</a> events.
+            <div class="faq-answer">The Ada County Prosecutor documented that people "sign up and pay to attend" organized training courses and purchase monthly memberships.  This is not a case of using private land for personal shooting activity.  This is a commericial enterprise with <a href="https://www.instagram.com/p/DKW-zyQRt9P/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank">advertising</a>, <a href="https://www.valiancetraining.com/memberships" target="_blank">memberships</a> and <a href="https://www.valiancetraining.com/product-page/2-day-tactical-survival-course" target="_blank">pay-to-play</a> events.
             
             <div class="gallery-widget" style="margin-top: 15px;">
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <img src="images/memberships.png" alt="Valiance Memberships - Commercial pricing structure">
+                        <img src="images/survival.png" loading="lazy" alt="Survival training courses">
+                        <div class="gallery-caption">Survival Training</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/memberships.png" loading="lazy" alt="Valiance Memberships - Commercial pricing structure">
                         <div class="gallery-caption">Monthly Memberships</div>
                     </div>
                     <div class="gallery-item">
-                        <img src="images/training.png" alt="Paid Training Courses - Commercial operation">
+                        <img src="images/training.png" loading="lazy" alt="Paid Training Courses - Commercial operation">
                         <div class="gallery-caption">Paid Training Courses</div>
                     </div>
                 </div>
@@ -1258,7 +1369,34 @@
 
         <div class="faq-item">
             <div class="faq-question">What's the current legal status?</div>
-            <div class="faq-answer">The operation violates Ada County code by operating without required permits. The prosecutor sent a formal enforcement letter in May 2025 requiring compliance within 30 days. Instead of stopping, the owners are now seeking permits through the conditional use process.  Learn about the permit they submitted <a href="letter-viewer.html">here</a>.  Attend the public hearing on August 14th, 2025 @ 6:00pm to speak in person or online.</div>
+            <div class="faq-answer">
+                The operation violates Ada County code by operating without required permits. The prosecutor sent a formal enforcement letter in May 2025 requiring compliance within 30 days. Instead of stopping, the owners are now seeking permits through the conditional use process.  Learn about the permit they submitted <a href="letter-viewer.html">here</a>.  Attend the public hearing on August 14th, 2025 @ 6:00pm to speak in person or online.
+                
+                <div class="accordion">
+                    <button class="accordion-toggle" onclick="toggleAccordion(this)">
+                        <span class="accordion-icon">▶</span> How to Find Ada County Planning Documents
+                    </button>
+                    <div class="accordion-content">
+                        <p><strong>Link:</strong> <a href="https://gisprod.adacounty.id.gov/apps/application_tracker/" target="_blank">https://gisprod.adacounty.id.gov/apps/application_tracker/</a></p>
+                        
+                        <p><strong>Search Options:</strong></p>
+                        <ul>
+                            <li><strong>Map browsing:</strong> Good for general location lookup, but won't show supporting documents</li>
+                            <li><strong>Address/application number search:</strong> Required to access supporting documents and full details</li>
+                        </ul>
+                        
+                        <p><strong>Example workflow:</strong></p>
+                        <ol>
+                            <li>Enter address: <code>2250 W OURADA RANCH RD, BOISE, ID, 83714</code></li>
+                            <li>Or application number: <code>202501185-CU</code></li>
+                            <li>Click on application (202501185)</li>
+                            <li>Select "decision status/supporting documents" for hearing dates and submitted documents</li>
+                        </ol>
+                        
+                        <p><strong>Key info available:</strong> Application description, assigned planner contact, public hearing dates, all submitted documents</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="faq-item">
@@ -1329,7 +1467,7 @@
                 <p>This map below shows the burn area of the 1996 Boise foothills fire transposed to the current range location.  The total area of the circle below is equivalent to 14,000 acres (radius of 4200m).  All of Hidden Springs, most of Cartrwight Ranch, and some portions of Dry Creek and Avimor would be burnt.</p>
 
             </div>
-            <img src="96_burn_radius_transposed.png" alt="1996 Foothills Fire Burn Radius Map" />
+            <img src="96_burn_radius_transposed.png" loading="lazy" alt="1996 Foothills Fire Burn Radius Map" />
         </div>
     </div>
 
@@ -1725,6 +1863,13 @@
             }];
             currentImageIndex = 0;
             openLightbox();
+        }
+        
+        // Accordion toggle function
+        function toggleAccordion(button) {
+            const content = button.nextElementSibling;
+            button.classList.toggle('active');
+            content.classList.toggle('show');
         }
     </script>
     
