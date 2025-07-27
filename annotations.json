@@ -9,7 +9,7 @@
           "id": "no-permit-belief",
           "coordinates": { "x": 215, "y": 357, "width": 1270, "height": 96 },
           "title": "Dismissal of Permit Requirements",
-          "description": "The applicant's statement suggests a fundamental disagreement with county permit requirements. This position is particularly concerning given the ongoing litigation with the Ada County Prosecutor's office regarding permit compliance.",
+          "description": "The applicant's statement raises questions about their understanding of county permit requirements.",
           "category": "warning"
         },
       
@@ -30,7 +30,7 @@
             { "x": 215, "y": 762, "width": 400, "height": 30 }
           ],
           "title": "Measurement Discrepancy",
-          "description": "Aerial measurement tools indicate the actual distance to the nearest residence is approximately 524 yards, not the claimed 600+ yards. This 15% discrepancy raises questions about the accuracy of other technical claims in the application.",
+          "description": "This apparent discrepancy suggests all measurements should be professionally verified.",
           "category": "warning",
           "imageIcons": [
             {
@@ -49,7 +49,7 @@
             { "x": 215, "y": 799, "width": 1018, "height": 28 }
           ],
           "title": "Backstop Height Inconsistency",
-          "description": "Photographic evidence from the web appears to contradict the stated 100-foot backstop height. Without engineering drawings or certified measurements, this claim cannot be verified.",
+          "description": "Photographs appear to raise questions about lane discipline and containment measures. The application should address how shooting activities are confined to designated areas.",
           "category": "critical",
           "imageIcons": [
             {
@@ -68,7 +68,7 @@
             { "x": 216, "y": 926, "width": 937, "height": 24 }
           ],
           "title": "Incomplete Backstop Description",
-          "description": "Site photographs show exposed rock formations within the impact area, which contradicts claims of complete tire coverage. Rock surfaces present documented ricochet and spark risks not addressed in the application.",
+          "description": "Photographs appear to show exposed rock formations within the impact area. The application could benefit from clarifying the extent of tire coverage.",
           "category": "warning",
           "imageIcons": [
             {
@@ -180,7 +180,7 @@
             { "x": 213, "y": 498, "width": 640, "height": 27 }
           ],
           "title": "Projectile Containment Failures Documented",
-          "description": "Photographic evidence shows shooters firing outside designated lanes, creating risk of rounds leaving the property. The application's containment claims are contradicted by photographic evidence.",
+          "description": "Available photographs suggest the backstop dimensions may require professional verification to confirm the stated 100-foot height.",
           "category": "critical",
           "imageIcons": [
             {
