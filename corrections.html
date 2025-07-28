@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corrections & Clarifications - Boise Foothills Shooting Range</title>
+    <!-- Force no-cache to ensure latest version -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <style>
+        /* Typography System */
+        :root {
+            --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-size-base: 16px;
+            --font-size-sm: 0.875rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 2rem;
+            --font-size-4xl: 2.5rem;
+            --line-height-tight: 1.25;
+            --line-height-base: 1.6;
+            --line-height-relaxed: 1.75;
+            --letter-spacing-tight: -0.025em;
+            --letter-spacing-wide: 0.025em;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            font-size: var(--font-size-base);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: var(--line-height-base);
+            color: #2c3e50;
+            background: #f8f9fa;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .header {
+            background: linear-gradient(135deg, #1a2332 0%, #2c3e50 60%, #c9302c 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            height: 4px;
+            background: #c9302c;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+        /* Navigation Bar */
+        .nav-container {
+            position: fixed;
+            top: -60px;
+            left: 0;
+            right: 0;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: top 0.3s ease;
+        }
+        .nav-container.visible {
+            top: 0;
+        }
+        nav {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+        .nav-brand {
+            font-weight: 600;
+            color: #1a2332;
+            font-size: 1.1em;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .nav-brand:hover {
+            color: #c9302c;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links a {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95em;
+            transition: color 0.2s ease;
+            position: relative;
+        }
+        .nav-links a:hover {
+            color: #c9302c;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #c9302c;
+            transition: width 0.2s ease;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .nav-cta {
+            background: #c9302c;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95em;
+            transition: background 0.2s ease;
+        }
+        .nav-cta:hover {
+            background: #a02622;
+        }
+        /* Add padding to body when nav is visible */
+        body.nav-visible {
+            padding-top: 60px;
+        }
+        /* Global Typography Styles */
+        h1 {
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            letter-spacing: var(--letter-spacing-tight);
+            line-height: var(--line-height-tight);
+            margin: 0 0 10px 0;
+        }
+        h2 {
+            font-size: var(--font-size-3xl);
+            font-weight: 600;
+            letter-spacing: var(--letter-spacing-tight);
+            margin-top: 0;
+            margin-bottom: 25px;
+            color: #1a2332;
+        }
+        h3 {
+            font-size: var(--font-size-2xl);
+            font-weight: 600;
+            letter-spacing: var(--letter-spacing-tight);
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        h4 {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        p {
+            margin-bottom: 15px;
+            line-height: var(--line-height-relaxed);
+        }
+        .header h1 {
+            margin: 0 0 10px 0;
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            letter-spacing: var(--letter-spacing-tight);
+            line-height: var(--line-height-tight);
+        }
+        .header .subtitle {
+            margin: 0;
+            font-size: var(--font-size-xl);
+            opacity: 0.95;
+            font-weight: 400;
+            letter-spacing: var(--letter-spacing-wide);
+        }
+        .header .divider {
+            display: inline-block;
+            width: 60px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.5);
+            margin: 15px 0;
+            border-radius: 2px;
+        }
+        .header .page-title {
+            font-size: var(--font-size-2xl);
+            font-weight: 600;
+            margin: 0;
+            opacity: 0.95;
+        }
+        
+        /* Corrections Page Specific Styles - Simple Log Format */
+        .corrections-container {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 30px;
+            margin: 20px 0;
+            font-family: 'Courier New', Courier, monospace;
+            color: #000;
+            font-size: 14px;
+            line-height: 2;
+            overflow-x: auto;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .log-header {
+            font-weight: bold;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #333;
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        .log-entry {
+            margin-bottom: 10px;
+        }
+        
+        /* Back to Home Link */
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #2c5282;
+            text-decoration: none;
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        
+        .back-link:hover {
+            color: #1a365d;
+            text-decoration: underline;
+        }
+        
+        /* Mobile Navigation Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .mobile-menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: #1a2332;
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+        /* Mobile Menu Overlay */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(26, 35, 50, 0.95);
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .mobile-menu-content {
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .mobile-menu-content .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .mobile-menu-content .nav-links a {
+            color: white;
+            font-size: 1.25rem;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            transition: background 0.2s ease;
+        }
+        .mobile-menu-content .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .mobile-menu-content .nav-cta {
+            display: inline-block;
+            margin-top: 30px;
+            background: #c9302c;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #666;
+            font-size: var(--font-size-sm);
+        }
+        
+        /* Nav Actions Container */
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-shrink: 0;
+        }
+        
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .mobile-menu-toggle {
+                display: block;
+            }
+            .header {
+                padding: 30px 20px;
+            }
+            .corrections-container {
+                padding: 20px 15px;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            .header {
+                padding: 25px 15px;
+            }
+            .header h1 {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-container" id="navbar">
+        <nav>
+            <a href="index.html" class="nav-brand">Foothills Fire Prevention</a>
+            <ul class="nav-links">
+                <li><a href="index.html#quick-facts">Facts</a></li>
+                <li><a href="index.html#faq">FAQ</a></li>
+                <li><a href="updates.html">Updates</a></li>
+                <li><a href="index.html#map">Location</a></li>
+                <li><a href="index.html#timeline">Timeline</a></li>
+                <li><a href="index.html#resources">Resources</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="index.html#action" class="nav-cta">Take Action</a>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </div>
+    
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <ul class="nav-links">
+                <li><a href="index.html#quick-facts" onclick="closeMobileMenu()">Facts</a></li>
+                <li><a href="index.html#faq" onclick="closeMobileMenu()">FAQ</a></li>
+                <li><a href="updates.html" onclick="closeMobileMenu()">Updates</a></li>
+                <li><a href="index.html#map" onclick="closeMobileMenu()">Location</a></li>
+                <li><a href="index.html#timeline" onclick="closeMobileMenu()">Timeline</a></li>
+                <li><a href="index.html#resources" onclick="closeMobileMenu()">Resources</a></li>
+            </ul>
+            <a href="index.html#action" class="nav-cta">Take Action</a>
+        </div>
+    </div>
+    
+    <a href="index.html" class="back-link">← Back to Main Page</a>
+    
+    <div class="header">
+        <h1>Boise Foothills Shooting Range Proposal</h1>
+        <p class="subtitle">Community Information & Resources</p>
+        <div class="divider"></div>
+        <p class="page-title">Corrections & Clarifications</p>
+    </div>
+    
+    <div class="corrections-container">
+        <div class="log-header">CORRECTIONS AND CLARIFICATIONS</div>
+        
+        <!-- NEW CORRECTIONS GO HERE - Add new log entries at the top -->
+        <!-- Example template:
+        <div class="log-entry">2025-MM-DD | Section Name | Description of the correction</div>
+        -->
+        
+        <div class="log-entry">2025-07-27 | Quick Facts – first bullet | Replaced “operating illegally” with “operating without the required Conditional-Use Permit (per Ada County Prosecutor letter 16 May 2025)”</div>
+<div class="log-entry">2025-07-27 | FAQ – “What's the Current Legal Status?” | Added attribution: “according to the Ada County Prosecutor’s enforcement letter dated 16 May 2025.”</div>
+<div class="log-entry">2025-07-27 | Timeline images | Cropped/blurred or removed images where privacy could be a concern.</div>
+<div class="log-entry">2025-07-27 | Property-Values section | Prefaced Better Homes & Gardens quote with “According to a 2024 real-estate article…” and inserted citation link</div>
+<div class="log-entry">2025-07-27 | Footer | Added centered “Corrections & Clarifications” link and updated disclaimer to invite factual-error emails</div>
